@@ -2,6 +2,12 @@
 Exam Notes and Study Notes from Master's Degree in Computer Science @ITU 2025-2027
 
 ## 1. Semester
+### Exam Study Plan (Subject to change, overlapping)
+- 1. December - 16. December : Algorithm Design
+- 17. December - 5. January : Advanced Programming
+- 29. December - 12. January : Introduction to Machine Learning
+- 29. December - 15. January : Practical Concurrent and Parallel Programming
+
 ### Algorithm Design
 - **ECTS:** 7.5
 - **Exam Format:** Written, on-premises, 4 hours
