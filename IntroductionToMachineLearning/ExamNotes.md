@@ -16,6 +16,12 @@ TODO: Get descriptions of weights' impact on curve for different polynomial degr
 TODO: Pen & Paper
 TODO: Extra 02-Polynomials
 
+## Week05
+Least Squares Fitting
+TODO: Write util code
+TODO: Write up math in a simple overview
+TODO: Affine spatial regression notebook
+
 # Exam Question Notes
 ---
 ## Question 1: 
