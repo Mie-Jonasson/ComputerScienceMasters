@@ -1,0 +1,111 @@
+{
+  "aing": {
+    "gender": "M",
+    "age": 27,
+    "glasses": "no",
+    "trials": {
+      "0": {
+        "trial_folder": "sessions\\aing\\20250908_T0",
+        "timestamp": "2025-09-08 13:37:45",
+        "patterns": {}
+      },
+      "1": {
+        "trial_folder": "sessions\\aing\\20250908_T1",
+        "timestamp": "2025-09-08 13:38:20",
+        "patterns": {}
+      },
+      "2": {
+        "trial_folder": "sessions\\aing\\20250908_T2",
+        "timestamp": "2025-09-08 13:41:27",
+        "patterns": {
+          "grid": {
+            "event_log": "sessions\\aing\\20250908_T2\\grid\\event_log.csv",
+            "fixation_coords": "sessions\\aing\\20250908_T2\\grid\\fixation_coords.csv",
+            "frames_dir": "sessions\\aing\\20250908_T2\\grid\\frames"
+          },
+          "circle": {
+            "event_log": "sessions\\aing\\20250908_T2\\circle\\event_log.csv",
+            "fixation_coords": "sessions\\aing\\20250908_T2\\circle\\fixation_coords.csv",
+            "frames_dir": "sessions\\aing\\20250908_T2\\circle\\frames"
+          },
+          "line": {
+            "event_log": "sessions\\aing\\20250908_T2\\line\\event_log.csv",
+            "fixation_coords": "sessions\\aing\\20250908_T2\\line\\fixation_coords.csv",
+            "frames_dir": "sessions\\aing\\20250908_T2\\line\\frames"
+          },
+          "random": {
+            "event_log": "sessions\\aing\\20250908_T2\\random\\event_log.csv",
+            "fixation_coords": "sessions\\aing\\20250908_T2\\random\\fixation_coords.csv",
+            "frames_dir": "sessions\\aing\\20250908_T2\\random\\frames"
+          }
+        }
+      }
+    }
+  },
+  "maaw": {
+    "gender": "M",
+    "age": 22,
+    "glasses": "no",
+    "trials": {
+      "0": {
+        "trial_folder": "sessions\\maaw\\20250915_T0",
+        "timestamp": "2025-09-15 13:08:00",
+        "patterns": {
+          "grid": {
+            "event_log": "sessions\\maaw\\20250915_T0\\grid\\event_log.csv",
+            "fixation_coords": "sessions\\maaw\\20250915_T0\\grid\\fixation_coords.csv",
+            "frames_dir": "sessions\\maaw\\20250915_T0\\grid\\frames"
+          },
+          "circle": {
+            "event_log": "sessions\\maaw\\20250915_T0\\circle\\event_log.csv",
+            "fixation_coords": "sessions\\maaw\\20250915_T0\\circle\\fixation_coords.csv",
+            "frames_dir": "sessions\\maaw\\20250915_T0\\circle\\frames"
+          },
+          "line": {
+            "event_log": "sessions\\maaw\\20250915_T0\\line\\event_log.csv",
+            "fixation_coords": "sessions\\maaw\\20250915_T0\\line\\fixation_coords.csv",
+            "frames_dir": "sessions\\maaw\\20250915_T0\\line\\frames"
+          },
+          "random": {
+            "event_log": "sessions\\maaw\\20250915_T0\\random\\event_log.csv",
+            "fixation_coords": "sessions\\maaw\\20250915_T0\\random\\fixation_coords.csv",
+            "frames_dir": "sessions\\maaw\\20250915_T0\\random\\frames"
+          }
+        }
+      }
+    }
+  },
+  "miejo": {
+    "gender": "F",
+    "age": 24,
+    "glasses": "no",
+    "trials": {
+      "0": {
+        "trial_folder": "sessions\\miejo\\20250922_T0",
+        "timestamp": "2025-09-22 13:19:28",
+        "patterns": {
+          "grid": {
+            "event_log": "sessions\\miejo\\20250922_T0\\grid\\event_log.csv",
+            "fixation_coords": "sessions\\miejo\\20250922_T0\\grid\\fixation_coords.csv",
+            "frames_dir": "sessions\\miejo\\20250922_T0\\grid\\frames"
+          },
+          "circle": {
+            "event_log": "sessions\\miejo\\20250922_T0\\circle\\event_log.csv",
+            "fixation_coords": "sessions\\miejo\\20250922_T0\\circle\\fixation_coords.csv",
+            "frames_dir": "sessions\\miejo\\20250922_T0\\circle\\frames"
+          },
+          "line": {
+            "event_log": "sessions\\miejo\\20250922_T0\\line\\event_log.csv",
+            "fixation_coords": "sessions\\miejo\\20250922_T0\\line\\fixation_coords.csv",
+            "frames_dir": "sessions\\miejo\\20250922_T0\\line\\frames"
+          },
+          "random": {
+            "event_log": "sessions\\miejo\\20250922_T0\\random\\event_log.csv",
+            "fixation_coords": "sessions\\miejo\\20250922_T0\\random\\fixation_coords.csv",
+            "frames_dir": "sessions\\miejo\\20250922_T0\\random\\frames"
+          }
+        }
+      }
+    }
+  }
+}
