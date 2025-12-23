@@ -22,6 +22,11 @@ TODO: Write util code
 TODO: Write up math in a simple overview
 TODO: Affine spatial regression notebook
 
+## Week06
+Assignemnt 1 solutions
+Data Preprocessing of pupil data
+Projecting eye coordinates to screen coordinates
+
 # Exam Question Notes
 ---
 ## Question 1: 
