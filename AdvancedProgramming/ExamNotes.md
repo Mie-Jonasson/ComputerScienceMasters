@@ -48,6 +48,8 @@ object List: // companion object
         else Cons(as.head, apply(as.tail*))
 ```
 
+Classes are **constructed** with 'val' input parameters as fields and execution of top-level statements in the class definition. We may define default value for input parameters to avoid overloading.
+
 #### Polymorphism and monomorphism
 **Monomorphic** functions operate on a fixed type, f.ex. an integer. On the other hand, **polymorphic** functions may be defined using syntax `<func_name>[A, B](<arg_1>: A) => B:` allowing types `A` and `B` to take on any type (custom or library) when used and applied later on. When using, one may type the function by `<func_name>[Int, Int](<concrete_arg_1>)`
 
@@ -57,13 +59,55 @@ Fold usually comes in both a "foldRight" and "foldLeft" version, indicating star
 Folders take an initial value, i.e. "accumulator", a functions that takes the current accumulator and next element of the collection to produce the new accumulator and the collection to iterate over.
 If you think you need a for-loop, a fold is possibly what you actually need.
 
-### Dynamic Dispatch
-???
-
 ### Preferred Style
 ![](images/preferred_style.png)
 
-## ???
+## Basic Buzz-words
+
+### Dynamic Dispatch
+In scala (as well as python & java), instance methods are virtual, i.e. they are 'dynamically dispatched'.
+The method implementation is chosen at **runtime** based on the **actual object type**, not the variable's declared type.
+This enables polymorphism - the same method call behaves differently depending on the concrete object. Example: `val a: Animal = Dog(); a.speak()` calls `Dog.speak()`, not `Animal.speak()`, because the runtime looks at the actual object (Dog), not the variable type (Animal).
+Contrast with static dispatch where the method to call is chosen at compile time.
+
+### Co-variance and Contra-variance.
+Assuming the type `Student` is a subtype of `Person` (i.e. `Student <: Person`) and assuming a function taking argument of type `IEnum[Person]`. We may pass a student `IEnum[Student]` in place of the Person-argument type, and name that:
+- *Co-variance*: When `Student <: Person`, then `IEnum[Student]` is a subtype of `IEnum[Person]` - i.e. varies in the same direction of inheritance. Dangerous if we do everything but READ.
+- *Contra-variance* When `Student <: Person`, then `IEnum[Person]` is a subtype of `IEnum[Student]` - i.e. varies in the opposite direction of inheritance. Dangerous if we do everything but WRITE.
+
+For generic types, i.e. polymorphic definitions, `T[A]` given any `B <: A`, then `T[B] <: T[A]` and thus `T[B]` may be used in place of `T[A]`. 
+In scala covariance is denoted by using `T[+A]` and contravariance is denoted by using `T[-A]`. Invariance is the default behavior, i.e. a function may still be polymorphic but once called will require a specific type and not allow subtypes as part of the function.
+
+### For-Yield Expressions
+![](images/for_yield.png)
+
+## Options
+Options come up when referring to error-handling. I.e. we want to return the result if it may be processed and a default error-value when there is no possible result. One may think of the related concepts:
+- **Total functions**: a function $f: A -> B$ where for every $a \in A$ there exists a $b \in B$ such that $f(a) = b$
+- **Partial functions**: a function where there is not necessarily a solution $b \in B$.
+
+Partial functions call for for Options or other types that allow working in the world of errors/faults.
+Option may be defined as a simple two-case class:
+```[scala]
+enum Option[+A]:
+    case Some(get: A)
+    case None
+
+    // anonymous functions
+    def map[B](f: A => B): Option[B]
+    def flatMap[B](f: A => Option[B]): Option[B]
+    def filter(f: A => Boolean): Option[A]
+    def getOrElse[B >: A](default: => B): B // Note that this function may be typed to a supertype of the type of the Option
+```
+The `Some(a)` encapsulates any result-value whilst `None` encapsulates not being able to retrieve a value for the computation. This means we can define behavior without worrying about when or where the code might fail - and simply end with processing the failure by supplying a given default value or similar (depending on desired behavior).
+
+### Either: Option but with error information
+Instead of just returning None, allows keeping track of the error that occurred and to return it for handling. The data type is therefore also slightly more complex as it encapsulates more information in the failing case:
+```[scala]
+enum Either[+E, +A]:
+    case Left(value: E) // Error, likely a string. May also be a list of strings if capturing entire stack.
+    case Right(value: A) // Success
+```
 
 # Old Exams / Exercises
 Contained within the separate repo [here](https://github.itu.dk/miejo/Advanced_Programming) inside github.itu.dk
