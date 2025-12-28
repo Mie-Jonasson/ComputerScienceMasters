@@ -220,11 +220,30 @@ def sequence[A](ras: List[Rand[A]]): Rand[List[A]] =
 ## Monads
 ???
 
-## Testing
-???
+## Testing - General concepts
+**Assertions** are boolean evaluations (*boolean predicates*) over the program state and variables, asserting whether they have the expected value. It helps us establish norms and expectations and to test that these expectations/assumptions hold in practice - i.e. *fail-fast programming*. 
+Writing small assertions is more useful (unit tests), as the error is more distinct and isolated to a particular focus point / behavior.
+Scala has different types of assertions. All of them fail at runtime but vary in the error produced and how it should be corrected:
+- **require**: before any actions are executed, blame the *caller* when failing, i.e. faulty input, a **pre-condition**. 
+- **ensuring**: after an action, check if result is valid, blame the *callee* when failing, i.e. body of code itself is failing, a **post-condition**
+- **assert**: must hold, is basically a test (usually equality or greater-than)
+- **assume**: verifier assumes this behavior, an axiom.
 
-### Property based testing
-???
+**Pre-conditions** detailed look:
+"If this pre-condition holds, then the code should behave correctly"; Usually used to constrain arguments of a function. We want to specify the *weakest* pre-condition, i.e. the pre-condition allowing the largest set of inputs while still satisfying the desired behavior. We do this to achieve *complete specifications* of the input space, and may in testing use stronger pre-conditions to test on limited subsets of the input space.
+
+**Post-conditions** detailed look:
+"Given this intermediary result, is it correctly computed?"; Usually used to verify correctness of steps or function outputs before continuing, constrains the return value. We want to specify the *strongest* post-condition, i.e. the post-condition that is particularly limited to the actual desired behavior. Used to define *complete behavior* of the code. Usually decomposed into smaller weaker post-conditions that are easier to test and verify.
+
+**Contracts** are defined as a pair of a *pre-condition* and a *post-condition*, for which the caller shall make sure the pre-condition is held and the callee shall make sure the post-condition is held as long as the pre-condition was in fact held. The ideal contract is *minimized assumptions* (weak pre-condition) and *maximized guarantees* (strong post-condition).
+
+A related concept is **invariants** which are properties that should always hold at runtime (i.e. strong assumptions about the structure / behavior of objects).
+
+In practice, we use `forAll` to test over a number of randomly generated objects of a certain type and specification. Most types will have a generator `Arbitrary[A]` / `Gen[A]` - but if you create your own data type you also need to define the generator for it.
+Types may have multiple generators, and we may specify which generator to use with the `given` keyword. We can name our givens, just like we name values, and use them in combination or separately in tests.
+
+## Property based testing
+Property-based testing differs from unit-testing and other scenario-based testing methods, as it is not rooted in particular examples but rather in generalized laws and behavior of the API. PBT therefore seeks to define the laws and test these rigorously on random inputs, possibly catching flukes that might have been missed.
 
 ## Parsing
 ???
