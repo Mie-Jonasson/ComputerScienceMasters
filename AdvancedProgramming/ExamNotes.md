@@ -109,5 +109,55 @@ enum Either[+E, +A]:
     case Right(value: A) // Success
 ```
 
+## Lazy Lists (and evaluation)
+We want to separate all of it "hows" (i.e. how to compute lengths, how to summarize, ...) from the "whats" (i.e. the concrete objects such as a specific list). 
+
+### Strictness
+**strict evaluations** evaluate all function arguments before evaluating the function body. This is the default in most languages, and means that if the input is valid (non-failing) it will be put through the function body without issues. On the other hand, **non-strict evaluation** may be super useful to define behavior that is not immediately executed.
+All languages need a strict construct, otherwise nothing is ever actually computed.
+
+### Forcing it and Call-by-name
+Strict computations are also referred to as **call-by-value** evaluation.
+We can simulate *non-strict* behavior (**call-by-name** evaluation) in a strict functional language by using the type `() => A` in place of `A`, a nullary function returning the value over the distinct value itself. Such a *delayed computation* is called a **thunk**, and executing a thunk is called **forcing it**. In Scala:
+- type `<arg_name>: () => A` is used in function body as `<arg_name>()`.
+- type `<arg_name>: => A` is used in function body as `<arg_name>`. This is useful and preferred over the previous implementation as it is referenced like a regular variable (automatically forced) and also requires no caching.
+
+The call-by-name argument is evaluated every time it is accessed in the function body. One may store it in a `lazy val cache<arg_name> = <arg_name>` to evaluate it only once and cache the result. *Lazy vals are not forced immediately*, but forced on first access and then fetched going forward. **Lazy Evaluations** is the combination of *call-by-name* evaluation and caching (*memoization*) after the first access.
+
+Laziness interacts badly with side effects (such as printing and similar). We can simplify and optimize pure programs when using lazy evaluation to reduce memory usage and compute power needed.
+
+### Lazy Lists
+Lazy lists are an elegant way of creating both finite and infinite streams of data, for which we do not need to evaluate the entire structure at once. Lazy lists are also referred to as **Pull-streams** as you ask for data from the stream when needed and it is generated on-demand (i.e. does not exist in memory until generated).
+
+Lazy lists are **isomorphic** with lists - they provide the same API, but under the hood we evaluate lazily. Because enums cannot have *call-by-name* arguments we create a convenience constructor:
+```[scala]
+enum LazyList[+A]:
+    case Empty
+    case Cons(h: () => A, t: () => LazyList[A])
+
+    def headOption[A] = this match
+        case Empty => None
+        case Cons(h, t) => Some(h()) // note, that here we force the lazy head!
+
+// convenience constructor outside the enum
+def cons[A](hd: => A, tl: => LazyList[A]): LazyList[A] =
+    lazy val head = hd // creating a lazy vals to ensure caching after first compute
+    lazy val tail = tl
+    Cons(() => head, () => tail)
+```
+
+Note that infinite lazy lists often have recursive definitions. For example:
+```[scala]
+// an infinite stream of 1's:
+val ones: LazyList[Int] = cons(1, ones)
+
+// an infinite stream of random numbers:
+val randoms: LazyList[Double] = cons (Math.random, randoms)
+```
+In particular also note that assigning  the head and tail as `lazy val` in the convenience constructor is important to ensure referential transparency when f.ex. having the list of random numbers, as no caching would mean it would be different each time we evaluate it.
+
+Lazy lists are functional iterators - as you may also see them in python or other imperative languages - as the computation is only done once and even if needed. Reduces unnecessary computation and memory usage.
+Lazy lists are also the basis for *reactive programming* (but need to add real time, pushing and more).
+
 # Old Exams / Exercises
 Contained within the separate repo [here](https://github.itu.dk/miejo/Advanced_Programming) inside github.itu.dk
