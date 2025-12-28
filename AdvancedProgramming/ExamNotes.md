@@ -159,5 +159,30 @@ In particular also note that assigning  the head and tail as `lazy val` in the c
 Lazy lists are functional iterators - as you may also see them in python or other imperative languages - as the computation is only done once and even if needed. Reduces unnecessary computation and memory usage.
 Lazy lists are also the basis for *reactive programming* (but need to add real time, pushing and more).
 
+## State
+We want to keep track of the state explicitly to have referential transparency in what is actually going on with f.ex. random number generators. A referentially transparent (and therefor pure) version of a random number generator may for example be:
+```[scala]
+trait RNG:
+    def nextInt: (Int, RNG)
+
+object RNG:
+    def nextInt(rng: RNG): (Int, RNG) = // takes a state object and returns the result and the new state object
+        rng.nextInt
+```
+Other common names for state are: *stateful*, *automaton*, *transition* - a single iteration of calling and updating the state may be called a *run* or *step*.
+States and lazy lists have a lot in common - we can unfold a state in a lazy list as a generator of the contents from an initial state $s$.
+
+We may want to compute a random instance of some type `A`, that we do not yet know. We can define this Random generator as `type Rand[A] = State[RNG, A]`. This is all good and well, and with a concrete implementation of an RNG, we may now start defining how to generate an Int (... or a Double or a list or a tuple) from a specific initialization of an RNG.
+```[scala]
+val r: Rand[Int] = ... // Defining basic Int-generation
+val (i, r1) = r.run(SimpleRNG(42)) // Running 'r' with a concrete State implementation and instance
+
+def map[S, A, B](s:State[S, A])(f:A =>B):State[S, B] // defining how to map from the initial output to another type.
+def flatMap[S, A, B](s:State[S, A])(f:A =>State[S, B]):State[S, B] // to compose generators linearly
+map2[S, A, B, C](sa:State[S, A])(sb:State[S, B])(f:(A, B) =>C):State[S, C] // using two generators over the same state instance
+```
+
+This concept of state is super confusing at times, but most importantly: we always want to use the state to get some value, update the new state and pass on the new state for the next computation. Never reuse the state for multiple computations, always string it along to the next.
+
 # Old Exams / Exercises
 Contained within the separate repo [here](https://github.itu.dk/miejo/Advanced_Programming) inside github.itu.dk
