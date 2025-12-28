@@ -183,6 +183,39 @@ map2[S, A, B, C](sa:State[S, A])(sb:State[S, B])(f:(A, B) =>C):State[S, C] // us
 ```
 
 This concept of state is super confusing at times, but most importantly: we always want to use the state to get some value, update the new state and pass on the new state for the next computation. Never reuse the state for multiple computations, always string it along to the next.
+See own exercise solution [here](https://github.itu.dk/miejo/Advanced_Programming/blob/main/05-state/Exercises.scala) for better intuition if it seems confusing how one would do it for any of the coding examples in this section. In particular (note that here, for map2, rng is not stringed along - tests were failing if this was the case. On the other hand, other tasks intended to use map2 were requiring the state to be stringed along - see sequence):
+```[scala]
+def map[A,B](s: Rand[A])(f: A => B): Rand[B] =
+    rng => {
+        val (a, rng2) = s(rng)
+        (f(a), rng2)
+    }
+
+def flatMap[A,B](f: Rand[A])(g: A => Rand[B]): Rand[B] =
+    rng => {
+        val (a, rng2) = f(rng)
+        g(a)(rng2)
+    }
+
+def map2[A, B, C](ra: Rand[A], rb: Rand[B])(f: (A, B) => C): Rand[C] = 
+    rng => {
+        val (a, rng2) = ra(rng)
+        val (b, rng3) = rb(rng)
+        (f(a, b), rng2)
+    }
+
+def sequence[A](ras: List[Rand[A]]): Rand[List[A]] =
+    ras.foldRight
+        (unit(List.empty[A]))
+        ((x1: Rand[A], acc: Rand[List[A]]) => // using map2 causes errors because it is not threading the rng
+        // threading the rng in map2 will (on the other hand) cause other tests to fail...
+            rng => {
+                val (a, rng2) = x1(rng)
+                val (list, rng3) = acc(rng2)
+                (a :: list, rng3)
+            }
+        )
+```
 
 # Old Exams / Exercises
 Contained within the separate repo [here](https://github.itu.dk/miejo/Advanced_Programming) inside github.itu.dk
