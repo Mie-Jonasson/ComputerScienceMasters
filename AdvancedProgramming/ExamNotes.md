@@ -217,5 +217,29 @@ def sequence[A](ras: List[Rand[A]]): Rand[List[A]] =
         )
 ```
 
+## Monads
+???
+
+## Testing
+???
+
+### Property based testing
+???
+
+## Parsing
+???
+
+## Basics of Evaluators
+???
+
+## Lenses
+???
+
+## Basic Probabilistic Programming (i.e. probability in code)
+???
+
+## Basic Reinforcement Learning
+???
+
 # Old Exams / Exercises
 Contained within the separate repo [here](https://github.itu.dk/miejo/Advanced_Programming) inside github.itu.dk
