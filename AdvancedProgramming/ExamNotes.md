@@ -50,6 +50,8 @@ object List: // companion object
 
 Classes are **constructed** with 'val' input parameters as fields and execution of top-level statements in the class definition. We may define default value for input parameters to avoid overloading.
 
+Declaring **opaque** types, means the user cannot exploit the underlying representation: `opaque type MaxSize = Int`. This may also be useful when defining extensions to limit to this exact type (an not a similar type with the same footprint). Similar benefits as to defining it as a class, but avoiding the more complex structure.
+
 #### Polymorphism and monomorphism
 **Monomorphic** functions operate on a fixed type, f.ex. an integer. On the other hand, **polymorphic** functions may be defined using syntax `<func_name>[A, B](<arg_1>: A) => B:` allowing types `A` and `B` to take on any type (custom or library) when used and applied later on. When using, one may type the function by `<func_name>[Int, Int](<concrete_arg_1>)`
 
@@ -61,6 +63,23 @@ If you think you need a for-loop, a fold is possibly what you actually need.
 
 ### Preferred Style
 ![](images/preferred_style.png)
+
+### Extension Methods
+An extension method is a static function that may be call on an instance as if it was an instance type - i.e. we *extend the existing API* for a class with additional methods/functions. In scala:
+```[scala]
+// definition
+extension (val str: String)
+    def <method_name> =
+        str.<functionality>
+
+// usage
+import <method_name>
+"TEST STRING".<method_name>
+```
+This is useful when we want to add functionality to classes and where we cannot reasonably modify and recompile the source code.
+
+### Type Classes in a nutshell
+![](images/type_classes.png)
 
 ## Basic Buzz-words
 
@@ -244,6 +263,24 @@ Types may have multiple generators, and we may specify which generator to use wi
 
 ## Property based testing
 Property-based testing differs from unit-testing and other scenario-based testing methods, as it is not rooted in particular examples but rather in generalized laws and behavior of the API. PBT therefore seeks to define the laws and test these rigorously on random inputs, possibly catching flukes that might have been missed.
+
+### Generators
+Generators are the objects that generates a random object of a specific type under specific constraints (f.ex. lists of integers of length 0-100). Generators are useful in PBT frameworks, as they produce a random object with certain properties, to test whether it might be a failing case. See for example this property test:
+![](images/generators.png)
+
+Generators are random generators just like RNG, we define `opaque type Gen[+A] = State[RNG, A]`. Now, we may use the State API to create generators of all sorts:
+```[scala]
+def anyInteger: Gen[Int] = State.next_int
+
+def intPair: Gen[(Int, Int)] = anyInteger.map2(anyInteger)(x => x) // compose two integers as the tuple they are
+
+def listOfN[A] (n: int) (using genA: Gen[A]) : Gen[List[A]] = ... // using makes the compiler auto-fetch library generators
+// but there must be a given generator or it will fail.
+given val anyInteger : Gen[Int] = anyInteger
+```
+See more generators in the exercises [here](https://github.itu.dk/miejo/Advanced_Programming/blob/main/07-prop/Exercises.scala). NOTE: the using argument may be overwritten and used as regular argument by passing an object of the given type in its place. 
+
+One may also use **summon** instead of **using**. I.e. `summon[Gen[A]]` in the code body instead of `using genA: Gen[A]` in the argument header.
 
 ## Parsing
 ???
