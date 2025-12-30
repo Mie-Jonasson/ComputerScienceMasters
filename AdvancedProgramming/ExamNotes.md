@@ -237,7 +237,122 @@ def sequence[A](ras: List[Rand[A]]): Rand[List[A]] =
 ```
 
 ## Monads
-???
+### Monoid / Addable
+A monoid is a type $A$, for which associativity and identity laws hold. In more detail, a monoid type should have:
+- A `combine` method, which takes 2 elements $a1, a2 \in A$ and combining them produces an element $c \in A$
+- A `zero` element, which given an element $a \in A$ will produce the element $a$ when combining with itself.
+This is a mathematical definition, and in particular the laws that should follow are:
+- **associativity**: the order of calculations does not matter, i.e. $(x \bigoplus y) \bigoplus z == x \bigoplus (y \bigoplus z)$ - in particular the order of expressions is the same, but which combination we do first is free-of-choice.
+- **identity**: combining with the zero-element produces the element itself, i.e. $x \bigoplus 0 == x == 0 \bigoplus x$
+
+In scala it may be defined as the trait:
+```[scala]
+trait Monoid[A]:
+  self =>
+  def combine(a1: A, a2: A): A
+  def empty: A
+
+  object laws:
+    def associative (using Arbitrary[A], Equality[A]) =
+      forAll { (a1: A, a2: A, a3: A) =>
+        self.combine(self.combine(a1, a2), a3) ===
+          self.combine(a1, self.combine(a2, a3)) }
+
+    def unit (using Arbitrary[A], Equality[A]) =
+      forAll { (a: A) =>
+        (self.combine(a, self.empty) === a) &&
+        (self.combine(self.empty, a) === a) }
+
+    def monoid (using Arbitrary[A], using Equality[A]) = // combination of all other laws
+      associative && unit
+
+// a type class example instance
+val stringMonoid: Monoid[String] = new:
+  def combine(a1: String, a2: String): String =
+    a1 + a2
+  val empty: String = ""
+
+// and we may test that our example instance follows the laws
+property("stringMonoid is a monoid") =
+    stringMonoid.laws.monoid
+```
+
+#### Homomorphism
+We may talk about **Homomorphism** between Monoids. In particular, given the two distinct monoids: $(M, \bigoplus, 0)$ and $(N, \bigotimes, 1)$ and a function $f: M \to N$, then the following should hold for homomorphic monoids:
+- **distributive**: combining in the source entity or target entity provides the same result: $f(x \bigoplus y) == f(x) \bigotimes f(y)$ for any $x, y \in M$
+- **preserves identity**: the zero element of M should map to the zero element of N: $f(0) = 1$
+
+**Isomorphism** is when there is homomorphism in both directions.
+An example of homomorphism is concat of strings and addition of numbers with "size" / length as the mapping function.
+An example of Isomorphism is strings and lists of chars.
+
+### Foldable
+Objects that may be folded over, f.ex. Lists, Sequences or any other iterable type!
+```[scala]
+trait Foldable[F[_]]:
+    extension [A](as: F[A])
+
+    // map into a monoid and reduce using ’combine’
+    def foldMap[B: Mondoid](f: A => B): B
+    def foldRight[B](z: B)(f: (A, B) => B): B
+    def foldLeft[B] (z: B)(f: (B, A) => B): B
+
+    //If A is a monoid then
+    def concatenate[A](as: F[A])(using m: Monoid[A]): A =
+        as.foldLeft(m.empty)(m.combine)
+```
+
+### Functor / Mappable
+A mappable/functor is an object that may be mapped. In particular, we see that the map functions we have implemented for options, generators and so on all have a similar type: `def map[A, B] (a: <type>[A]) (f: A -> B) : <type>[B]`. 
+In scala:
+```[scala]
+trait Functor[F[_]]: // Functor is higher kind
+
+  extension [A](fa: F[A])
+    def map[B](f: A => B): F[B] // require map
+
+  extension [A, B](fab: F[(A, B)])
+    def distribute: (F[A], F[B])= // derived from map
+      (fab.map { _._1 }, fab.map { _._2 })
+
+  object functorLaws:
+    def map[A](using Arbitrary[F[A]], Equality[F[A]]): Prop = // preservation of structure law
+      forAll { (fa: F[A]) => fa.map[A](identity[A]) === fa }
+```
+
+### Monad / Flatmappable
+Encapsulates all of the types we ahve developed in the class, i.e. flatmappables. Note that map and other functions may be derived from the flatmap function:
+```[scala]
+trait Monad[F[_]]
+  extends Functor[F]:
+  
+  def unit[A](a: => A): F[A]
+
+  extension [A](fa: F[A])
+    def flatMap[B](f: A => F[B]): F[B]
+    def map[B](f: A => B): F[B] =
+      fa.flatMap[B] { a => unit(f(a)) }
+
+  object monadLaws:
+    def associative[A, B, C]
+      (using Arbitrary[F[A]], Arbitrary[A => F[B]], Arbitrary[B => F[C]], Equality[F[C]]) =
+        forAll { (x: F[A], f: A => F[B], g: B => F[C]) =>
+          (x.flatMap(f).flatMap(g)) === (x.flatMap { a => f(a).flatMap(g) })
+        }
+
+    def identityRight[A]
+      (using Arbitrary[F[A]], Equality[F[A]]) =
+        forAll { (x: F[A]) =>
+          x.flatMap(unit) === x
+        }
+
+    def identityLeft[A]
+      (using Arbitrary[A], Arbitrary[A => F[A]], Equality[F[A]]) =
+        forAll{(y: A,f: A=>F[A]) =>
+          unit(y).flatMap(f) === f(y)
+        }
+```
+Is any type of object that may be sequenced or transformed. It is both a functor (mappable) and an applicative functor (map2-able)
 
 ## Testing - General concepts
 **Assertions** are boolean evaluations (*boolean predicates*) over the program state and variables, asserting whether they have the expected value. It helps us establish norms and expectations and to test that these expectations/assumptions hold in practice - i.e. *fail-fast programming*. 
