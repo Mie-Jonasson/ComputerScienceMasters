@@ -490,10 +490,27 @@ def eval (expr: numExpr): M[Int] = expr match
                 if rv == 0 then Raise("Division by 0")
                 else Return(lv / rv)
 ```
-We note though, that this exception is in fact a monad and is indeed super similar to our Option / Either types from earlier. If we use a monad, we may replace all the pattern matching (which is only there for error handling) with a simple forward-going flatmap!
+We note though, that this exception is in fact a monad and is indeed super similar to our Option / Either types from earlier. If we use a monad, we may replace all the pattern matching (which is only there for error handling) with a simple flatmap!
 
 ## Lenses
-???
+Lenses are used to take a large *concrete* object C and turn it into a smaller *abstract* object A, which may then be modified. This is done, as complex structures may be super difficult to modify in their native format (think JSON, XML, etc.).
+Lenses are the mapping function between concrete and abstract representations.
+
+The lens $l$ comprises the partial function $get: C \to A$ and $putback: A \to C \to C$ (also referred to as put, set, replace). There are a number of laws related to this:
+- **Put-Get Law**: When we $putback$ an abstraction $a$ onto $c$ and then immediately call $get$, we want the abstract object $a$ to be unchanged: $get (putback (a) (c)) == a$
+- **Get-Put Law**: When we $get$ an abstraction from concrete object $c$ and immediately call $putback$, we want the concrete object $c$ to be unchanged: $putback (get (c)) (c) == c$
+- **Put-Put Law**: When we $putback$ two different abstract objects $a$ and $a'$ on $c$ then we should get the same as applying just the most recent $putback$: $putback (a') (putback (a)(c)) == putback (a') (c)$
+
+A lens is **well-behaved** if it satisfies the *Put-Get* law and the *Get-Put* law.
+A lens is **very well-behvaed** if it is *well-behaved* and also satisfies the *Put-Put* law.
+
+The following are well-known example lenses:
+- **Identity function**: Total lens (works in both directions) and very well-behaved
+- **Constant function**: Total lens and not well-behaved at all
+- **Set membership and multisided contains**: Total lens and very well-behaved (note that the abstract is just a boolean true / false state for a particular item, and mapped back it should remove or add the item in question to set)
+
+We may compose lenses on top of each other:
+![](images/lens_composition.png)
 
 ## Basic Probabilistic Programming (i.e. probability in code)
 Roots in basic probability theory and statistical modelling. An alternative to standard machine learning methods, and adds the layer of uncertainty to the model outputs directly.
@@ -512,7 +529,21 @@ There exists a number of standard distributions which are the ones used most oft
 See code example using Pigaro in exercises [here](https://github.itu.dk/miejo/Advanced_Programming/blob/main/10-prob/Exercises.scala).
 
 ## Basic Reinforcement Learning
-???
+In reinforcement learning we seek to optimize a behavioral function for an **agent** to maximize some reward function. An agent takes in a current *state*, takes an *action* and gets back the new state and a *reward*, indicating how good the action was in the current state.
+The **strategy** of the agent is the learned mapping of a state to the best possible action.
+
+A simple form of reinforcement learning is **Q-Learning** over a discrete space of state-action pairs. This works by the agent maintaining a Q-table with an *estimation of expected future reward* for each state-action pair. We may initialize this table with either random values or 0's. Once we take an action and get the reward and the new state, we update the Q-table fro the previous state and picked action with:
+![](images/q_table_update.png)
+
+One may think that the agent should pick the action with the highest estimated future reward, but this approach may lead to the agent getting stuck in the first decent/good path it finds (local optima) - and not exploring to find a better alternative.
+We define the **exploration-exploitation** ratio $\epsilon$ that decides at some likelihood whether we should *explore a random action* over *exploiting the best known action*. We may decay $\epsilon$ over time to cement the best path once it is more likely to have been found and learned.
+
+### Cliff Walking
+cliff walking was the sample problem we used during the lecture and possible project (which i did not do). It is defined as follows:
+![](images/cliff_walking.png)
+- State Space is the location on the grid
+- Actions are Left-Right-Up-Down (with limitation on border grid-locations)
+- Rewards are -1 for each regular step and -100 if going over the cliff
 
 # Old Exams / Exercises
 Contained within the separate repo [here](https://github.itu.dk/miejo/Advanced_Programming) inside github.itu.dk
