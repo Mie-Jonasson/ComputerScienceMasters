@@ -283,7 +283,45 @@ See more generators in the exercises [here](https://github.itu.dk/miejo/Advanced
 One may also use **summon** instead of **using**. I.e. `summon[Gen[A]]` in the code body instead of `using genA: Gen[A]` in the argument header.
 
 ## Parsing
-???
+Parsing is about coding how to read a file / string into a sensible data structure or executable. The main concepts are as follows:
+- **concrete syntax** vs **abstract syntax**: The concrete syntax is the format of the input, which may for example be a JSON file. The JSON file is structured with certain delimiters between arguments, possibly with extra spaces/newlines/tabs. The abstract syntax is, on the other hand, the structure we use to represent the concrete object as an object in our code. The abstract syntax is of course highly dependant on the concrete syntax and how we wish to represent and use the object. We might use the following abstract syntax for JSON files:
+```[scala]
+enum JSON
+    // simpler types of args
+    case JNull
+    case JNumber(get: Double)
+    case JString(get: String)
+    case JBool(get: Boolean)
+
+    // Lists are read as sequences of other JSON objects, f.ex. JNumber. This allows multi-type arrays to be read.
+    case JArray(get: IndexedSeq[JSON])
+
+    // The overall JSON encapsulator, mapping a string "field-name" to some JSON object. Allows nesting objects.
+    case JObject(get: Map[String, JSON])
+```
+- **Algebraic Design**: design your interface first, along with associated laws. THEN use the types and laws to evolve the interface. This is a form of *test-driven-development*, where we define the intended behavior first and then seek to define the objects that should follow the laws only later. We focus on separating the design and definition of the interface from the implementation details.
+- **Full Abstraction**: we define types, functions & behavior without defining the implementation details. I.e. we never run anything, just type checking and compilation. This is the pure design of the API, and we will later focus on the implementation. We also define the *laws/tests* which we may also compile before ever having a specific implementation.
+- **Higher Kind**: A type that is polymorphic in **type constructors** (`Parsers[ParseError, Parser[+_]]`) not directly in the type (as `Parser[+A]`) - Difference here is that the higher kind type is *requiring a `Parser` of some type*, specifying the type constructor directly, but does not mind WHAT the Parser is parsing. The normal polymorphic type constructor just does not mind what type the type is at all.
+- Map is **Structure Preserving**: When map is used on a parser `p` with the identity function, it should always produce the parser `p` itself. In particular, map does not change the structure but only the value contained in the parser.
+
+we use regex to define the patterns of each type, f.ex. a quoted string, a decimal number or white spaces. We also define the following combinators for parser objects:
+- `|` - OR, choice of parsers (only choice when it is singular without any `*`). Will try parsers from leftmost to rightmost until something is matched.
+- `?` - OPT, optionally parsed. Mostly used for whitespaces as there may be 0 or may be many. We want them parsed so we get to the input we are interested in.
+- `**` - parse both (sequencing) and return a tuple with `(left_out, right_out)`
+- `*|` - parse both (sequencing) and only return the left element
+- `|*` - parse both (sequencing) and only return the right element
+
+Parsers:
+![](images/simpler_parsers.png)
+![](images/simplified_complex_parsers.png)
+
+- **Internal Domain-Specific Languages (DSL)**: Parser combinators are a language, and one example of an internal DSL. Internal DSL is basically syntactic sugar of the host language.
+Parser Combinators in-a-nutshell:
+![](images/parser_combinators.png)
+- **Concrete Parser**: implemented with a `run` function that parses the string from a certain position to see if the parser will find a match. Flatmapping will recursively call parsers and return the final success / error of the parsing.
+
+Parser Libraries:
+![](images/parser_libraries.png)
 
 ## Basics of Evaluators
 ???
