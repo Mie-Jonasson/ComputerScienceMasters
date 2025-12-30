@@ -439,13 +439,77 @@ Parser Libraries:
 ![](images/parser_libraries.png)
 
 ## Basics of Evaluators
-???
+Programming languages in general may be defined on 3 different levels:
+- **syntax**: whether a programme file is valid, i.e. correct way of writing up a programme.
+- **semantics**: how is a valid programme executed, i.e. what happens for each type of statement.
+- **implementation**: how is the programme compiled to machine code, i.e. what is actually executed on the hardware.
+
+When defining programming languages we often talk about **operational semantics**, which are a set of *semantic rules* that define behavior. These are often represented as **inference rules**, contained in two parts: *premises* and *conclusions*. The premise are the assumptions we have, and if they hold then we can produce the conclusion!
+
+We may define **context-free grammar** in a mathematical sense, that may be used across multiple languages, effectively separating the language specifics from the design of the grammar. What we specify is the **abstract syntax** which is a recursive tree definition.
+F.ex. a numerical abstract syntax:
+$$
+e ::=num(n) \quad n \in Z
+\newline |\space e \space\%\space e
+$$
+In scala:
+```[scala]
+enum numExpr
+    case Num(n: int)
+    case Div(Left: numExpr, Right: numExpr) // note the recursive definition here.
+```
+In premise / conclusion format (no premise => always holds, premise otherwise is a requirement / specification for the rule):
+$$
+\frac{}{num(n) \to n}NUM
+\newline\newline
+\frac{e \to n_1 \quad e' \to n_2}{e \% e´ \to n_1 /n_2}DIV
+$$
+Evaluator in scala:
+```[scala]
+def eval (expr: numExpr): Int = expr match
+    case Num(n) => n
+    case Div(Left, Right) => eval(Left) / eval(Right) // recursive definition here again
+```
+This is also called **Big-Step Semantics**, as we make the entire reduction from some expression to the value in one go.
+Precedence of calculations is decided by the parser, and the evaluator simply seeks to determine the proper total value of the expression that has been parsed
+
+We may extend with exceptions on f.ex. 0-division (but quickly becomes much more tedious with error handling and passing):
+$$
+\frac{}{num(n) \to n}NUM
+\newline\newline
+\frac{e \to n_1 \quad e' \to n_2 \quad n_2\neq0}{e \% e´ \to n_1 /n_2}DIV
+$$
+```[scala]
+def eval (expr: numExpr): M[Int] = expr match
+    case Num(n) => Return(n)
+    case Div(Left, Right) => eval(Left) match
+        case Raise(msg) => Raise(msg)
+        case Return(lv) => eval(Right) match
+            case Raise(msg) => Raise(msg)
+            case Return(rv) =>
+                if rv == 0 then Raise("Division by 0")
+                else Return(lv / rv)
+```
+We note though, that this exception is in fact a monad and is indeed super similar to our Option / Either types from earlier. If we use a monad, we may replace all the pattern matching (which is only there for error handling) with a simple forward-going flatmap!
 
 ## Lenses
 ???
 
 ## Basic Probabilistic Programming (i.e. probability in code)
-???
+Roots in basic probability theory and statistical modelling. An alternative to standard machine learning methods, and adds the layer of uncertainty to the model outputs directly.
+Basic probability theory:
+- A *probability function* $p$ over the *finite sample space* $S$, assigns to each $E \subseteq S$ a probability between 0 and 1.
+- When two subsets $E, F \subseteq S$ are **disjoint**, we may say that their **joint probability** is: $P(E \cup F) = P(E) + P(F)$ - this property also implies that: $P(E) = \sum_{s \in E} P(\{s\})$
+- The conditional probability (i.e. probability of E, knowing that F happened) is $P(E|F)=\frac{P(E \cap F)}{P(F)}$. I.e. the intersection of E and F divided by the totality of F.
+- E and F are **independent** iff $P(E \cap F) = P(E) * P(F)$. Also, derived from this, $P(E | F) = P(E)$ - knowing that F has happened, gives us no new information about the likelihood of E having happened.
+- **Bayes Theorem** states: $P(F|E) = \frac{P(E|F)*P(F)}{P(E)}$
+- A **Random Variable** assigns a real number to each outcome $s \in S$, such that modelling the probability as a function becomes easier.
+- The **expectation** for a random variable X is the mean value of X which exists in the realm of real numbers. It is defined as $E(X)= \sum_{s \in S} P({s}) * X(s)$
+
+There exists a number of standard distributions which are the ones used most often:
+- A **Bernoulli Trial** is like a coin toss with a probability of success. It is parameterised by a single parameter $\theta \in [0, 1]$
+
+See code example using Pigaro in exercises [here](https://github.itu.dk/miejo/Advanced_Programming/blob/main/10-prob/Exercises.scala).
 
 ## Basic Reinforcement Learning
 ???
