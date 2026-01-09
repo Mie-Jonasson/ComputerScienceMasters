@@ -34,6 +34,7 @@ class processDataset:
         self.y_s = dataset[:, 1]
         self.degree = None
         self.design_matrix = None
+        self.projection_matrix = None
         self.weights = None
     
     def get_design_matrix(self, degree):
@@ -48,7 +49,8 @@ class processDataset:
         if degree is not None:
             self.get_design_matrix(degree)
         
-        self.weights = np.linalg.inv(self.design_matrix) @ self.y_s
+        self.projection_matrix = np.linalg.inv(self.design_matrix.T @ self.design_matrix) @ self.design_matrix.T
+        self.weights = self.projection_matrix @ self.y_s
         return self.weights
     
     def predict(self, new_X_s, degree = None):
@@ -59,4 +61,14 @@ class processDataset:
         l = [np.ones(len(new_X_s))] + [new_X_s ** i for i in range(1, self.degree+1)]
         l.reverse()
         return np.array(l).T @ self.weights
+
+class Eval:
+    def __init__(self):
+        pass
+
+    def mse(self, ground_truth, predictions):
+        return ((ground_truth - predictions)**2).mean()
+    
+    def rmse(self, ground_truth, predictions):
+        return sqrt(self.mse(ground_truth, predictions))
         
