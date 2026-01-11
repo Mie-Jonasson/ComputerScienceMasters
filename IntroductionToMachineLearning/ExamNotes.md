@@ -36,6 +36,11 @@ Data Cleaning & Smoothing
 Gaze Saccade / Fixation detection
 Filtering matrices
 
+## Week09
+Covariance & Correlation
+Descriptive statistics of fitting
+Interpolating missing data
+
 # Exam Question Notes
 ---
 ## Question 1: 
