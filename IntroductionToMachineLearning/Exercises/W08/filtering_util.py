@@ -155,7 +155,7 @@ def plot_x_and_y(data_x,data_y):
 
 def plot_x_and_y_complete(data_x,data_y, scale = 5):
     last_key = list(data_x.keys())[-1]
-    plt.figure(figsize=(12, 6))
+    plt.figure(figsize=(12, 12))
     for i in list(data_x.keys()):
         x = np.linspace(0, len(data_x[i]), len(data_x[i]))
 

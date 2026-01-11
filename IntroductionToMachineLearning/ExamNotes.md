@@ -27,6 +27,15 @@ Assignemnt 1 solutions
 Data Preprocessing of pupil data
 Projecting eye coordinates to screen coordinates
 
+## Week07
+Polynomial Regression (least squares generalised)
+Model Complexity and Generalization (Occam's Razor)
+
+## Week08
+Data Cleaning & Smoothing
+Gaze Saccade / Fixation detection
+Filtering matrices
+
 # Exam Question Notes
 ---
 ## Question 1: 
