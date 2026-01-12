@@ -45,6 +45,9 @@ Interpolating missing data
 Logistic Regression (classification using sigmoid function)
 Decision Boundaries (functions splitting N-dimensional space into classes)
 
+## Week11
+Evaluation Metrics & Confusion Matrices
+
 # Exam Question Notes
 ---
 ## Question 1: 

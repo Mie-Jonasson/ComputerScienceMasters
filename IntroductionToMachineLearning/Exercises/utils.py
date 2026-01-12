@@ -78,6 +78,62 @@ class Eval:
     
     def accuracy(self, ground_truth, predictions):
         return sum(ground_truth == predictions) / len(ground_truth)
+    
+    def get_binary_confusion(self, ground_truth, predicted):
+        conf = {'TN': 0, 'FN': 0, 'FP': 0, 'TP': 0}
+        for gt, p in zip(ground_truth, predicted):
+            if p == 0 and gt == 0:
+                conf['TN'] += 1
+            elif p == 0 and gt == 1:
+                conf['FN'] += 1
+            elif p == 1 and gt == 1:
+                conf['TP'] += 1
+            else:
+                conf['FP'] += 1
+        return conf
+    
+    def binary_precision(self, conf_M):
+        """
+        Of the ones classified to positive, how many were actually positive?
+        """
+        return conf_M['TP'] / (conf_M['TP'] + conf_M['FP'])
+    
+    def binary_recall(self, conf_M):
+        """
+        also: sensitivity, true positive rate
+        Of the actually positive samples, how many were classified to positive?
+        """
+        return conf_M['TP'] / (conf_M['TP'] + conf_M['FN'])
+    
+    def binary_specificity(self, conf_M):
+        """
+        Of the actually negative samples, how many were classified to negative?
+        (same as recall, but for the negative class)
+        """
+        return conf_M['TN'] / (conf_M['TN'] + conf_M['FP'])
+    
+    def binary_MCC(self, conf_M):
+        """
+        Matthew's Correlation Coefficient (MCC) or the 'phi coefficient' is a correlation
+        based metric that measures the quality of binary classification even with
+        imbalanced classes
+        """
+        nom = conf_M['TP'] * conf_M['TN'] - conf_M['FP'] * conf_M['FN']
+        denom = (conf_M['TP'] +  conf_M['FP']) * (conf_M['TP'] +  conf_M['FN']) * (conf_M['TN'] +  conf_M['FP']) * (conf_M['TN'] +  conf_M['FN'])
+        return nom / sqrt(denom)
+    
+    def binary_F1(self, conf_M):
+        """
+        harmonic mean of precision and recall
+        """
+        p = self.binary_precision(conf_M)
+        r = self.binary_recall(conf_M)
+        return 2 * p * r / (p + r)
+    
+    def print_binary_metrics(self, conf_M):
+        print(f"Precision:\t{self.binary_precision(conf_M)}\nRecall:\t\t{self.binary_recall(conf_M)}")
+        print(f"F1:\t\t{self.binary_F1(conf_M)}\nSpecificity:\t{self.binary_specificity(conf_M)}")
+        print(f"MCC:\t\t{self.binary_MCC(conf_M)}")
 
 class LogisticRegression:
     def __init__(self):
