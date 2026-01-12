@@ -29,9 +29,13 @@ class NumpyVector:
         return NumpyVector(self.vector - other.vector).length()
 
 class processDataset:
-    def __init__(self, dataset):
-        self.X_s = dataset[:, 0]
-        self.y_s = dataset[:, 1]
+    def __init__(self, dataset, y = None):
+        if y is None:
+            self.X_s = dataset[:, 0]
+            self.y_s = dataset[:, 1]
+        else:
+            self.X_S = dataset
+            self.y_s = y
         self.degree = None
         self.design_matrix = None
         self.projection_matrix = None

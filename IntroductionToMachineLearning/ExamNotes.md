@@ -43,6 +43,7 @@ Interpolating missing data
 
 ## Week10
 Logistic Regression (classification using sigmoid function)
+Decision Boundaries (functions splitting N-dimensional space into classes)
 
 # Exam Question Notes
 ---
