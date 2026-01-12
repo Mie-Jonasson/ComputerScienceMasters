@@ -71,4 +71,57 @@ class Eval:
     
     def rmse(self, ground_truth, predictions):
         return sqrt(self.mse(ground_truth, predictions))
+    
+    def accuracy(self, ground_truth, predictions):
+        return sum(ground_truth == predictions) / len(ground_truth)
+
+class LogisticRegression:
+    def __init__(self):
+        pass
+
+    def sigmoid(self, z):
+        return 1 / (1 + e ** (-z))
+    
+    def linear_sigmoid(self, x, b, w) :  # sigmoid function
+        """
+        :param x: 1D array of the (single) input-feature values.
+        :param b: The bias parameter of the model.
+        :param W: The weight parameter of the model.
         
+        :return (float): output values of the sigmoid function. 
+        """
+        z = x * w + b
+        return self.sigmoid(z)
+    
+    def linear_decision_boundary(self, b, w):
+        return -b / w
+    
+    def linear_predict(self, x, w):
+        """
+        :param x: 1D array of the (single) input-feature values.
+        :param w: The list of the model parameters, [bias, weight]. 
+        
+        :return: Boolean array same size as x, where a True values signifies class2, and False signifies class1
+        """
+        sig = self.linear_sigmoid(x, w[0], w[1])
+        return np.array([bool(round(x, 0)) for x in sig])
+    
+    def sigmoid2D(self, X, params) :  # sigmoid function
+        """
+        :param X: tuple of input features (x,y).
+        :param parametes: The list of the model parameters, [bias, weight1, weight2]. 
+        :return: output values of the sigmoid function. 
+        """
+        # Write solutions here
+        z = X[0] * params[1] + X[1] * params[2] + params[0]
+        return self.sigmoid(z)
+    
+    def predict2D(self, X, params):
+        """
+        :param x: tuple of 1D arrays of the input-feature values.
+        :param params: The list of the model parameters, [bias, weight1, weight2]. 
+        
+        :return: Boolean array same size as x, where a True values signifies class2, and False signifies class1
+        """
+        sig = self.sigmoid2D(X, params)
+        return np.array([bool(round(x, 0)) for x in sig])

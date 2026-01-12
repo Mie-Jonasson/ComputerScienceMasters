@@ -41,6 +41,9 @@ Covariance & Correlation
 Descriptive statistics of fitting
 Interpolating missing data
 
+## Week10
+Logistic Regression (classification using sigmoid function)
+
 # Exam Question Notes
 ---
 ## Question 1: 
