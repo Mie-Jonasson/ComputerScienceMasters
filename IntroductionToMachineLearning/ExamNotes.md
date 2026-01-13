@@ -47,6 +47,9 @@ Decision Boundaries (functions splitting N-dimensional space into classes)
 
 ## Week11
 Evaluation Metrics & Confusion Matrices
+Histograms of Gradients (HoGs)
+HoGs for image classification
+Basis
 
 # Exam Question Notes
 ---
