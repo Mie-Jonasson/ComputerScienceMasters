@@ -51,6 +51,14 @@ Histograms of Gradients (HoGs)
 HoGs for image classification
 Basis
 
+## Week12
+Assignment 2
+PCA (dimensionality reduction)
+TODO: Review Assignemnt Feedback
+
+## Week13
+Clustering
+
 # Exam Question Notes
 ---
 ## Question 1: 
