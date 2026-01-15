@@ -64,6 +64,18 @@ Neural Networks
 Derivatives / Optimization
 
 # Exam Question Notes
+Todo: SVM / Kernels
+todo: "ill-conditioned?"
+todo: conclusions for exam question 4
+todo: understand convolutions
+todo: investigate common filter types
+todo: fast fourier transform
+todo: HoG explained & edge detection
+todo: fetch all tutorial notebooks
+todo: orthonormal bases, change of basis matrix
+todo: LDA
+todo: multi-class confusion matrix and metric aggregation
+todo: back propagation
 ---
 ## Question 1: Exercises Week 2-3 (Vector & Matrices)
 ### 1(a) Focus on inner products, vector operations, distance metrics and their relation to ML (evaluation and other metrics). You may relate this to week 10 (evaluation) but focus on vectors.
