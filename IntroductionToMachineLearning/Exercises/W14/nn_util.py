@@ -310,7 +310,7 @@ def plot_data_splits(train_data, test_data, val_data):
     plt.grid(linestyle='--', alpha=0.5)
 
     plt.subplot(1, 3, 2)
-    plt.scatter(test_data[:, 0], test_data[:, 1], label='Validation', alpha=0.7, s=50)
+    plt.scatter(test_data[:, 0], test_data[:, 1], label='Test', alpha=0.7, s=50)
     plt.title("Testing data", fontsize=14)
     plt.xlabel("px", fontsize=12)
     plt.ylabel("py", fontsize=12)
@@ -320,7 +320,7 @@ def plot_data_splits(train_data, test_data, val_data):
     plt.grid(linestyle='--', alpha=0.5)
 
     plt.subplot(1, 3, 3)
-    plt.scatter(val_data[:, 0], val_data[:, 1], label='Test', alpha=0.4, s=50)
+    plt.scatter(val_data[:, 0], val_data[:, 1], label='Validation', alpha=0.4, s=50)
     plt.title("Validation data", fontsize=14)
     plt.xlabel("px", fontsize=12)
     plt.ylabel("py", fontsize=12)

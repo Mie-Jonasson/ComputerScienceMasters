@@ -59,6 +59,10 @@ TODO: Review Assignemnt Feedback
 ## Week13
 Clustering
 
+## Week14
+Neural Networks
+Derivatives / Optimization
+
 # Exam Question Notes
 ---
 ## Question 1: 
