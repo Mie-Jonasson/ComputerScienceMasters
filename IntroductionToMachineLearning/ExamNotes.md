@@ -157,3 +157,77 @@ Derivatives / Optimization
 ### 12(d) Model architectures: Difference between fully connected /multi layer perceptron (MLP) and CNN
 
 ### 12(e) Loss functions, model complexity, cross-validation.
+
+---
+# Extra Reflective Questions
+## Linear Algebra
+### Basics
+- List as many purposes for which we use vectors for image analysis and Machine learning
+- What is the equation of a line, planes and hyperplane using vector notation?
+- How do you calculate the length and orientation of a vector?
+- How do we know when two vectors u and v are orthogonal to each other?
+- How do we know when two vectors u and v are parallel to each other?
+
+### Linear Equation
+- What is a linear equation and how is this relate to matrices?
+
+### Inner product
+- How is the inner product related to:
+    - a measure of distance.
+    - matrix multiplication
+    - projections
+    - convolution
+    - neural networks
+
+### Solutions to Linear Equation
+- What does it mean to have a solution to a linear set of equations?
+- When can we have one, zero or many solutions to a linear set of equations?
+- What is an over-determined set of equations.
+- What is an under-determined set of equations.
+- Why is the Determinant relevant when talking about solutions to linear equations.
+- Why are subspaces important when talking about solutions to linear set of equations.
+- Given data X ∈ RN and labels y. How w can linear equations be used to find the coefficients of the following models and how much training data is needed to learn the model parameters
+    - (a) A straight line in the plane
+    - (b) A plane in 3D
+    - (c) A hyperplane in N-dimensional spaces
+    - (d) Find the coefficients of a an N-order polynomial
+    - (e) Find the coefficients of an similarity or affine transformations
+- In the above cases what is the minimal number of points needed to solve the linear set of equations.
+
+### Transformation
+- What is a transformation and how is it related to a projection.
+- Matrix multiplications may be considered as a transformation. Why?
+- How are linear transformations combined?
+- What is the purpose of homogeneous coordinates.
+- What is the inverse of a transformation and what is its relevance to the course / ML.
+- How is least squares (formally) related to projections
+
+## Signals
+- What are the definitions of convolution and correlation and how are they related
+- When can correlation and convolution be used interchangeably
+- How can correlation be implemented in a neural architechture and why is this beneficial?
+- How is image templates useful as a machine learning model and a metric for comparison.
+- How do image templates relate to machine learning
+
+## Machine Learning
+- Where is supervised and unsupervised learning used and how do they differ.
+- How is least squares used in machine learning and how does it relate to least squares when using matrices.
+- What is an objective function
+- Which methods can be used to learn linear and non-linear models
+- what is the difference between linear and non-linear models (including affine)
+- What is the difference in how to optimize/minimize linear and non-linear functions (such as a loss function)
+- Describe cases in which a non-linear prediction model can be learned with linear optimization methods
+- How do recommender systems work and how is this related to inner products and matrix factorization.
+- What is PCA? and how does PCA make use of subspaces , eigenvalues and eigenvectors.
+- How is PCA and certain neural architectures related.
+- Why is it called linear classification
+- How does logistic regression differ from linear classifiation.
+- What is the decision boundary and how can you find it.
+- what is a kernel, where are they used and how is it related to model learning
+
+## Evaluation
+- Why is evaluation needed
+- How do you ensure proper evaluation of models
+- Why are training, test and verification sets needed in the training procedures?
+- What is cross validation and how is it related to overfitting / underfitting
+- How how can we tell when a model is under and overfitted?
