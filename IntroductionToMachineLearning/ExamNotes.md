@@ -249,35 +249,134 @@ todo: back propagation
 
 ## Question 7: Exercise Week 9 (Understanding Data and Descriptive Methods)
 ### 7(a) Describe correlation and covariance, explain how they are calculated, and discuss how they are useful for understanding data and for descriptive analysis.
+$$
+\text{Covariance: }\newline  \text{Cov}(X, Y) = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X})(Y_i - \bar{Y})
+$$
+
+$$\text{ }\newline$$
+
+$$
+\text{Correlation: } \newline   \text{Corr}(X, Y) = \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y}
+$$
+- Open W09/01-correlation-covariance-intro.ipynb (calculating covariance / correlation - find matrices)
+- **Covariance** Measures how much data attributes vary together across datapoints, but is scale-sensitive.
+- **Correlation** Measures how much data attributes vary together across datapoints on a scale from [-1, 1], and is therefore better for comparing across different units.
+- Useful for understanding which attributes might reveal similar information, and therefore may be dependent / redundant. Also, for understanding relationships between sttributes.
+- Covariance / Correlation of 0 indicates no linear relationship, but this does not mean there is no relationship at all - it may just be non-linear.
+- The *diagonal elements* of the covariance matrix is always the variance of each variable. (i.e. how it co-varies with itself)
+- Positive numbers indicate that when one variable increases, the other one does so as well. Negative numbers indicate that they vary in opposing directions.
 
 ### 7(b) Explain how descriptive statistics can be used to assess model selection and the generalization ability of machine learning models.
+- Open W09/02-model_fitting_desc_stat.ipynb
+- We can run multiple iterations over the same data with different hyper parameters and compare performance on train / val data to find optimal hyper parameters.
+- If test performance is poor, generalization is poor - try to determine if there is a bias-variance issue.
+- Some models are sensitive to outliers and noise, especially when only training on subsets of the data.
+- Descriptive statistics (such as variance in fitted models, error and confidence bounds) are used to describe how well a model performs as well as the robustness of the performance.
 
 ### 7(c) Describe noise, outliers, and missing data.
+- Open W09/03-Missing_data (imputing missing data) and W09/02-model_fitting_desc_stat.ipynb (adding noise and outliers to data)
+- There will always be noise / variability in most real life data to some extent. Some noise can be reduced while other noise is inherent.
+- Outliers can represent rare but valid observations and may be important to model. In other cases they may be flukes and can be disregarded. If outliers are included, extra care to not let the model skew too far because of the outlier should be taken.
+- Missing data is also a common real-life problem. We may either exclude data entries with missing data (if it is a few faulty samples) or impute data using an imputation approach:
+    - *0-fill*: fills missing entries with zeros or some other number chosen
+    - *mean-fill*: fill all missing data entries for a certain attribute with the mean of the observed attribute values.
+    - *linear interpolation*: fill missing value(s) with an interpolation of the surrounding data points, assuming smooth curve from observation a1 -> a2
 
 ### 7(d) Focus on uncertainty, noise, data cleaning in relation to regression, classification, clustering or dimensionality reduction (Covariance, distributions (e.g Normal/Gaussian))
+- Uncertainty exists in all data and also in all machine learning predictions. Noise is always present to some extent as variability is natural.
+- We can do data cleaning to mitigate noise or smooth noisy signals.
+- The standard noise is distributed as a Gaussian centered at 0, but we may encounter biased error terms if they are due to other factors of the environment.
+- When doing classification tasks we sometimes produce a confidence bound 0-1 which may be interpreted as the model certainty of a given choice.
 
 ## Question 8: Exercise Week 10-11 (Classification)
 ### 8(a) Linear classification, kernels, and classification boundaries
+- Open W10/02-decision.ipynb
+- **Linear Classification** relates to determining a *hyperplane* that splits classes in feature space (i.e. a point in 1D, a line in 2D a flat plane in 3D)
+- Simplest approach: **maximal margin classifier**, only works for well-separated data and places the boundary such that it is as far away from both grooups as possible - really does not hande outliers well.
+- **soft-margin classifier (Support-Vector Classifier, SVC)** is another option for softening the boundary up to allow misclassifications if it is for "the greater good" in terms of leaving a lot of space for most of the points. The points on or within the boundary are refferred to as "support vectors". Here, classification boundaries are still hyperplanes in the feature space.
+- **Support-Vector Machines (SVMs)** take the SVC to the next level by applying a kernel to the input data, transforming it from the initial dimension into higher dimensional space where the points may become separable. These classification boundaries may be curved in the feature space even as they are still hyperplanes in the higher dimensional space.
+- Kernels use a "kernel trick" which relies on inner products, such that we do not need to transform the data into the higher dimension in order tp determine the decision boundary, but simply calculate it directly without transforming - finding relationships in higher dimensions wihtout needing to go there.
 
 ### 8(b) Logistic regression and classification boundaries
+- Open W10/01-logistic_regression.ipynb
+- Logistic regression uses the sigmoid function to determine the decision boundary, producing a probability distribution with likelihood of class A.
+- The curve of probabilities is S-shaped, and decision boundary is settled at p=0.5 (exactly 50/50 prediction)
+- We apply sigmoid to the result of a linear combination of inputs to return the probability.
+- The decision boundary is a hyperplane in the feature space.
 
 ### 8(c) Linear and non-linear decision boundaries including SVM (include week 10) and possibly HOG features.
+- **Linear Classification** relates to determining a *hyperplane* that splits classes in feature space (i.e. a point in 1D, a line in 2D a flat plane in 3D)
+- Simplest approach: **maximal margin classifier**, only works for well-separated data and places the boundary such that it is as far away from both grooups as possible - really does not hande outliers well.
+- **soft-margin classifier (Support-Vector Classifier, SVC)** is another option for softening the boundary up to allow misclassifications if it is for "the greater good" in terms of leaving a lot of space for most of the points. The points on or within the boundary are refferred to as "support vectors". Here, classification boundaries are still hyperplanes in the feature space.
+- **Support-Vector Machines (SVMs)** take the SVC to the next level by applying a kernel to the input data, transforming it from the initial dimension into higher dimensional space where the points may become separable. These classification boundaries may be curved in the feature space even as they are still hyperplanes in the higher dimensional space.
+- Kernels use a "kernel trick" which relies on inner products, such that we do not need to transform the data into the higher dimension in order tp determine the decision boundary, but simply calculate it directly without transforming - finding relationships in higher dimensions wihtout needing to go there.
 
 ## Question 9: Exercise Week 11 (Evaluation)
 ### 9(a) Metrics/Evaluation of Classifiers
+- Open W11/01-metrics.ipynb (binary confusion matrices and performance metrics)
+- **Confusion matrices** are a common choice for visual inspection. If the data is low-dimensional enough, visualizing with shapes and colors may also give a visual overview of the prediction space ( for example with margin classifiers)
+    - Confusion matrix has predicted labels as columns and actual labels as rows and contains counts.
+- We generally group predictions in the confusion matrix by correct (diagonal, TC, with C being the class) and incorrect (all other, FC, with C being the predicted class) predictions. We can aggregate these counts into the following numerical performance metrics:
+    - **Accuracy**: All correct / Sample count - what percentage of predictions were correct?
+    - **Precision**: TP / (TP + FP) - of predictions to P, how many were actually from P?
+    - **Recall**: TP rate, Sensitivity - TP / (TP + FN) - of actual samples from P, how many were predicted to P?
+    - **F1-Score**: Harmonic mean of recall and precision
+    - **Specificity**: TN rate - TN / (TN + FP) - the recall on the negative class (used in binary)
+    - **Matthews Correlation Coefficient**: Measures quality of fit in binary classification even with imbalanced datasets
+- These performance metrics generalizes to multiple dimensions and may be aggregated in multiple different ways:
+    - *Macro*-averaging: taking a simple average of per-class metrics (weighting all classes equally)
+    - *Micro*-averaging: aggregates counts before calculating the metric
 
 ### 9(b) Metrics/Evaluation of Regression
+- Open W09/02_model_fitting_desc_stat.ipynb
+- When working with regression we may use various *similarity* measures to calculate how close/far predictions are to the ground truth. Examples:
+    - **MAE** - mean of absolute errors
+    - **MSE** - mean of squared errors (punishes few badly predicted points)
+    - **RMSE** - like MSE, but better interpretability due to scale being the same as the data
+    - **$R^2$** - The proportion of explained variance out of the total variance of the data
+- It can also be useful to **examine residuals** visually, as residuals should be uncorrelated to the input features. If there is a systematic bias in the residuals, there is still signal to be modelled.
+- We should always try to examine multiple perspectives on the errors and compare these metrics across train and test data to get the full picture of the performance of a given model.
 
 ### 9(c) Imbalanced data for classification and regression
+- When we have imbalanced data we need to be mindful - having 99% accuracy on data that is 99% one class is no feat.
+- In classification:
+    - **Oversampling** of smaller class(es) / **Undersampling** of majority class and/or *punishing errors in classes equally*
+    - **Stratified splitting** for train-val-test data
+    - Focus on balanced evaluation: F1 and PR-curves
+- In regression:
+    - **Transformation** to bring outliers / cliques closer together
+    - **Weighted Loss** to ensure rare cases have higher importance and is represented
+    - Need to be aware of skewing of fits depending on desired behavior - is the observation a fluke or valid point?
+    - May use performance metric per-value-range to see performance on parts of the data range.
 
 ## Question 10: Exercise Week 12 + Assignment 2 (Principal Component Analysis)
 ### 10(a) Basis and transformations
+- Open W12/01-pca_intro.ipynb
+- A basis is a set of vectors spanning a vector space. A basis may be orthonormal (such as the standard one), but need not be.
+- The standard basis is the smallest simplest set of vectors, i.e. B = {[1, 0], [0, 1]} for vectors in 2D.
+- A basis may be represented as a matrix with each of the basis vectors as a column.
+- We can consider other bases of matrices corresponding to rotations and reflections as transforming our data from our coordinate space into a different coordinate space while retaining angles and lengths.
 
 ### 10(b) Dimensionality reduction and PCA. Focus on mandatory 2
+- Open W12/01-pca_intro.ipynb
+- Dimensionality reduction can be used for multiple reasons:
+    - lowering data dimensions for narrower processing
+    - removing noise from signals
+- PCA is the most commonly used dimensionality reduction in machine learning, as it transforms the data into a space where we can keep the dimensions of the highest variance as the features for the model.
+- In mandatory 2 we use PCA to describe the "most important features" of facial shapes, and examine how this can be used to generate new faces and/or reduce dimensions of the data.
 
 ### 10(c) Generating models and PCA
+- Open W12/02-shape_generation.ipynb
+- We can fetch the PCA eigenvectors and eigenvalues, and use this to generate new data. We do this by
+    - sampling a point from the distributions (i.e. 0's or k * var on either side of 0, with var being described by the eigenvalue)
+    - Muliplying this coordinate vector onto the corresponding eigenvectors
+    - this gives us a new data point from the same distribution we initially worked with, with the k highest variance directions retained.
+- We may think of PCA as an encoder of data and decoding it back and forth from the feature space. Encoding = transforming to a different representation / perspective.
 
 ### 10(d) Eigenvalues, covariance matrix and basis
+- The covariance matrix encodes all pairwise variance of variable.
+- Finding the eigenvalues and eigenvectors of the covariance matrix equals finding the vector-value pairs where multiplying the vector with the covariance matrix and multiplying the vector with the eigenvalue scalar yields the same result. The eigenvalue scalar corresponds to the variance contained in the direction of the eigenvector (i.e. how much scaling is done in this direction)
+- The PCA constitutes an orthonormal basis, meaning transforming data from our initial coordinate system to the PCA coordinate system will retain angles and lengths of observations.
 
 ## Question 11: Exercise Week 13 (Clustering )
 ### 11(a) K-means and Mean shift
