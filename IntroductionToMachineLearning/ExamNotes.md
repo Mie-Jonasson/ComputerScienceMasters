@@ -380,21 +380,78 @@ $$
 
 ## Question 11: Exercise Week 13 (Clustering )
 ### 11(a) K-means and Mean shift
+- Open W13/01-Clustering.ipynb
+- **K-Means** is the most common clustering method, where k means are initialized and iteratively moved to the center of points associated to it until reaching the (possibly local) optimum.
+    - *Sensitive* to initialization
+    - *k* is fixed - may require tuning or pre-analysis
+    - Assumes *spherical* clusters - optimizes within-cluster-distance
+    - works directly in the feature space, cluster means can be extracted
+- **Mean-Shift** relies on distributions over the data with smoothing - finds peaks as cluster centers for groups of points.
+    - Automatically determines the number of clusters based on distribution
+    - but *bandwidth* need to be tuned to get the right granularity
+    - May detect non-spherical clusters
 
 ### 11(b) K-means and Algomerative clustering
+- Open W13/01-Clustering.ipynb
+- **K-Means** is the most common clustering method, where k means are initialized and iteratively moved to the center of points associated to it until reaching the (possibly local) optimum.
+    - *Sensitive* to initialization
+    - *k* is fixed - may require tuning or pre-analysis
+    - Assumes *spherical* clusters - optimizes within-cluster-distance
+    - works directly in the feature space, cluster means can be extracted
+- **Algomerative** is about building a tree that merges points or groups of points at the distance were they would be joined. 
+    - Gives a global *hierarchical* view of the clustering tree, may discover subclusters
+    - Can easily select either a *distance* or *number of clusters* to achieve clustering on the desired granularity.
+    - Can be used to find natural clusters where there is clear separation in the tree.
 
 ### 11(c) Kmeans and ELBOW
+- Open W13/01-Clustering.ipynb
+- **K-Means** is the most common clustering method, where k means are initialized and iteratively moved to the center of points associated to it until reaching the (possibly local) optimum.
+    - *Sensitive* to initialization
+    - *k* is fixed - may require tuning or pre-analysis
+    - Assumes *spherical* clusters - optimizes within-cluster-distance
+    - works directly in the feature space, cluster means can be extracted
+- **ELBOW** is a method for hyper parameter tuning in clustering settings, i.e. we want to determine what number of clusters best describe the data.
+    - Run the clustering algorithm for k=1, ..., k=n for a reasonable range of k (one can always add more trials for higher k)
+    - record Within-Cluster Sum of Squares for each k
+    - Find the point k where the WCSS stops decreasing rapidly and instead decreases slowly.
 
 ## Question 12: Exercise Week 14 (Neural networks)
 ### 12(a) Neural networks prediction (regression vs classification)
+- A neural network contains nodes that either represent *input*, *output* or *transformation* (hidden)
+- We pass input data to the input layer, and it is passed forward through various transformations before reaching the output layer.
+- In *regression* we have output nodes in the number of dimensions we are outputting, and the activation outputted by the node will be the prediction.
+- In *binary classification* we have a single output node, outputting the probability of the positive class - i.e. > 0.5 => P, <0.5 => N
+- In *multiclass classification* we may use a softmax activation, which normalizes outputs of a node for each class into a probability distribution summing to 1.
 
 ### 12(b) Neural networks training (Gradients, the chain rule and back/forward propagation)
+- We always initialize neural networks with random weights. These weights are then learned step-by-step through gradient descent.
+- A training iteration consists of:
+    - *Forward Pass*: Passing a set of inputs through the existing model generating a set of outputs
+    - *Loss Calculation*: Calculating the Loss of the predictions and ground truth
+        - MSE, Cross-Entropy, etc.
+    - *Back Propagation*: We back propagate the loss by finding the gradient in terms of all parameters
+    - *Weight Update*: Weights are updated in the opposite direction of the derivative relative to the weight (Stochastic Gradient Descent (SGD))
+- When back-propagating loss, the chain rule is used, as we perform activations on top of linear compositions of other activations, creating this nested function.
 
 ### 12(c) Training and Evaluation including over/underfitting
+- Open W14/01-nn-gaze.ipynb
+- When fitting neural networks we do it over a number of **epochs** and with a specified **learning rate**. One epoch corresponds to one iteration over the entire training set followed by validation.
+- Training set may be *batched* to process smaller subsets of the training data at a time, allowing multiple forward/backward passes in a single epoch.
+- Early stopping, dropout or other regularization methods may be used to avoid overfitting.
+- Validation performance is evaluated after every epoch and test performance is only evaluated once a final model has been selected.
+- Over- and underfitting may be determined in the same way as for other machine learning applications but may be remedied by increasing / decreasing epochs and learning rate or changing the structure of the network.
 
 ### 12(d) Model architectures: Difference between fully connected /multi layer perceptron (MLP) and CNN
+- An MLP / FFNN is a structure with input, hidden and output layers, where each layer is fully connected to the next. 
+- A CNN has convolutional layers before a classic FFNN, acting as feature extraction layers with learnable weights in the kernels as well.
+- The number of layers in both networks can be arbitrarily large or small depending on the complexity of the task at hand.
 
 ### 12(e) Loss functions, model complexity, cross-validation.
+- Common regression loss functions: MSE, MAE, Huber
+- Common classification loss: Cross-Entropy (penalizing confident wrong predictions)
+- Model complexity should fit with task complexity, but overfitting may be remedied with regularization approaches (loss terms, dropout, early stopping)
+- The number of weights to learn quickly explodes in fully connected networks, as each new hidden layer adds at least 3 * n new weights to learn (depending on adjacent layers).
+- Cross-validation is a super useful approach for validating on different subsets of the data to have a more robust expectation of performance on unseen data. It is often used for hyper parameter tuning, followed by training on the entire set for the best parameter selection.
 
 ---
 # Extra Reflective Questions
