@@ -1,5 +1,18 @@
 # Topic Notes
 ## 1. **Intro to concurrency and the mutual exclusion problem**: Define and motivate concurrency and mutual exclusion. Explain data races, race conditions, and critical sections. Show some examples of code from your solutions to the exercises in week 1.
+- *Concurrency* can be used to speed up computation time by dividing the work between multiple actors/threads.
+    - Hidden: Sequential computers might do *time-sharing* (giving the experience that multiple things are executed simultaneously, but single resource)
+    - Exlploitation: Today, we have computers that can simultaneously execute instructions over multiple cores
+- *Mutual Exclusion* is a set of rules for ensuring that a concurrent program runs without problems.
+    - Only 1 thread in critical section at a time
+    - avoiding deadlocks - threads must leave the critical section eventually ("try, finally" to always unlock)
+    - avoiding starvation - threads must enter the critical section eventually (scheduler makes this decision)
+- *Data Races* is when two threads access the same memory resource at the same time, and at least one of them is a modification operation - f.ex. reading/writing current value of shared variable.
+- *Race Conditions* is when the output of the programme depends on the interleaving of threads - f.ex. 
+- These two types of races may occur jointly or separately - i.e. something may be both or just one of the two.
+    - A data race may not impact the output of the program
+    - A race condition may not be related to shared memory
+- *Critical Sections* is the lines of code that has data races and should always be minimal
 
 ## 2. **Synchronization**: Explain and motivate how locks, monitors, and semaphores can be used to address the challenges caused by concurrent access to shared memory. Show some examples of code from your solutions to the exercises in week 2.
 
@@ -26,6 +39,54 @@
 # Code Examples
 ## Question 1
 ```[java]
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+public class CounterThreads2Covid {
+
+    long counter = 0;
+    final long PEOPLE  = 10_000;
+    final long MAX_PEOPLE_COVID = 15_000;
+    Lock l = new ReentrantLock();
+
+    public CounterThreads2Covid() {
+        try {
+            Turnstile turnstile1 = new Turnstile();
+            Turnstile turnstile2 = new Turnstile();
+
+            turnstile1.start();turnstile2.start(); // start two threads
+            turnstile1.join();turnstile2.join(); // join two threads
+
+            System.out.println(counter+" people entered"); // check threads stopped at correct count
+        }
+        catch (InterruptedException e) {
+            System.out.println("Error " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        new CounterThreads2Covid();
+    }
+
+
+    public class Turnstile extends Thread {
+
+        public void run() {
+            for (int i = 0; i < PEOPLE; i++) {
+                l.lock(); // critical section between lock/unlock; evaluating / updating shared variable
+                try {
+                    if (counter >= MAX_PEOPLE_COVID) {
+                        return;
+                    }
+                    counter++;
+                } finally { // use try-finally to always unlock, avoiding deadlocks
+                    l.unlock();
+                }
+            }
+        }
+    }
+}
 ```
 
 ## Question 2
@@ -71,3 +132,8 @@
 ## Question 12
 ```[erlang]
 ```
+
+# General Notes
+## Syntaxes
+### Interleaving
+\<thread>(\<step>), \<thread>(\<step>), ...
