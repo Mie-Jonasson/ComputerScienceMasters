@@ -24,9 +24,18 @@
 - *Visibility*: CPUs are allowed to keep data (such as variable values) in registers / cache, that is then unavailable to other CPUs. The program stores data here, because it reduces latency for the thread to get and update the data.
     - flushing to main memory may be ensured using `lock`/`unlock` or `volatile` variables. This will make shared variables' updated value available across all CPUs.
 - *Reordering*: the compiler may reorder instructions of the programme as to optimize performance. This may cause weird behavior, where critical sections are interleaved in an undesireable way.
-    - using `synchronized` around two sections ensures that the steps of these sections are NOT interleaved with each other. One has the execute one section in full before executing the other section.
+    - using `synchronized` around two sections ensures that the steps of these sections are NOT interleaved with each other. One has the execute one section in full before executing the other section. 
+    - `volatile` variables cannot be reordered but does not ensure mutual exclusion.
 
 ## 4. **Java memory model**: Motivate the need for the Java memory model. Explain the elements of the Java memory model including program order, happens-before order, synchronization order, and data races. Define what a correctly synchronized program is according to the Java memory model. Show some examples of code from your solutions to the exercises in week 3 and illustrate the use of the Java memory model to reason about their correctness.
+- *Java Memory Model* describes *valid* executions of concurrent programs
+    - Actions *thread(step)* are categorized as either *Variable Access* (accessing / updating program variables), *Synchronization* (locks, monitors, thread init / join) and *other*
+    - *Program Order* defines the intra-thread order of execution for actions of a thread. For any thread, *a occurs before b according to program order* if a comes before b in the sequential execution of the thread body. Program order is a total order. Program order contains all pairs of ordered actions a, b 
+    - *Happens-Before Order* defines relations between actions, stating *a happens-before b* if it is ordered by program order or other rules (f.ex. thread start)
+    - *Synchronization Order* defines the total order of synchronization actions. A program may have multiple synchronization orders.
+    - A *Well-formed execution* is an execution that is consistent with program order, happens-before order and synchronization order. The JVM always produces well-formed executions.
+    - *Conflicting Actions* are all accesses to non-volatile variables. Conflicting Actions lead to *Data Races* if the actions are NOT ordered by Happens-Before.
+- A *Correctly Synchronized Program* according to the Java Memory Model is a program where none of its executions contain data races, i.e. all conflicting actions are ordered by Happens-Before.
 
 ## 5. **Thread-safe classes**: Define and explain what makes a class thread-safe. Explain the issues that may make classes not thread-safe. Show some examples of code from your solutions to the exercises in week 4.
 
@@ -160,9 +169,8 @@ public class TestMutableInteger {
 }
 
 class MutableInteger {
-    // WARNING: Not ready for usage by concurrent programs
-    private volatile int value = 0;
-    public void set(int value) {
+    private volatile int value = 0; // made volatile to make sure it is flushed when updated
+    public void set(int value) { // might have synchronized these two methods instead
         this.value = value;
     }
     public int get() {
@@ -173,7 +181,59 @@ class MutableInteger {
 
 ## Question 4
 ```[java]
+import java.util.concurrent.locks.ReentrantLock;
+
+public class CountingThreads {
+    int count;
+    ReentrantLock l;
+
+    public CountingThreads() throws InterruptedException {
+        count = 0; // (init(c)) - variable access
+        l = new ReentrantLock(); // (init(l)) - variable access
+        
+        CountingThread t1 = new CountingThread(); // (init(t1))
+        CountingThread t2 = new CountingThread(); // (init(t2))
+        
+        t1.start(); // (start(t1)) - synchronization
+        t2.start(); // (start(t2)) - synchronization
+
+        t1.join(); // (join(t1)) - synchronization
+        t2.join(); // (join(t2)) - synchronization
+        
+        System.out.println("count="+count); // (3) - variable access
+    }
+
+    public class CountingThread extends Thread {
+        public void run() {
+            l.lock(); // (4) - synchronization
+            int temp = count; // (1) - variable access
+            count = temp + 1; // (2) - variable access
+            l.unlock(); // (5) - synchronization
+        }
+    }
+
+
+    public static void main(String[] args) throws InterruptedException {
+        new CountingThreads();
+    }
+}
 ```
+### Happens-Before Order
+$HB ^m_{po}=$ m(init(c)) -> m(init(l)) -> m(init(t1)) -> m(init(t2)) -> m(start(t1)) -> m(start(t2)) -> m(join(t1)) -> m(join(t2)) -> m(3)
+
+$HB ^{t1}_{po}=$ t1(4) -> t1(1) -> t1(2) -> t1(5)
+
+$HB ^{t2}_{po}=$ t2(4) -> t2(1) -> t2(2) -> t2(5)
+
+$HB_{init}=$ {m(start(t1)) -> t1(4), m(start(t2)) -> t2(4)}
+
+$HB_{ter}=$ {t1(5) -> m(join(t1)), t2(5) -> m(join(t2))}
+
+### Synchronization Orders
+m(start(t1)), m(start(t2)), t1(4), t1(5), t2(4), t2(5), m(join(t1)), m(join(t2))
+m(start(t1)), t1(4), m(start(t2)), t1(5), t2(4), t2(5), m(join(t1)), m(join(t2))
+m(start(t1)), t1(4), t1(5), m(start(t2)), t2(4), t2(5), m(join(t1)), m(join(t2))
+m(start(t1)), m(start(t2)), t2(4), t2(5), t1(4), t1(5), m(join(t1)), m(join(t2))
 
 ## Question 5
 ```[java]
@@ -216,3 +276,4 @@ class MutableInteger {
 - **Synchronized methods** `public synchronized void func() {}` have an *intrinsic lock*, i.e. works like locking around the entire function body.
 - **synchronized objects** `synchronized(obj) {}` have an *intrinsic lock* on the object for the code body.
 - **static** methods TODO
+- **volatile** variables ensure visibility (flushing to shared memory) and prevents reordering (but does not ensure mutual exclusion)
