@@ -15,8 +15,16 @@
 - *Critical Sections* is the lines of code that has data races and should always be minimal
 
 ## 2. **Synchronization**: Explain and motivate how locks, monitors, and semaphores can be used to address the challenges caused by concurrent access to shared memory. Show some examples of code from your solutions to the exercises in week 2.
+- *Locks* are used around a critical section to ensure only 1 thread enters at a time. One of the waiting threads will be picked at random once lock is available.
+- *Monitors* are used to solve the *Reader-Writer Problem* (i.e. only 1 writer or any number of readers). Keeps track of *internal state, methods & conditions*, for reader-writer this is for example keeping track whether the lock holder is a writer or reader, keeping track of the number of active readers and waiting / notifying on condition changing.
+- *Semaphores* TODO
+- *Fairness* for different access types, i.e. in monitors Writer may wait forever if we allow new readers into the section while the write is still waiting. (starvation issue!)
 
 ## 3. **Visibility**: Explain the problems of visibility and reordering in shared memory concurrency. Motivate and describe the use of volatile variables and locks to tackle these problems. Show some examples of code from your solutions to the exercises in week 2.
+- *Visibility*: CPUs are allowed to keep data (such as variable values) in registers / cache, that is then unavailable to other CPUs. The program stores data here, because it reduces latency for the thread to get and update the data.
+    - flushing to main memory may be ensured using `lock`/`unlock` or `volatile` variables. This will make shared variables' updated value available across all CPUs.
+- *Reordering*: the compiler may reorder instructions of the programme as to optimize performance. This may cause weird behavior, where critical sections are interleaved in an undesireable way.
+    - using `synchronized` around two sections ensures that the steps of these sections are NOT interleaved with each other. One has the execute one section in full before executing the other section.
 
 ## 4. **Java memory model**: Motivate the need for the Java memory model. Explain the elements of the Java memory model including program order, happens-before order, synchronization order, and data races. Define what a correctly synchronized program is according to the Java memory model. Show some examples of code from your solutions to the exercises in week 3 and illustrate the use of the Java memory model to reason about their correctness.
 
@@ -91,10 +99,76 @@ public class CounterThreads2Covid {
 
 ## Question 2
 ```[java]
+public class FairReadWriteMonitor {
+    private int readers         = 0;
+    private boolean writer      = false;
+
+    public synchronized void readLock() {
+        try {
+            while(writer)
+                this.wait();
+            readers++;
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public synchronized void readUnlock() {
+        readers--;
+        if(readers==0)
+            this.notifyAll();
+    }
+
+    public synchronized void writeLock() {
+        try {
+            while(writer)
+                this.wait();
+            writer=true;
+            while(readers > 0)
+                this.wait();
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public synchronized void writeUnlock() {
+        writer=false;
+        this.notifyAll();
+    }
+}
 ```
 
 ## Question 3
 ```[java]
+public class TestMutableInteger {
+    public static void main(String[] args) {
+        final MutableInteger mi = new MutableInteger();
+        Thread t = new Thread(() -> {
+                while (mi.get() == 0)        // Loop while zero
+                    {/* Do nothing*/ }
+                System.out.println("I completed, mi = " + mi.get());
+        });
+        t.start();
+        try { Thread.sleep(500); } catch (InterruptedException e) { e.printStackTrace(); }
+        mi.set(42);
+        System.out.println("mi set to 42, waiting for thread ...");
+        try { t.join(); } catch (InterruptedException e) { e.printStackTrace(); }
+        System.out.println("Thread t completed, and so does main");
+    }
+}
+
+class MutableInteger {
+    // WARNING: Not ready for usage by concurrent programs
+    private volatile int value = 0;
+    public void set(int value) {
+        this.value = value;
+    }
+    public int get() {
+        return value;
+    }
+}
 ```
 
 ## Question 4
@@ -134,6 +208,11 @@ public class CounterThreads2Covid {
 ```
 
 # General Notes
-## Syntaxes
+## Abstract Syntaxes
 ### Interleaving
 \<thread>(\<step>), \<thread>(\<step>), ...
+
+## Java Modifiers
+- **Synchronized methods** `public synchronized void func() {}` have an *intrinsic lock*, i.e. works like locking around the entire function body.
+- **synchronized objects** `synchronized(obj) {}` have an *intrinsic lock* on the object for the code body.
+- **static** methods TODO
