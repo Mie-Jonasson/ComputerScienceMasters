@@ -61,7 +61,13 @@
 - Some things are impossible to test; rely on *Formal Verification* in terms of mathematical proofs of the programme working as intended.
 
 ## 7. **Performance measurements**: Motivate and explain how to measure the performance of Java code. Illustrate some of the pitfalls there are in doing such measurements. Show some examples of code from your solutions to the exercises in week 9.
-- TODO
+- Making things run faster without quantifying is only half the fun - being able to numerically compare different versions in terms of runtime and scalability is super important!
+    - For example; thread creation is expensive, investigate how many threads it "pays off" to do on a given computer.
+- We usually refer to performance measurement and comparison as *benchmarking*. We use a library to do this.
+    - Be aware that performance varies all the time - and depends on hardware and background processes.
+    - We run the experiment many times and report average runtime as well as standard deviation.
+    - We can make a generalized class running the marking for us many-many times and reporting the runtime - just pass a lambda function that it should call and benchmark!
+- TODO: Review more!!!
 
 ## 8. **Performance and Scalability**: Explain how to increase the performance of Java code exploiting concurrency. Illustrate some of the pitfalls there are in doing this. Show some examples of code from your solutions to the exercises in week 10.
 - TODO
@@ -332,7 +338,7 @@ public class Person {                                                           
 ```
 
 ## Question 6
-Run from `Assignment3/Exercise5/week05exercises/` the command `radle cleanTest test --tests exercises05.ConcurrentSetTest`
+Run from `Assignment3/Exercise5/week05exercises/` the command `gradle cleanTest test --tests exercises05.ConcurrentSetTest`
 ```java
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -434,7 +440,112 @@ public class ConcurrentSetTest {
 ```
 
 ## Question 7
+Run from `Assignment5/Exercise10/week10exercises/` the command `gradle run -PmainClass=exercises10.TestCASLockHistogram`
 ```java
+import benchmarking.Benchmark;
+
+class TestCASLockHistogram {
+    public static void main(String[] args) {
+
+        CasHistogram histogramCAS = new CasHistogram(30);
+        HistogramLocks histogramLock = new HistogramLocks(30);
+
+        int noThreads = 16;
+        int range = 100_000;
+
+        for (int i = 1; i < noThreads; i++) {
+            int threadCount = i;
+            Benchmark.Mark7(String.format("HistogramLocks, Threads: %d", threadCount), j -> {
+                countParallel(range, threadCount, histogramLock);
+                return 1;
+            });
+        }
+
+        for (int i = 1; i < noThreads; i++) {
+            int threadCount = i;
+            Benchmark.Mark7(String.format("CasHistogram, Threads: %d", threadCount), j -> {
+                countParallel(range, threadCount, histogramCAS);
+                return 1;
+            });
+        }
+    }
+
+    // Function to count the prime factors of a number `p`
+    private static int countFactors(int p) {
+        if (p < 2)
+            return 0;
+        int factorCount = 1, k = 2;
+        while (p >= k * k) {
+            if (p % k == 0) {
+                factorCount++;
+                p = p / k;
+            } else
+                k = k + 1;
+        }
+        return factorCount;
+    }
+
+    // Parallel execution of counting the number of primes for numbers in `range`
+    private static void countParallel(int range, int threadCount, Histogram h) {
+        final int perThread = range / threadCount;
+        Thread[] threads = new Thread[threadCount];
+        for (int t = 0; t < threadCount; t = t + 1) {
+            final int from = perThread * t,
+                    to = (t + 1 == threadCount) ? range : perThread * (t + 1);
+            threads[t] = new Thread(() -> {
+                for (int i = from; i < to; i++)
+                    h.increment(countFactors(i));
+
+            });
+        }
+        for (int t = 0; t < threadCount; t = t + 1)
+            threads[t].start();
+        try {
+            for (int t = 0; t < threadCount; t = t + 1)
+                threads[t].join();
+        } catch (InterruptedException exn) {
+        }
+    }
+
+    public static void dump(Histogram histogram) {
+        for (int bin = 0; bin < histogram.getSpan(); bin = bin + 1) {
+            System.out.printf("%4d: %9d%n", bin, histogram.getCount(bin));
+        }
+    }
+}
+```
+
+```
+HistogramLocks, Threads: 1      17943512.8 ns 2348522.68         16
+HistogramLocks, Threads: 2      17290227.6 ns 2220308.27         16
+HistogramLocks, Threads: 3      27290250.3 ns 1993276.76         16
+HistogramLocks, Threads: 4      31157602.3 ns 1960811.23         16
+HistogramLocks, Threads: 5      33661760.4 ns 3847906.94          8
+HistogramLocks, Threads: 6      32023797.6 ns 3059827.39         16
+HistogramLocks, Threads: 7      34665178.9 ns 3550155.34         16
+HistogramLocks, Threads: 8      33894408.4 ns 3446516.90          8
+HistogramLocks, Threads: 9      35059488.0 ns 2725879.73          8
+HistogramLocks, Threads: 10      33681040.7 ns 2954015.56          8
+HistogramLocks, Threads: 11      34143500.0 ns 2564254.14          8
+HistogramLocks, Threads: 12      34739652.6 ns 3522764.72          8
+HistogramLocks, Threads: 13      34398833.3 ns 2926309.72          8
+HistogramLocks, Threads: 14      34975479.1 ns 4774462.14          8
+HistogramLocks, Threads: 15      36267140.9 ns 8635602.04         16
+CasHistogram, Threads: 1       15452664.3 ns 1017392.08         16
+CasHistogram, Threads: 2       10511317.3 ns  848794.06         32
+CasHistogram, Threads: 3       10516936.2 ns  535885.45         32
+CasHistogram, Threads: 4       10809522.8 ns  307314.17         32
+CasHistogram, Threads: 5       10931363.8 ns  382291.45         32
+CasHistogram, Threads: 6        9873199.2 ns  445243.03         32
+CasHistogram, Threads: 7        9857207.0 ns  127647.63         32
+CasHistogram, Threads: 8        9561653.5 ns  455573.71         32
+CasHistogram, Threads: 9       10041244.9 ns  543947.89         32
+CasHistogram, Threads: 10      10063135.2 ns  856486.67         32
+CasHistogram, Threads: 11      11426330.9 ns 1866617.24         32
+CasHistogram, Threads: 12      10248580.9 ns  812490.88         32
+CasHistogram, Threads: 13      10185470.6 ns  700450.72         32
+CasHistogram, Threads: 14      10471271.5 ns 1893882.52         32
+CasHistogram, Threads: 15      10237525.5 ns  781480.51         32
 ```
 
 ## Question 8
