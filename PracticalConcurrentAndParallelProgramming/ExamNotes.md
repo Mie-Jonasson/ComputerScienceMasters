@@ -17,8 +17,9 @@
 ## 2. **Synchronization**: Explain and motivate how locks, monitors, and semaphores can be used to address the challenges caused by concurrent access to shared memory. Show some examples of code from your solutions to the exercises in week 2.
 - *Locks* are used around a critical section to ensure only 1 thread enters at a time. One of the waiting threads will be picked at random once lock is available.
 - *Monitors* are used to solve the *Reader-Writer Problem* (i.e. only 1 writer or any number of readers). Keeps track of *internal state, methods & conditions*, for reader-writer this is for example keeping track whether the lock holder is a writer or reader, keeping track of the number of active readers and waiting / notifying on condition changing.
-- *Semaphores* TODO
+- *Semaphores* allow threads up until capacity $c$ in the critical section. Reentrant locks, also calles a *mutex*, are semaphores with $c = 1$, beware of faulty semaphores that may allow releasing locks that one does not hold, falsely increasing capacity.
 - *Fairness* for different access types, i.e. in monitors Writer may wait forever if we allow new readers into the section while the write is still waiting. (starvation issue!)
+- *Barriers* may be used to increase the chance of seeing possible concurrency errors, by ensuring all threads reach a certain point and the letting them all run wild.
 
 ## 3. **Visibility**: Explain the problems of visibility and reordering in shared memory concurrency. Motivate and describe the use of volatile variables and locks to tackle these problems. Show some examples of code from your solutions to the exercises in week 2.
 - *Visibility*: CPUs are allowed to keep data (such as variable values) in registers / cache, that is then unavailable to other CPUs. The program stores data here, because it reduces latency for the thread to get and update the data.
@@ -38,6 +39,16 @@
 - A *Correctly Synchronized Program* according to the Java Memory Model is a program where none of its executions contain data races, i.e. all conflicting actions are ordered by Happens-Before.
 
 ## 5. **Thread-safe classes**: Define and explain what makes a class thread-safe. Explain the issues that may make classes not thread-safe. Show some examples of code from your solutions to the exercises in week 4.
+- *Thread-Safe Classes* is useful, as analyzing a huge code base is infeasible - but reasoning about thread-safety of a class is feasible and may then be generalized for all usage of the class.
+    - *Formal Definition*: A class is thread-safe if NO concurrent executions contain data races on the fields of the class (i.e. method calls & direct field accesses)
+    - We should consider the following to argue a class as thread safe.
+        - *Class state*: methods should only manipulate the class state and should not take object references as arguments (such as lists)
+        - *Escaping*: variables should be private so threads do not "escape" the locking/synchronization when updating - also, never return a reference to complex private class variables.
+        - *Safe Publication*: ensure objects are initialized properly, avoiding visibility issues. Make class variables `volatile`, `static`, `final` (if never modified), use Atomic Type Class or initialize to default value.
+        - *Immutability*: Immutable classes are thread-safe if we ensure they cannot be modified after initialization and have safe publication.
+        - *Mutual Exclusion*: Accesses to mutable state should be ensured mutually exclusive. (if NOT Immutable)
+- *Instance Confinement*: encapsulating non-thread-safe classes into a thread-safe capsule class. In Java, the types `synchronized<type>` is an instance confinement that is defined in many cases.
+- *Extension in Thread-Safe Classes*: may be done by acquiring intrinsic lock on the class instance or by adding the method to the thread-safe class.
 
 ## 6. **Testing**: Explain the challenges in ensuring the correctness of concurrent programs. Describe different testing strategies for concurrent programs, and their advantages and disadvantages. Show some examples of code from your solutions to the exercises in week 5.
 
@@ -237,6 +248,54 @@ m(start(t1)), m(start(t2)), t2(4), t2(5), t1(4), t1(5), m(join(t1)), m(join(t2))
 
 ## Question 5
 ```[java]
+package exercises04;
+
+public class Person {                                                           // all variables are private
+  private static long currentId;                                                // internal class-state, never exposed
+  private static boolean firstPersonInitialized = false;                        // internal class-state, never exposed
+  private final long id;                                                        // immutable
+  private final String name;                                                    // immutable
+  private int zip;                                                              // init default
+  private String address;                                                       // init default
+
+  public Person() {                                                             // default constructor
+    this(0);
+  }
+
+  public Person(long startId) {                                                 // constructor with specific start-id
+    synchronized (Person.class) {
+      if (!firstPersonInitialized) {
+        currentId = startId;
+        firstPersonInitialized = true;
+      }
+      id = currentId;
+      name = "John Doe";
+      currentId++;
+    }
+  }
+
+  public synchronized void changeAddress(String address, int zip) {             // mutable fields, update
+    this.zip = zip;
+    this.address = address;
+  }
+
+  public long getId() {                                                         // immutable field, no lock
+    return id;
+  }
+
+  public String getName() {                                                     // immutable field in our implementation, no lock
+    return name;
+  }
+
+  public synchronized int getZip() {                                            // mutable field, read, simple type
+    return zip;
+  }
+
+  public synchronized String getAddress() {                                     // mutable field, read, strings are practically immutable
+    return address;
+  }
+}
+
 ```
 
 ## Question 6
@@ -276,4 +335,6 @@ m(start(t1)), m(start(t2)), t2(4), t2(5), t1(4), t1(5), m(join(t1)), m(join(t2))
 - **Synchronized methods** `public synchronized void func() {}` have an *intrinsic lock*, i.e. works like locking around the entire function body.
 - **synchronized objects** `synchronized(obj) {}` have an *intrinsic lock* on the object for the code body.
 - **static** methods TODO
+- **static** variables TODO
+- **final** variables are non-modifiable variables.
 - **volatile** variables ensure visibility (flushing to shared memory) and prevents reordering (but does not ensure mutual exclusion)
