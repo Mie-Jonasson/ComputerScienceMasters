@@ -61,8 +61,10 @@
 - Some things are impossible to test; rely on *Formal Verification* in terms of mathematical proofs of the programme working as intended.
 
 ## 7. **Performance measurements**: Motivate and explain how to measure the performance of Java code. Illustrate some of the pitfalls there are in doing such measurements. Show some examples of code from your solutions to the exercises in week 9.
+- TODO
 
 ## 8. **Performance and Scalability**: Explain how to increase the performance of Java code exploiting concurrency. Illustrate some of the pitfalls there are in doing this. Show some examples of code from your solutions to the exercises in week 10.
+- TODO
 
 ## 9. **Lock-free Data Structures**: Define and motivate lock-free data structures. Explain how *compare-and-swap* (CAS) operations can be used to solve concurrency problems. Show some examples of code from your solutions to the exercises in week 6.
 - *Lock-free Data Structures* is used to describe objects that are safe to use in concurrent programs but that do not utilize locks.
@@ -70,7 +72,7 @@
     - Nested levels of non-blocking: *Obstruction-Free* (If the thread executes in isolation, it will finish in a finite number of steps), *Lock-Free* (If some thread will finish in a finite number of steps), *Wait-Free* (all threads will finish in a finite number of steps)
     - A *Con* of lock free data structures is *increased memory overhead*.
 - The most prominent lock-free data structure design pattern is *Compare-And-Swap* (CAS). This is a conditional setting of a register in a single operation, putting value b into the register if the current register == a.
-```[java]
+```java
 do {
     old_value = v.get()
     new_value = old_value ???
@@ -78,15 +80,22 @@ do {
 ```
 
 ## 10. **Linearizability**: Explain and motivate linearizability. Explain how linearizability can be applied to reason about the correctness of concurrent objects. Show some examples of code in your solutions to the exercises in week 7 where you used linearizability to reason about correctness.
+- *Linearizability* is about using sequential specifications to argue about concurrent executions. I.e. we want the concurrent behavior of the code to behave as-if it was executed sequentially.
+- *Sequential Consistency* refers to methods calls appearing to happen one-at-a-time and that method calls should appear to take effect in program order. 
+    - Concurrent executions are sequentially consistent if there exists at least 1 re-ordering of operations that is (1) one-at-a-time (2) thread program order is retained and (3) execution satisfies specification of the object.
+- *Linearizability* extends Sequential Consistency to also require real-time order preserved. "Each method should take effect at some instant between invocation and response". We define this instant as the *linearization point*
+- A *concurrent object* is *linearizable* iff all concurrent executions of method calls are linearizable - we do this by selection *linearization points* in the source code.
 
 ## 11. **Streams**: Explain and motivate the use of streams to parallelize computation. Discuss issues that arise in operations executed by parallel streams. Show some examples of code from your solutions to the exercises in week 11.
+- TODO
 
 ## 12. **Message Passing**: Explain and motivate the actor model of concurrent computation. Discuss advantages and disadvantages of approaches to distribute computation in actor systems. Show some examples of code from your solutions to the exercises in week 12 and 13.
+- TODO
 
 # Code Examples
 ## Question 1
 Run from `Assignment1/Exercise1/week01exercises/` the command `gradle run -PmainClass=exercises01.CounterThreads2Covid`
-```[java]
+```java
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -139,7 +148,7 @@ public class CounterThreads2Covid {
 
 ## Question 2
 Run from `Assignment1/Exercise2/week02exercises/` the command `gradle run -PmainClass=exercises02.ReadersWriters`
-```[java]
+```java
 public class FairReadWriteMonitor {
     private int readers         = 0;
     private boolean writer      = false;
@@ -183,7 +192,7 @@ public class FairReadWriteMonitor {
 
 ## Question 3
 Run from `Assignment1/Exercise2/week02exercises/` the command `gradle run -PmainClass=exercises02.TestMutableInteger`
-```[java]
+```java
 public class TestMutableInteger {
     public static void main(String[] args) {
         final MutableInteger mi = new MutableInteger();
@@ -214,7 +223,7 @@ class MutableInteger {
 
 ## Question 4
 Run from `Assignment2/Exercise3/week03exercises/` the command `gradle run -PmainClass=exercises03.CountingThreads`
-```[java]
+```java
 import java.util.concurrent.locks.ReentrantLock;
 
 public class CountingThreads {
@@ -271,7 +280,7 @@ m(start(t1)), m(start(t2)), t2(4), t2(5), t1(4), t1(5), m(join(t1)), m(join(t2))
 
 ## Question 5
 Run from `Assignment2/Exercise4/week04exercises/` the command `gradle run -PmainClass=exercises04.PersonTester`
-```[java]
+```java
 package exercises04;
 
 public class Person {                                                           // all variables are private
@@ -324,7 +333,7 @@ public class Person {                                                           
 
 ## Question 6
 Run from `Assignment3/Exercise5/week05exercises/` the command `radle cleanTest test --tests exercises05.ConcurrentSetTest`
-```[java]
+```java
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
@@ -425,16 +434,16 @@ public class ConcurrentSetTest {
 ```
 
 ## Question 7
-```[java]
+```java
 ```
 
 ## Question 8
-```[java]
+```java
 ```
 
 ## Question 9
 Run from `Assignment3/Exercise6/week06exercises/` the command `gradle run -PmainClass=exercises06.CasHistogram`
-```[java]
+```java
 import java.util.concurrent.atomic.AtomicInteger;
 
 class CasHistogram implements Histogram {
@@ -474,15 +483,56 @@ class CasHistogram implements Histogram {
 ```
 
 ## Question 10
-```[java]
+```java
+class LockFreeStack<T> {
+    AtomicReference<Node<T>> top = new AtomicReference<Node<T>>(); // Initializes to null
+
+    public void push(T value) {
+        Node<T> newHead = new Node<T>(value);           // Pu1
+        Node<T> oldHead;                                // Pu2
+        do {
+            oldHead      = top.get();                   // Pu3
+            newHead.next = oldHead;                     // Pu4
+        } while (!top.compareAndSet(oldHead,newHead));  // Pu5 - Linearization point for method
+
+    }
+
+    public T pop() {
+        Node<T> newHead;                                // Po1
+        Node<T> oldHead;                                // Po2
+        do {
+            oldHead = top.get();                        // Po3 - Linearization point if stack is empty
+            if(oldHead == null) { return null; }        // Po4
+            newHead = oldHead.next;                     // Po5
+        } while (!top.compareAndSet(oldHead,newHead));  // Po6 - Linearization point for method if
+                                                        //       stack is non-empty
+
+        return oldHead.value;
+    }
+}
 ```
 
+For the `push()` method of `LockFreeStack` there is only a single linearization point which is
+`Pu5` as labeled above, which is where the item is inserted into the stack by swapping the old head
+for the new head.
+
+For the `pop()` method of `LockFreeStack` there are two linearization points. One at Po3, which
+is the linearization point if the stack is empty. And at Po6 if the stack is non-empty, which is
+where the item is removed from the stack by swapping the old head for the new one.
+
+**Correctness**:
+If two threads execute push at the same time, only one will succeed at executing `Pu5`, while the
+other one fails and retries. The same argument can be made for two threads executing pop at the
+same time, where one will fail at `Po6` and retry.
+Similarly the same thing happens if one thread executes push while another executes pop. One thread
+will succeed in changing the head of the stack, while the other will fail and retry.
+
 ## Question 11
-```[java]
+```java
 ```
 
 ## Question 12
-```[erlang]
+```erlang
 ```
 
 # General Notes
