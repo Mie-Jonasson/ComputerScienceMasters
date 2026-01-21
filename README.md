@@ -6,7 +6,7 @@ Exam Notes and Study Notes from Master's Degree in Computer Science @ITU 2025-20
 - `1. December - 16. December` : Algorithm Design
 - `17. December - 5. January` : Advanced Programming
 - `20. December - 20. January` : Introduction to Machine Learning
-- `29. December - 23. January` : Practical Concurrent and Parallel Programming
+- `17. January - 23. January` : Practical Concurrent and Parallel Programming
 
 ### Algorithm Design
 - **ECTS:** 7.5

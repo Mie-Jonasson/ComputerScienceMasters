@@ -51,6 +51,14 @@
 - *Extension in Thread-Safe Classes*: may be done by acquiring intrinsic lock on the class instance or by adding the method to the thread-safe class.
 
 ## 6. **Testing**: Explain the challenges in ensuring the correctness of concurrent programs. Describe different testing strategies for concurrent programs, and their advantages and disadvantages. Show some examples of code from your solutions to the exercises in week 5.
+- Easy to show bugs exist - hard to prove the absence! We can make tests to test *properties* of a *specification*, to convince ourselves that at least certain properties hold.
+    - *Safety* properties are about avoiding "bad"/unintended behavior. Has a *finite* counterexample where the property does not hold (interleaving is allowed to be infinite, but the part used to prove the counterexample should be finite).
+    - *Liveness* properties are about ensuring "good"/intended behavior happens eventually. Has an *infinite* counterexample where the property never holds.
+- *Functional Correctness Testing* is about finding *counterexamples* to intended behavior, and sometimes need to be run many times to catch an unlikely but possible *unintended interleaving*.
+    - Use of *Barriers* to increase thread contention may increase likelihood of finding failing interleavings.
+    - Make *Parametrized Tests* to try many different inputs for convincing of robustness.
+    - Make a *Repeated Test* to run multiple times trying to trigger the failing interleavings.
+- Some things are impossible to test; rely on *Formal Verification* in terms of mathematical proofs of the programme working as intended.
 
 ## 7. **Performance measurements**: Motivate and explain how to measure the performance of Java code. Illustrate some of the pitfalls there are in doing such measurements. Show some examples of code from your solutions to the exercises in week 9.
 
@@ -66,6 +74,7 @@
 
 # Code Examples
 ## Question 1
+Run from `Assignment1/Exercise1/week01exercises/` the command `gradle run -PmainClass=exercises01.CounterThreads2Covid`
 ```[java]
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -118,6 +127,7 @@ public class CounterThreads2Covid {
 ```
 
 ## Question 2
+Run from `Assignment1/Exercise2/week02exercises/` the command `gradle run -PmainClass=exercises02.ReadersWriters`
 ```[java]
 public class FairReadWriteMonitor {
     private int readers         = 0;
@@ -161,6 +171,7 @@ public class FairReadWriteMonitor {
 ```
 
 ## Question 3
+Run from `Assignment1/Exercise2/week02exercises/` the command `gradle run -PmainClass=exercises02.TestMutableInteger`
 ```[java]
 public class TestMutableInteger {
     public static void main(String[] args) {
@@ -191,6 +202,7 @@ class MutableInteger {
 ```
 
 ## Question 4
+Run from `Assignment2/Exercise3/week03exercises/` the command `gradle run -PmainClass=exercises03.CountingThreads`
 ```[java]
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -247,6 +259,7 @@ m(start(t1)), t1(4), t1(5), m(start(t2)), t2(4), t2(5), m(join(t1)), m(join(t2))
 m(start(t1)), m(start(t2)), t2(4), t2(5), t1(4), t1(5), m(join(t1)), m(join(t2))
 
 ## Question 5
+Run from `Assignment2/Exercise4/week04exercises/` the command `gradle run -PmainClass=exercises04.PersonTester`
 ```[java]
 package exercises04;
 
@@ -299,7 +312,105 @@ public class Person {                                                           
 ```
 
 ## Question 6
+Run from `Assignment3/Exercise5/week05exercises/` the command `radle cleanTest test --tests exercises05.ConcurrentSetTest`
 ```[java]
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
+import java.util.Random;
+import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.atomic.AtomicInteger;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.concurrent.BrokenBarrierException;
+
+public class ConcurrentSetTest {
+
+    // Variable with set under test
+    private ConcurrentIntegerSet set;
+
+    // Uncomment the appropriate line below to choose the class to test
+    @BeforeEach
+    public void initialize() {
+        // init set
+        // set = new ConcurrentIntegerSetBuggy(); // for 5.1.1, 5.1.2
+        // set = new ConcurrentIntegerSetSync(); // for 5.1.3
+        set = new ConcurrentIntegerSetLibrary(); // for 5.1.4
+    }
+
+    // @Disabled
+    @RepeatedTest(10000)
+    @DisplayName("Adding Single element to Set")
+    public void addSingle() throws InterruptedException {
+        int nrThreads = 32;
+        Random r = new Random();
+        int e = r.nextInt();
+
+        AtomicInteger trueCount = new AtomicInteger();
+
+        CyclicBarrier barrier = new CyclicBarrier(nrThreads+1);
+
+        for (int i = 0; i < nrThreads; i++) {
+            new Thread(() -> {
+                try {
+                    barrier.await();
+                    boolean s = set.add(e);
+                    trueCount.getAndAdd(s ? 1 : 0);
+                    barrier.await();
+                } catch (InterruptedException | BrokenBarrierException exc ) {
+                    exc.printStackTrace();
+                }
+            }).start();
+        }
+
+        try {
+            barrier.await();
+            barrier.await();
+        } catch (InterruptedException | BrokenBarrierException exc ) {
+            exc.printStackTrace();
+        }
+
+        assertEquals(set.size(), 1);
+        assertEquals(trueCount.get(), 1);
+    }
+
+    @RepeatedTest(10000)
+    @DisplayName("Remove Single element from Set")
+    public void removeSingle() throws InterruptedException {
+        int nrThreads = 32;
+        Random r = new Random();
+        int e = r.nextInt();
+        set.add(e);
+
+        AtomicInteger trueCount = new AtomicInteger();
+
+        CyclicBarrier barrier = new CyclicBarrier(nrThreads+1);
+
+        for (int i = 0; i < nrThreads; i++) {
+            new Thread(() -> {
+                try {
+                    barrier.await();
+                    boolean s = set.remove(e);
+                    trueCount.getAndAdd(s ? 1 : 0);
+                    barrier.await();
+                } catch (InterruptedException | BrokenBarrierException exc ) {
+                    exc.printStackTrace();
+                }
+            }).start();
+        }
+
+        try {
+            barrier.await();
+            barrier.await();
+        } catch (InterruptedException | BrokenBarrierException exc ) {
+            exc.printStackTrace();
+        }
+
+        assertEquals(0, set.size());
+        assertEquals(1, trueCount.get());
+    }
+}
 ```
 
 ## Question 7
