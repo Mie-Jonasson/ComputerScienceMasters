@@ -65,6 +65,17 @@
 ## 8. **Performance and Scalability**: Explain how to increase the performance of Java code exploiting concurrency. Illustrate some of the pitfalls there are in doing this. Show some examples of code from your solutions to the exercises in week 10.
 
 ## 9. **Lock-free Data Structures**: Define and motivate lock-free data structures. Explain how *compare-and-swap* (CAS) operations can be used to solve concurrency problems. Show some examples of code from your solutions to the exercises in week 6.
+- *Lock-free Data Structures* is used to describe objects that are safe to use in concurrent programs but that do not utilize locks.
+    - Operations are *Non-blocking* in lock-free data structure, but may instead incur starvation. *"trying again until it succeeds"*
+    - Nested levels of non-blocking: *Obstruction-Free* (If the thread executes in isolation, it will finish in a finite number of steps), *Lock-Free* (If some thread will finish in a finite number of steps), *Wait-Free* (all threads will finish in a finite number of steps)
+    - A *Con* of lock free data structures is *increased memory overhead*.
+- The most prominent lock-free data structure design pattern is *Compare-And-Swap* (CAS). This is a conditional setting of a register in a single operation, putting value b into the register if the current register == a.
+```[java]
+do {
+    old_value = v.get()
+    new_value = old_value ???
+} while (!v.compareAndSet(old_value, new_value))
+```
 
 ## 10. **Linearizability**: Explain and motivate linearizability. Explain how linearizability can be applied to reason about the correctness of concurrent objects. Show some examples of code in your solutions to the exercises in week 7 where you used linearizability to reason about correctness.
 
@@ -422,7 +433,44 @@ public class ConcurrentSetTest {
 ```
 
 ## Question 9
+Run from `Assignment3/Exercise6/week06exercises/` the command `gradle run -PmainClass=exercises06.CasHistogram`
 ```[java]
+import java.util.concurrent.atomic.AtomicInteger;
+
+class CasHistogram implements Histogram {
+  private final AtomicInteger[] counts;
+
+  public CasHistogram(int span) {
+    counts = new AtomicInteger[span];
+    for (int i = 0; i < span; i++) {
+      counts[i] = new AtomicInteger();
+    }
+  }
+
+  public int getCount(int bin) {
+    return counts[bin].get();
+  }
+
+  public int getSpan() {
+    return counts.length;
+  }
+
+  public void increment(int bin) {
+    int val;
+    do {
+      val = counts[bin].get();
+    } while (!counts[bin].compareAndSet(val, val + 1));
+  }
+
+  public int getAndClear(int bin) {
+    int val;
+    do {
+      val = counts[bin].get();
+    } while (!counts[bin].compareAndSet(val, 0));
+    return val;
+  }
+}
+
 ```
 
 ## Question 10
