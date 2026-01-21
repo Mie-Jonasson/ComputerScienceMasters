@@ -66,7 +66,7 @@ If you think you need a for-loop, a fold is possibly what you actually need.
 
 ### Extension Methods
 An extension method is a static function that may be call on an instance as if it was an instance type - i.e. we *extend the existing API* for a class with additional methods/functions. In scala:
-```[scala]
+```scala
 // definition
 extension (val str: String)
     def <method_name> =
@@ -107,7 +107,7 @@ Options come up when referring to error-handling. I.e. we want to return the res
 
 Partial functions call for for Options or other types that allow working in the world of errors/faults.
 Option may be defined as a simple two-case class:
-```[scala]
+```scala
 enum Option[+A]:
     case Some(get: A)
     case None
@@ -122,7 +122,7 @@ The `Some(a)` encapsulates any result-value whilst `None` encapsulates not being
 
 ### Either: Option but with error information
 Instead of just returning None, allows keeping track of the error that occurred and to return it for handling. The data type is therefore also slightly more complex as it encapsulates more information in the failing case:
-```[scala]
+```scala
 enum Either[+E, +A]:
     case Left(value: E) // Error, likely a string. May also be a list of strings if capturing entire stack.
     case Right(value: A) // Success
@@ -149,7 +149,7 @@ Laziness interacts badly with side effects (such as printing and similar). We ca
 Lazy lists are an elegant way of creating both finite and infinite streams of data, for which we do not need to evaluate the entire structure at once. Lazy lists are also referred to as **Pull-streams** as you ask for data from the stream when needed and it is generated on-demand (i.e. does not exist in memory until generated).
 
 Lazy lists are **isomorphic** with lists - they provide the same API, but under the hood we evaluate lazily. Because enums cannot have *call-by-name* arguments we create a convenience constructor:
-```[scala]
+```scala
 enum LazyList[+A]:
     case Empty
     case Cons(h: () => A, t: () => LazyList[A])
@@ -166,7 +166,7 @@ def cons[A](hd: => A, tl: => LazyList[A]): LazyList[A] =
 ```
 
 Note that infinite lazy lists often have recursive definitions. For example:
-```[scala]
+```scala
 // an infinite stream of 1's:
 val ones: LazyList[Int] = cons(1, ones)
 
@@ -180,7 +180,7 @@ Lazy lists are also the basis for *reactive programming* (but need to add real t
 
 ## State
 We want to keep track of the state explicitly to have referential transparency in what is actually going on with f.ex. random number generators. A referentially transparent (and therefor pure) version of a random number generator may for example be:
-```[scala]
+```scala
 trait RNG:
     def nextInt: (Int, RNG)
 
@@ -192,7 +192,7 @@ Other common names for state are: *stateful*, *automaton*, *transition* - a sing
 States and lazy lists have a lot in common - we can unfold a state in a lazy list as a generator of the contents from an initial state $s$.
 
 We may want to compute a random instance of some type `A`, that we do not yet know. We can define this Random generator as `type Rand[A] = State[RNG, A]`. This is all good and well, and with a concrete implementation of an RNG, we may now start defining how to generate an Int (... or a Double or a list or a tuple) from a specific initialization of an RNG.
-```[scala]
+```scala
 val r: Rand[Int] = ... // Defining basic Int-generation
 val (i, r1) = r.run(SimpleRNG(42)) // Running 'r' with a concrete State implementation and instance
 
@@ -203,7 +203,7 @@ map2[S, A, B, C](sa:State[S, A])(sb:State[S, B])(f:(A, B) =>C):State[S, C] // us
 
 This concept of state is super confusing at times, but most importantly: we always want to use the state to get some value, update the new state and pass on the new state for the next computation. Never reuse the state for multiple computations, always string it along to the next.
 See own exercise solution [here](https://github.itu.dk/miejo/Advanced_Programming/blob/main/05-state/Exercises.scala) for better intuition if it seems confusing how one would do it for any of the coding examples in this section. In particular (note that here, for map2, rng is not stringed along - tests were failing if this was the case. On the other hand, other tasks intended to use map2 were requiring the state to be stringed along - see sequence):
-```[scala]
+```scala
 def map[A,B](s: Rand[A])(f: A => B): Rand[B] =
     rng => {
         val (a, rng2) = s(rng)
@@ -246,7 +246,7 @@ This is a mathematical definition, and in particular the laws that should follow
 - **identity**: combining with the zero-element produces the element itself, i.e. $x \bigoplus 0 == x == 0 \bigoplus x$
 
 In scala it may be defined as the trait:
-```[scala]
+```scala
 trait Monoid[A]:
   self =>
   def combine(a1: A, a2: A): A
@@ -288,7 +288,7 @@ An example of Isomorphism is strings and lists of chars.
 
 ### Foldable
 Objects that may be folded over, f.ex. Lists, Sequences or any other iterable type!
-```[scala]
+```scala
 trait Foldable[F[_]]:
     extension [A](as: F[A])
 
@@ -305,7 +305,7 @@ trait Foldable[F[_]]:
 ### Functor / Mappable
 A mappable/functor is an object that may be mapped. In particular, we see that the map functions we have implemented for options, generators and so on all have a similar type: `def map[A, B] (a: <type>[A]) (f: A -> B) : <type>[B]`. 
 In scala:
-```[scala]
+```scala
 trait Functor[F[_]]: // Functor is higher kind
 
   extension [A](fa: F[A])
@@ -322,7 +322,7 @@ trait Functor[F[_]]: // Functor is higher kind
 
 ### Monad / Flatmappable
 Encapsulates all of the types we ahve developed in the class, i.e. flatmappables. Note that map and other functions may be derived from the flatmap function:
-```[scala]
+```scala
 trait Monad[F[_]]
   extends Functor[F]:
   
@@ -384,7 +384,7 @@ Generators are the objects that generates a random object of a specific type und
 ![](images/generators.png)
 
 Generators are random generators just like RNG, we define `opaque type Gen[+A] = State[RNG, A]`. Now, we may use the State API to create generators of all sorts:
-```[scala]
+```scala
 def anyInteger: Gen[Int] = State.next_int
 
 def intPair: Gen[(Int, Int)] = anyInteger.map2(anyInteger)(x => x) // compose two integers as the tuple they are
@@ -400,7 +400,7 @@ One may also use **summon** instead of **using**. I.e. `summon[Gen[A]]` in the c
 ## Parsing
 Parsing is about coding how to read a file / string into a sensible data structure or executable. The main concepts are as follows:
 - **concrete syntax** vs **abstract syntax**: The concrete syntax is the format of the input, which may for example be a JSON file. The JSON file is structured with certain delimiters between arguments, possibly with extra spaces/newlines/tabs. The abstract syntax is, on the other hand, the structure we use to represent the concrete object as an object in our code. The abstract syntax is of course highly dependant on the concrete syntax and how we wish to represent and use the object. We might use the following abstract syntax for JSON files:
-```[scala]
+```scala
 enum JSON
     // simpler types of args
     case JNull
@@ -453,7 +453,7 @@ e ::=num(n) \quad n \in Z
 \newline |\space e \space\%\space e
 $$
 In scala:
-```[scala]
+```scala
 enum numExpr
     case Num(n: int)
     case Div(Left: numExpr, Right: numExpr) // note the recursive definition here.
@@ -465,7 +465,7 @@ $$
 \frac{e \to n_1 \quad e' \to n_2}{e \% e´ \to n_1 /n_2}DIV
 $$
 Evaluator in scala:
-```[scala]
+```scala
 def eval (expr: numExpr): Int = expr match
     case Num(n) => n
     case Div(Left, Right) => eval(Left) / eval(Right) // recursive definition here again
@@ -479,7 +479,7 @@ $$
 \newline\newline
 \frac{e \to n_1 \quad e' \to n_2 \quad n_2\neq0}{e \% e´ \to n_1 /n_2}DIV
 $$
-```[scala]
+```scala
 def eval (expr: numExpr): M[Int] = expr match
     case Num(n) => Return(n)
     case Div(Left, Right) => eval(Left) match
