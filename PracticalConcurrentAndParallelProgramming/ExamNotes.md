@@ -70,7 +70,15 @@
 - TODO: Review more!!!
 
 ## 8. **Performance and Scalability**: Explain how to increase the performance of Java code exploiting concurrency. Illustrate some of the pitfalls there are in doing this. Show some examples of code from your solutions to the exercises in week 10.
-- TODO
+- We can increase performance by dividing a task into smaller tasks and executing concurrently - but *how* do we *divide* the tasks? *How many threads* can we make without the overhead of creating threads becomes a problem?
+    - Split into small enough but not too small subsets - possibly using a *threshold* on subset size.
+    - Minimize unused threads in pool. Minimize thread contention.
+    - Lock striping where instead of a single lock for an entire collection, a lock for one or few parts of the collection - better distributed and avoids threads always waiting for each other.
+- Can assign *many tasks* to a *single thread* (i.e. *threadpools* where we submit work and work is taken on by an available thread in the pool)
+    - *ForkJoinPool* are the ones we hav eused - many other exist. Gist of an *ExecutorService* is the ability to submit task and the executor will assign tasks to threads when available.
+    - We call *pool.shutdown()* once no more tasks need to be submitted. Then we *awaitTermination(100, TimeUnit.seconds)* to wait up to 100 seconds for the remaining tasks to finish.
+- *Amdahl's Law* describes the speed-up that can be obtained from concurrency. Takes the fraction of the problem that can be executed concurrently and the number of threads.
+    - *Max Speed-Up* TODO
 
 ## 9. **Lock-free Data Structures**: Define and motivate lock-free data structures. Explain how *compare-and-swap* (CAS) operations can be used to solve concurrency problems. Show some examples of code from your solutions to the exercises in week 6.
 - *Lock-free Data Structures* is used to describe objects that are safe to use in concurrent programs but that do not utilize locks.
@@ -440,116 +448,244 @@ public class ConcurrentSetTest {
 ```
 
 ## Question 7
-Run from `Assignment5/Exercise10/week10exercises/` the command `gradle run -PmainClass=exercises10.TestCASLockHistogram`
+Run from `Assignment4/Exercise9/week09exercises/` the command `gradle run -PmainClass=exercises09.TestCountPrimesThreads`
 ```java
 import benchmarking.Benchmark;
+import benchmarking.Benchmarkable;
 
-class TestCASLockHistogram {
+public class TestCountPrimesThreads {
+
+  public static void main(String[] args) { new TestCountPrimesThreads(); }
+
+  public TestCountPrimesThreads() {
+    Benchmark.SystemInfo();
+    final int range= 100_000;
+    Benchmark.Mark7("countSequential", i -> countSequential(range));
+    for (int c= 1; c<=32; c++) {
+      final int threadCount = c;
+      Benchmark.Mark7(String.format("countParallelN %7d", threadCount), 
+            i -> countParallelN(range, threadCount));
+    }
+  }
+
+  private static boolean isPrime(int n) {
+    int k = 2;
+    while (k * k <= n && n % k != 0)
+      k++;
+    return n >= 2 && k * k > n;
+  }
+
+  // Sequential solution
+  private static int countSequential(int range) {
+    int count= 0;
+    final int from= 0, to= range;
+    for (int i= from; i<to; i++)
+      if (isPrime(i)) count++;
+    return count;
+  }
+
+  // General parallel solution, using multiple threads
+  private static int countParallelN(int range, int threadCount) {
+    final int perThread= range / threadCount;
+    final PrimeCounter lc= new PrimeCounter();
+    Thread[] threads= new Thread[threadCount];
+    for (int t= 0; t<threadCount; t++) {
+        final int from= perThread * t, 
+        to = (t+1==threadCount) ? range : perThread * (t+1); 
+        threads[t]= new Thread( () -> {
+          for (int i= from; i<to; i++)
+            if (isPrime(i)) lc.increment();
+        });
+    }
+    for (int t= 0; t<threadCount; t++) 
+      threads[t].start();
+    try {
+      for (int t=0; t<threadCount; t++) 
+        threads[t].join();
+        //System.out.println("Primes: "+lc.get());
+    } catch (InterruptedException exn) { }
+    return lc.get();
+  }
+}
+```
+
+```
+# OS:   Mac OS X; 14.6; aarch64
+# JVM:  Homebrew; 17.0.16
+# CPU:  null; 8 "cores"
+# Date: 2025-10-27T11:10:50+0100
+countSequential                 2011099,6 ns   12439,42        128
+countParallelN       1          2068329,6 ns     835,60        128
+countParallelN       2          1364334,1 ns    4115,08        256
+countParallelN       3          1162648,4 ns   16703,89        256
+countParallelN       4          1030419,1 ns   24443,32        256
+countParallelN       5          1187034,4 ns   15321,28        256
+countParallelN       6          1205606,4 ns   17529,10        256
+countParallelN       7          1209973,6 ns    3557,38        256
+countParallelN       8          1218157,1 ns    8090,17        256
+countParallelN       9          1230767,1 ns   13472,11        256
+countParallelN      10          1241062,6 ns   19223,15        256
+countParallelN      11          1264616,0 ns   72561,72        256
+countParallelN      12          1245896,4 ns    5645,03        256
+countParallelN      13          1260012,1 ns   16850,05        256
+countParallelN      14          1263548,3 ns   16980,37        256
+countParallelN      15          1269679,4 ns    7821,83        256
+countParallelN      16          1276054,0 ns    7158,31        256
+countParallelN      17          1287015,6 ns   17319,76        256
+countParallelN      18          1291994,7 ns   16053,21        256
+countParallelN      19          1293192,1 ns    4855,54        256
+countParallelN      20          1301440,3 ns   13505,66        256
+countParallelN      21          1309524,4 ns   13209,46        256
+countParallelN      22          1305114,8 ns    5211,67        256
+countParallelN      23          1303006,5 ns   13335,20        256
+countParallelN      24          1283544,2 ns   17032,02        256
+countParallelN      25          1238257,4 ns   17993,29        256
+countParallelN      26          1211900,4 ns   17041,52        256
+countParallelN      27          1200906,8 ns   20362,14        256
+countParallelN      28          1188079,8 ns   15213,46        256
+countParallelN      29          1184386,4 ns   19187,64        256
+countParallelN      30          1184670,5 ns   22376,67        256
+countParallelN      31          1183717,0 ns    8540,14        256
+countParallelN      32          1186879,6 ns    7459,68        256
+
+```
+
+## Question 8
+Run from `Assignment5/Exercise10/week10exercises/` the command `gradle run -PmainClass=exercises10.TestCountPrimesThreads`
+```java
+import java.util.ArrayList;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
+
+import benchmarking.Benchmark;
+
+public class TestCountPrimesThreads {
     public static void main(String[] args) {
+        new TestCountPrimesThreads();
+    }
 
-        CasHistogram histogramCAS = new CasHistogram(30);
-        HistogramLocks histogramLock = new HistogramLocks(30);
-
-        int noThreads = 16;
-        int range = 100_000;
-
-        for (int i = 1; i < noThreads; i++) {
-            int threadCount = i;
-            Benchmark.Mark7(String.format("HistogramLocks, Threads: %d", threadCount), j -> {
-                countParallel(range, threadCount, histogramLock);
-                return 1;
-            });
-        }
-
-        for (int i = 1; i < noThreads; i++) {
-            int threadCount = i;
-            Benchmark.Mark7(String.format("CasHistogram, Threads: %d", threadCount), j -> {
-                countParallel(range, threadCount, histogramCAS);
-                return 1;
-            });
+    public TestCountPrimesThreads() {
+        final int range = 100_000;
+        Benchmark.Mark7("countSequential", i -> countSequential(range));
+        for (int c = 1; c <= 16; c = 2 * c) {
+            final int threadCount = c;
+            Benchmark.Mark7(String.format("countParallelN %2d", threadCount),
+                    i -> countParallelN(range, threadCount));
+            Benchmark.Mark7(String.format("countParallelNLocal %2d", threadCount),
+                    i -> countParallelNLocal(range, threadCount));
+            Benchmark.Mark7(String.format("countParallelNExecutors %2d", threadCount),
+                    i -> countParallelNExecutors(range, threadCount));
         }
     }
 
-    // Function to count the prime factors of a number `p`
-    private static int countFactors(int p) {
-        if (p < 2)
-            return 0;
-        int factorCount = 1, k = 2;
-        while (p >= k * k) {
-            if (p % k == 0) {
-                factorCount++;
-                p = p / k;
-            } else
-                k = k + 1;
-        }
-        return factorCount;
+    private static boolean isPrime(int n) {
+        int k = 2;
+        while (k * k <= n && n % k != 0)
+            k++;
+        return n >= 2 && k * k > n;
     }
 
-    // Parallel execution of counting the number of primes for numbers in `range`
-    private static void countParallel(int range, int threadCount, Histogram h) {
+    // Sequential solution
+    private static long countSequential(int range) {
+        long count = 0;
+        final int from = 0, to = range;
+        for (int i = from; i < to; i++)
+            if (isPrime(i))
+                count++;
+        return count;
+    }
+
+    // General parallel solution, using multiple threads
+    private static long countParallelN(int range, int threadCount) {
+        ...
+    }
+
+    // General parallel solution, using multiple threads
+    private static long countParallelNLocal(int range, int threadCount) {
+        ...
+    }
+
+    private static class countPrimesTask implements Callable<Integer> {
+        private final int low, high;
+
+        countPrimesTask(int l, int h) {
+            low = l;
+            high = h;
+        }
+
+        @Override
+        public Integer call() {
+            Integer count = 0;
+            for (int i = low; i < high; i++) {
+                if (isPrime(i))
+                    count++;
+            }
+            return count;
+        }
+    }
+
+    private static long countParallelNExecutors(int range, int threadCount) {
         final int perThread = range / threadCount;
-        Thread[] threads = new Thread[threadCount];
-        for (int t = 0; t < threadCount; t = t + 1) {
+        final ArrayList<Future<Integer>> results = new ArrayList<Future<Integer>>();
+
+        ExecutorService pool = new ForkJoinPool(8);
+
+        for (int t = 0; t < threadCount; t++) {
             final int from = perThread * t,
                     to = (t + 1 == threadCount) ? range : perThread * (t + 1);
-            threads[t] = new Thread(() -> {
-                for (int i = from; i < to; i++)
-                    h.increment(countFactors(i));
-
-            });
+            final int threadNo = t;
+            Future<Integer> f = pool.submit(new countPrimesTask(from, to));
+            results.add(f);
         }
-        for (int t = 0; t < threadCount; t = t + 1)
-            threads[t].start();
+
+        pool.shutdown();
+
+        long count = 0;
+        for (Future<Integer> j : results) {
+            try {
+                count += j.get().intValue();
+            } catch (InterruptedException | ExecutionException e) {
+            }
+        }
+
         try {
-            for (int t = 0; t < threadCount; t = t + 1)
-                threads[t].join();
-        } catch (InterruptedException exn) {
+            // Wait for all tasks to complete or timeout after 100 seconds
+            if (pool.awaitTermination(1, TimeUnit.SECONDS)) {
+                // System.out.println("All tasks completed successfully.");
+            } else {
+                System.out.println("Timeout elapsed before termination.");
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-    }
 
-    public static void dump(Histogram histogram) {
-        for (int bin = 0; bin < histogram.getSpan(); bin = bin + 1) {
-            System.out.printf("%4d: %9d%n", bin, histogram.getCount(bin));
-        }
+        return count;
     }
 }
 ```
 
 ```
-HistogramLocks, Threads: 1      17943512.8 ns 2348522.68         16
-HistogramLocks, Threads: 2      17290227.6 ns 2220308.27         16
-HistogramLocks, Threads: 3      27290250.3 ns 1993276.76         16
-HistogramLocks, Threads: 4      31157602.3 ns 1960811.23         16
-HistogramLocks, Threads: 5      33661760.4 ns 3847906.94          8
-HistogramLocks, Threads: 6      32023797.6 ns 3059827.39         16
-HistogramLocks, Threads: 7      34665178.9 ns 3550155.34         16
-HistogramLocks, Threads: 8      33894408.4 ns 3446516.90          8
-HistogramLocks, Threads: 9      35059488.0 ns 2725879.73          8
-HistogramLocks, Threads: 10      33681040.7 ns 2954015.56          8
-HistogramLocks, Threads: 11      34143500.0 ns 2564254.14          8
-HistogramLocks, Threads: 12      34739652.6 ns 3522764.72          8
-HistogramLocks, Threads: 13      34398833.3 ns 2926309.72          8
-HistogramLocks, Threads: 14      34975479.1 ns 4774462.14          8
-HistogramLocks, Threads: 15      36267140.9 ns 8635602.04         16
-CasHistogram, Threads: 1       15452664.3 ns 1017392.08         16
-CasHistogram, Threads: 2       10511317.3 ns  848794.06         32
-CasHistogram, Threads: 3       10516936.2 ns  535885.45         32
-CasHistogram, Threads: 4       10809522.8 ns  307314.17         32
-CasHistogram, Threads: 5       10931363.8 ns  382291.45         32
-CasHistogram, Threads: 6        9873199.2 ns  445243.03         32
-CasHistogram, Threads: 7        9857207.0 ns  127647.63         32
-CasHistogram, Threads: 8        9561653.5 ns  455573.71         32
-CasHistogram, Threads: 9       10041244.9 ns  543947.89         32
-CasHistogram, Threads: 10      10063135.2 ns  856486.67         32
-CasHistogram, Threads: 11      11426330.9 ns 1866617.24         32
-CasHistogram, Threads: 12      10248580.9 ns  812490.88         32
-CasHistogram, Threads: 13      10185470.6 ns  700450.72         32
-CasHistogram, Threads: 14      10471271.5 ns 1893882.52         32
-CasHistogram, Threads: 15      10237525.5 ns  781480.51         32
-```
-
-## Question 8
-```java
+countSequential                 5408642.5 ns  337710.19         64
+countParallelN  1               5461181.3 ns  298241.84         64
+countParallelNLocal  1          5518456.8 ns  337170.10         64
+countParallelNExecutors  1       5416058.0 ns  253290.92         64
+countParallelN  2               3604433.4 ns  174302.17        128
+countParallelNLocal  2          3633222.5 ns  154604.32        128
+countParallelNExecutors  2       3759861.8 ns  287296.58        128
+countParallelN  4               2818494.9 ns  199681.20        128
+countParallelNLocal  4          2606914.7 ns   82854.02        128
+countParallelNExecutors  4       2947275.3 ns  104202.56        128
+countParallelN  8               2583905.5 ns  264871.43        128
+countParallelNLocal  8          2419737.9 ns  204061.19        128
+countParallelNExecutors  8       2624033.0 ns  197332.33        128
+countParallelN 16               2744961.6 ns  301596.23        128
+countParallelNLocal 16          2590706.1 ns  193211.93        128
+countParallelNExecutors 16       2690385.7 ns  418394.89        128
 ```
 
 ## Question 9
@@ -658,3 +794,4 @@ will succeed in changing the head of the stack, while the other will fail and re
 - **static** variables TODO
 - **final** variables are non-modifiable variables.
 - **volatile** variables ensure visibility (flushing to shared memory) and prevents reordering (but does not ensure mutual exclusion)
+- **Future<\type>** refers to a callable returning a certain type, which may be used as return type for tasks submitted to threadpools
