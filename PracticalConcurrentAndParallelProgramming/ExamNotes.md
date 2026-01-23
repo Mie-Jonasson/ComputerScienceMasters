@@ -783,21 +783,6 @@ class LockFreeStack<T> {
 }
 ```
 
-For the `push()` method of `LockFreeStack` there is only a single linearization point which is
-`Pu5` as labeled above, which is where the item is inserted into the stack by swapping the old head
-for the new head.
-
-For the `pop()` method of `LockFreeStack` there are two linearization points. One at Po3, which
-is the linearization point if the stack is empty. And at Po6 if the stack is non-empty, which is
-where the item is removed from the stack by swapping the old head for the new one.
-
-**Correctness**:
-If two threads execute push at the same time, only one will succeed at executing `Pu5`, while the
-other one fails and retries. The same argument can be made for two threads executing pop at the
-same time, where one will fail at `Po6` and retry.
-Similarly the same thing happens if one thread executes push while another executes pop. One thread
-will succeed in changing the head of the stack, while the other will fail and retry.
-
 ## Question 11
 Run from `Assignment5/Exercise11/week11exercises/` the command `gradle run -PmainClass=exercises11.PrimeCountingPerf`
 ```java
@@ -989,8 +974,6 @@ spawn_n_workers(NumWorkers, State) ->
         total_workers = State#server_state.total_workers + 1
     },
     spawn_n_workers(NumWorkers - 1, NewState).
-
-
 ```
 
 # General Notes
