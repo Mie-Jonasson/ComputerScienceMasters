@@ -593,7 +593,7 @@ public class TestCountPrimesThreads {
     public TestCountPrimesThreads() {
         final int range = 100_000;
         Benchmark.Mark7("countSequential", i -> countSequential(range));
-        for (int c = 1; c <= 16; c = 2 * c) {
+        for (int c = 1; c <= 32; c = 2 * c) {
             final int threadCount = c;
             Benchmark.Mark7(String.format("countParallelN %2d", threadCount),
                     i -> countParallelN(range, threadCount));
@@ -691,22 +691,25 @@ public class TestCountPrimesThreads {
 ```
 
 ```
-countSequential                 5408642.5 ns  337710.19         64
-countParallelN  1               5461181.3 ns  298241.84         64
-countParallelNLocal  1          5518456.8 ns  337170.10         64
-countParallelNExecutors  1       5416058.0 ns  253290.92         64
-countParallelN  2               3604433.4 ns  174302.17        128
-countParallelNLocal  2          3633222.5 ns  154604.32        128
-countParallelNExecutors  2       3759861.8 ns  287296.58        128
-countParallelN  4               2818494.9 ns  199681.20        128
-countParallelNLocal  4          2606914.7 ns   82854.02        128
-countParallelNExecutors  4       2947275.3 ns  104202.56        128
-countParallelN  8               2583905.5 ns  264871.43        128
-countParallelNLocal  8          2419737.9 ns  204061.19        128
-countParallelNExecutors  8       2624033.0 ns  197332.33        128
-countParallelN 16               2744961.6 ns  301596.23        128
-countParallelNLocal 16          2590706.1 ns  193211.93        128
-countParallelNExecutors 16       2690385.7 ns  418394.89        128
+countSequential                 3786314,9 ns  165573,12        128
+countParallelN  1               3776881,9 ns    4031,11        128
+countParallelNLocal  1          3773543,1 ns    2775,65        128
+countParallelNExecutors  1       3819188,7 ns    6039,99        128
+countParallelN  2               2381288,6 ns    4940,99        128
+countParallelNLocal  2          2386286,3 ns  142466,20        128
+countParallelNExecutors  2       2473163,2 ns   40689,79        128
+countParallelN  4               1376270,8 ns   10340,51        256
+countParallelNLocal  4          1325498,6 ns   11944,11        256
+countParallelNExecutors  4       1422991,8 ns   10283,99        256
+countParallelN  8               1182302,0 ns   16004,73        256
+countParallelNLocal  8          1096013,1 ns   10240,20        256
+countParallelNExecutors  8       1306301,8 ns   14939,91        256
+countParallelN 16               1196126,1 ns   23312,49        256
+countParallelNLocal 16          1104808,6 ns    9862,09        256
+countParallelNExecutors 16       1220702,3 ns    9555,83        256
+countParallelN 32               1544783,4 ns   12126,87        256
+countParallelNLocal 32          1509703,7 ns   15949,49        256
+countParallelNExecutors 32       1197267,0 ns   71356,65        256
 ```
 
 ## Question 9
