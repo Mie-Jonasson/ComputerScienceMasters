@@ -17,7 +17,7 @@
 ## 2. **Synchronization**: Explain and motivate how locks, monitors, and semaphores can be used to address the challenges caused by concurrent access to shared memory. Show some examples of code from your solutions to the exercises in week 2.
 - *Locks* are used around a critical section to ensure only 1 thread enters at a time. One of the waiting threads will be picked at random once lock is available.
 - *Monitors* are used to solve the *Reader-Writer Problem* (i.e. only 1 writer or any number of readers). Keeps track of *internal state, methods & conditions*, for reader-writer this is for example keeping track whether the lock holder is a writer or reader, keeping track of the number of active readers and waiting / notifying on condition changing.
-- *Semaphores* allow threads up until capacity $c$ in the critical section. Reentrant locks, also calles a *mutex*, are semaphores with $c = 1$, beware of faulty semaphores that may allow releasing locks that one does not hold, falsely increasing capacity.
+- *Semaphores* allow threads up until capacity $c$ in the critical section. Reentrant locks, also called a *mutex*, are semaphores with $c = 1$, beware of faulty semaphores that may allow releasing locks that one does not hold, falsely increasing capacity.
 - *Fairness* for different access types, i.e. in monitors Writer may wait forever if we allow new readers into the section while the write is still waiting. (starvation issue!)
 - *Barriers* may be used to increase the chance of seeing possible concurrency errors, by ensuring all threads reach a certain point and the letting them all run wild.
 
@@ -101,10 +101,31 @@ do {
 - A *concurrent object* is *linearizable* iff all concurrent executions of method calls are linearizable - we do this by selection *linearization points* in the source code.
 
 ## 11. **Streams**: Explain and motivate the use of streams to parallelize computation. Discuss issues that arise in operations executed by parallel streams. Show some examples of code from your solutions to the exercises in week 11.
-- TODO
+- If we are applying *multiple transformations / filterings* to an *input stream* (such as words, list of integers or transfers etc.) we can consider it similarly to how we do in Functional Programming.
+- We define a *pipeline* from input to output of various transformations, we can represent this as a Java *Stream*.
+    - Streams are easy to parallelize; `<stream_object>.parallel().<transformations>`
+    - Streams do not store intermediate states in temporary variables
+    - Streams are *lazily evaluated*
+- There are three main types of stream elements; *sources* (initial constructors of a stream), *intermediate operations* (filtering and transformations) & *terminal operations* (finalizing the stream to an output state)
+    - Source Examples: `Arrays.stream(arr)`, `Stream.of(1, 2, 3, 4)`
+    - Operation Examples: `filter(x -> bool)` (filters when lambda is false), `map(x -> y)`, `limit(n)` (only first n elements), `skip(n)` (skip n elements), `distinct()` (removes duplicated elements), `sorted()`
+    - Terminal Examples: `min()`, `max()`, `sum()`, `average()`, `count()`, `forEach(x -> void)`(`forEach(System.out::println)`, can be replaced with `forEachOrdered` if order of stream is important), `reduce(acc, (acc, elem)-> new_acc)` (like folding)
 
 ## 12. **Message Passing**: Explain and motivate the actor model of concurrent computation. Discuss advantages and disadvantages of approaches to distribute computation in actor systems. Show some examples of code from your solutions to the exercises in week 12 and 13.
-- TODO
+- Instead of having shared memory, we can utilize *message passing* where each actor is only required to keep track of local state and keep track of that based on messages received.
+- Messages are always strings, so we represent class objects as *json*, that is packaged and unpackaged by the sender and receiver.
+- The *Actor Model* contains individual actors (f.ex. threads) that communicate with each other and do not share memory - they each have their own *local state* and *mailbox*.
+    - The mailbox is usually a FIFO queue, and we cannot guarantee that messages are received in the same order they are sent.
+    - Actors can (1) receive messages, (2) send messages, (3) create new actors & (4) update their internal state
+    - Sending is *non-blocking*, receiving is *blocking* when the mailbox is empty (i.e. awaiting message to process)
+- In Erlang:
+    - each file corresponds to an actor
+    - Init / start functions are usually public for us to be able to interact with the actor
+    - Records used to define the internal state, loop is the main function (recursive definition) waiting to receive messages and processing each type as they arrive.
+- We may distribute computations in an actor system by having an actor spawn *workers* that do "the work" while the actor itself is a middle-man managing receiving requests, distributing them and passing back the answers.
+    - This is called *dynamic topology* as the number of workers may vary over the lifetime of an execution, and may scale according to workload requests. (*load balancing*) 
+    - In particular, it also allows *fault tolerance* as we may boot up a new worker when a worker fails, and always retain some number of active workers.
+    - Workers may shut down with an error or shut down *normally* (i.e. because we told it to) *let it crash!* model using *process monitoring*
 
 # Code Examples
 ## Question 1
@@ -633,7 +654,7 @@ public class TestCountPrimesThreads {
         final int perThread = range / threadCount;
         final ArrayList<Future<Integer>> results = new ArrayList<Future<Integer>>();
 
-        ExecutorService pool = new ForkJoinPool(8);
+        ExecutorService pool = new ForkJoinPool(4);
 
         for (int t = 0; t < threadCount; t++) {
             final int from = perThread * t,
@@ -775,11 +796,198 @@ Similarly the same thing happens if one thread executes push while another execu
 will succeed in changing the head of the stack, while the other will fail and retry.
 
 ## Question 11
+Run from `Assignment5/Exercise11/week11exercises/` the command `gradle run -PmainClass=exercises11.PrimeCountingPerf`
 ```java
+import java.util.*;
+import java.util.stream.*;
+import java.io.IOException;
+import java.lang.NumberFormatException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.concurrent.atomic.AtomicLong;
+import benchmarking.Benchmark;
+
+class PrimeCountingPerf { 
+  public static void main(String[] args) { new PrimeCountingPerf(); }
+  static final int range= 100000;
+
+  //Test whether n is a prime number
+  private static boolean isPrime(int n) {
+    int k= 2;
+    while (k * k <= n && n % k != 0)
+      k++;
+    return n >= 2 && k * k > n;
+  }
+
+  // Sequential solution
+  private static long countSequential(int range) {
+    long count = 0;
+    final int from = 0, to = range;
+    for (int i=from; i<to; i++)
+      if (isPrime(i)) count++;
+    return count;
+  }
+
+  // IntStream solution
+  private static long countIntStream(int range) {
+    return IntStream.range(2, range)
+      .filter(i -> isPrime(i))
+      .count();
+  }
+
+  // Parallel Stream solution
+  private static long countParallel(int range) {
+    return IntStream.range(2, range)
+      .parallel()
+      .filter(i -> isPrime(i))
+      .count();
+  }
+
+// parallelStream solution
+  private static long countparallelStream(List<Integer> list) {
+    return list
+      .parallelStream()
+      .filter(i -> isPrime(i))
+      .count();
+  }
+
+  public PrimeCountingPerf() {
+    Benchmark.Mark7("Sequential", i -> countSequential(range));
+
+    Benchmark.Mark7("IntStream", i -> countIntStream(range));
+    
+    Benchmark.Mark7("Parallel", i -> countParallel(range));
+
+    List<Integer> list = new ArrayList<Integer>();
+    for (int i= 2; i< range; i++){ list.add(i); }
+    Benchmark.Mark7("ParallelStream", i -> countparallelStream(list));
+  }
+}
+```
+
+```
+Sequential                      1986799,4 ns   11162,72        128
+IntStream                       2011782,4 ns   17478,71        128
+Parallel                         529728,2 ns    3814,19        512
+ParallelStream                   524621,2 ns    5687,18        512
 ```
 
 ## Question 12
 ```erlang
+% raup@itu.dk * 2024-11-22
+
+-module(server).
+% to be extended
+-export([start/2, init/2]).
+-include("defs.hrl").
+
+% 1. State
+
+-record(server_state, {
+    idle_list = [], pending_tasks = [], total_workers = 0, min_workers, max_workers
+}).
+
+% 2. Start
+
+start(MinNumWorkers, MaxNumWorkers) ->
+    spawn(?MODULE, init, [MinNumWorkers, MaxNumWorkers]).
+
+% 3. Initialization
+
+init(MinNumWorkers, MaxNumWorkers) ->
+    State = #server_state{min_workers = MinNumWorkers, max_workers = MaxNumWorkers},
+    NewState = spawn_n_workers(State#server_state.min_workers, State),
+    loop(NewState).
+
+% 4. Behavior upon receiving messages
+
+loop(State) ->
+    receive
+        {work_done, WorkerPID} ->
+            handle_work_done(WorkerPID, State);
+        {compute, SenderPID, Tasks} ->
+            handle_compute(SenderPID, Tasks, State);
+        idle_workers ->
+            io:format("Idle workers: ~p~n", [State#server_state.idle_list]);
+        {'DOWN', _, _, _, normal} ->
+            handle_normal(State);
+        {'DOWN', _, _, PID, Reason} ->
+            handle_error(PID, Reason, State)
+    end.
+
+% 5. Message handlers
+
+handle_normal(State) ->
+    loop(State).
+
+handle_error(PID, Reason, State) ->
+    io:format("Worker ~w crashed with error ~p~n", [PID, Reason]),
+    NewState = spawn_n_workers(1, State#server_state{
+        total_workers = State#server_state.total_workers - 1
+    }),
+    loop(NewState).
+
+handle_compute(_, [], State) ->
+    loop(State);
+handle_compute(
+    SenderPID,
+    [Task | Remaining],
+    State = #server_state{
+        total_workers = TotalWorkers, max_workers = MaxWorkers, idle_list = IdleList
+    }
+) ->
+    case IdleList of
+        [] ->
+            case TotalWorkers < MaxWorkers of
+                false ->
+                    NewState = State#server_state{
+                        pending_tasks = [{Task, SenderPID} | State#server_state.pending_tasks]
+                    };
+                true ->
+                    NewState = spawn_n_workers(1, State),
+                    handle_compute(SenderPID, [Task | Remaining], NewState)
+            end;
+        [WorkerPID | RemainingWorkers] ->
+            WorkerPID ! {compute, SenderPID, Task},
+            NewState = State#server_state{idle_list = RemainingWorkers}
+    end,
+    handle_compute(SenderPID, Remaining, NewState).
+
+handle_work_done(
+    WorkerPID,
+    State = #server_state{
+        total_workers = TotalWorkers, min_workers = MinWorkers, idle_list = IdleList
+    }
+) ->
+    case State#server_state.pending_tasks of
+        [] ->
+            case TotalWorkers > MinWorkers of
+                false ->
+                    NewState = State#server_state{idle_list = [WorkerPID | IdleList]};
+                true ->
+                    WorkerPID ! stop,
+                    NewState = State#server_state{total_workers = TotalWorkers - 1}
+            end;
+        [{Task, SenderPID} | Remaining] ->
+            WorkerPID ! {compute, SenderPID, Task},
+            NewState = State#server_state{pending_tasks = Remaining}
+    end,
+    loop(NewState).
+
+% Private functions (to be used, e.g., by message handlers)
+
+spawn_n_workers(0, State) ->
+    State;
+spawn_n_workers(NumWorkers, State) ->
+    PID = worker:start(self()),
+    monitor(process, PID),
+    NewState = State#server_state{
+        idle_list = [PID | State#server_state.idle_list],
+        total_workers = State#server_state.total_workers + 1
+    },
+    spawn_n_workers(NumWorkers - 1, NewState).
+
+
 ```
 
 # General Notes
