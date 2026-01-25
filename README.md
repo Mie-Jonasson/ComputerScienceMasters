@@ -33,3 +33,5 @@ Exam Notes and Study Notes from Master's Degree in Computer Science @ITU 2025-20
 - **Exam Format:** Oral w/ external examiner
 - **Exam Restrictions:** 1 A4 paper, nothing else.
 - **Exam Date:** 23. January 2026
+- **Grade**: 12
+- **Talked About At Exam**: Exam Question 6, Testing. Also Lock-Free Data Structures & Linearizability.
