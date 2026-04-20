@@ -1,3 +1,6 @@
 [submodule "AdvancedProgramming/Advanced_Programming"]
 	path = AdvancedProgramming/Advanced_Programming
 	url = https://github.itu.dk/miejo/Advanced_Programming.git
+[submodule "AlgorithmDesign/Algorithm-Design"]
+	path = AlgorithmDesign/Algorithm-Design
+	url = https://github.itu.dk/miejo/Algorithm-Design.git
