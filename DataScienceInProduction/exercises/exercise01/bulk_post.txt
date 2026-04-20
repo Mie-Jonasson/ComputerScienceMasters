@@ -1,0 +1,201 @@
+POST _bulk
+{ "index" : { "_index" : "index_w02", "_id" : "14602826"}}
+{ "author_name": "Yearsley, Ann", "title": "Poems on several occasions", "country": "England", "language": "English", "year": "1786" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602830"}}
+{ "author_name": "A, T.", "title": "A Satyr against Vertue. (A poem: supposed to be spoken by a Town-Hector )", "country": "England", "language": "English", "year": "1679" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602831"}}
+{ "author_name": "A, T.", "title": "The Aeronaut, a poem; founded almost entirely, upon a statement, printed in the newspapers, of a voyage from Dublin, in October, 1812", "country": "Ireland", "language": "English", "year": "1816" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602832"}}
+{ "author_name": "Albert, Prince Consort, consort of Victoria, Queen of Great Britain", "title": "The Prince Albert, a poem", "country": "Ireland", "language": "English", "year": "1868" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602833"}}
+{ "author_name": "Anslow, Robert", "title": "The Defeat of the Spanish Armada, A.D. 1588. A tercentenary ballad, A.D. 1888", "country": "England", "language": "English", "year": "1888" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602834"}}
+{ "author_name": "Anslow, Robert", "title": "A Familiar Answer to a Familiar Letter", "country": "England", "language": "English", "year": "1720" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602835"}}
+{ "author_name": "Anslow, Robert", "title": "The Irish Home Rule Bill. A poetical pamphlet, etc", "country": "England", "language": "English", "year": "1893" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602836"}}
+{ "author_name": "Anslow, Robert", "title": "Confessions of a Coquette, while staying at Scarboro, Whitby, & Bridlington. By Azucena", "country": "England", "language": "English", "year": "1888" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602837"}}
+{ "author_name": "Bellamy, James William", "title": "Jonah. The Seatonian Prize Poem for the year 1815", "country": "England", "language": "English", "year": "1815" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602838"}}
+{ "author_name": "Brabant, Henry, Sir", "title": "The Eve of the Revolution; in Newcastle-upon-Tyne. (The Case of Sir Henry Brabant, knt, Mayor of Newcastle upon Tyne, most humbly offered to your Majesties Royal consideration.)", "country": "England", "language": "English", "year": "1848" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602839"}}
+{ "author_name": "Brierley, Benjamin", "title": "Humorous Rhymes", "country": "England", "language": "English", "year": "1889" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602840"}}
+{ "author_name": "Brown, Campbell Rae", "title": "Providence Point and Quartremaynes Quarry. For recitation", "country": "England ; United States of America", "language": "English", "year": "1889" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602841"}}
+{ "author_name": "Charles, I., King of England", "title": "The Church of England Martyr. A poem. Inscribd to all loyal Church-Men", "country": "Ireland", "language": "English", "year": "1710" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602842"}}
+{ "author_name": "Charles, I., King of England", "title": "Songs for Christmas and the New Year, by Lucy A. Bennett, Rev. Richard Wilton , etc", "country": "England", "language": "English", "year": "1886" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602843"}}
+{ "author_name": "Uncle Tim", "title": "Tom Cladpoles Jurney to Lunnun ... told by himself and written in pure Sussex doggerel by his Uncle Tim. The fifth thousand", "country": "England", "language": "English", "year": "1887" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602844"}}
+{ "author_name": "Coleridge, Samuel Taylor", "title": "Christabel, &c", "country": "England", "language": "English", "year": "1816" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602845"}}
+{ "author_name": "Colton, Charles Caleb", "title": "Lines on the Conflagration of Moscow", "country": "England", "language": "English", "year": "1816" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602846"}}
+{ "author_name": "Curtis, Walter", "title": "Book of Word & Music of Humorous Songs, Burlesque Sketches, & Recitals", "country": "England", "language": "English", "year": "1896" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602847"}}
+{ "author_name": "Dryden, John", "title": "Britannia rediviva: a poem on the birth of the Prince", "country": "Scotland", "language": "English", "year": "1688" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602848"}}
+{ "author_name": "Dryden, John", "title": "An Election Carol on the House of Commons  : or, a parody for the People ... By the author of Boycotting the Blackguards.", "country": "England", "language": "English", "year": "1886" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602849"}}
+{ "author_name": "Dryden, John", "title": "Emigration; or, England and Paris, a poem", "country": "England", "language": "English", "year": "1816" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602850"}}
+{ "author_name": "Fairlie, Marcus", "title": "Flicks and Flings at Men and Things", "country": "England", "language": "English", "year": "1887" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602851"}}
+{ "author_name": "Foskett, Edward", "title": "The Window in the Rock. A Cornish tale. In verse", "country": "England", "language": "English", "year": "1888" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602852"}}
+{ "author_name": "Foskett, Edward", "title": "Rough Rhymes", "country": "England", "language": "English", "year": "1886" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602853"}}
+{ "author_name": "H, T. H.", "title": "Sanitas Sanitatum Omnia Sanitas. A rural sanitary reminiscence. By T. H. H", "country": "England", "language": "English", "year": "1888" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602854"}}
+{ "author_name": "Harwood, W. C.", "title": "How we landed at St. Kitts. Lines on the landing of the crew of H.M.S. Cordelia to suppress riots, Feby. 17th 1896. Few MS. notes", "country": "Barbados", "language": "English", "year": "1896" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602855"}}
+{ "author_name": "Hawker, Robert", "title": "The Vicar of Charles. A poem in commemoration of Plymouths great preacher ( Hawker) in a preceding age, etc", "country": "Barbados", "language": "English", "year": "1868" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602856"}}
+{ "author_name": "Henley, William Ernest", "title": "Hawthorn and Lavender: songs and madrigals", "country": "England", "language": "English", "year": "1899" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602857"}}
+{ "author_name": "Henley, William Ernest", "title": "Ilderim: a Syrian Tale, in four cantos", "country": "England", "language": "English", "year": "1816" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602858"}}
+{ "author_name": "Inchbald, Mrs", "title": "Next door Neighbours; a comedy; in three acts  . From the French dramas LIndigent  and Le Dissipateur", "country": "England", "language": "English", "year": "1791" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602859"}}
+{ "author_name": "Incledon, Charles Benjamin", "title": "Variety: containing original and selected songs in the favourite entertainment now performing by C. I. of Covent Garden Theatre, etc", "country": "England", "language": "English", "year": "1805" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602860"}}
+{ "author_name": "Incledon, Charles Benjamin", "title": "The Wandering Melodist: or, The Rose, the thistle, and the Shamrock: consisting of fifteen songs, sung by Mr. I, etc", "country": "England", "language": "English", "year": "1805" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602861"}}
+{ "author_name": "Incledon, Charles Benjamin", "title": "The Tribe of Issachar; or, the Ass Couchant. A poem", "country": "England", "language": "English", "year": "1691" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602862"}}
+{ "author_name": "Juvenalis, Decimus Junius", "title": "Juvenals tenth and thirteenth Satires, translated by E. L. Swift", "country": "England", "language": "English", "year": "1818" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602863"}}
+{ "author_name": "Kellner, Leon", "title": "Altenglische Spruchweisheit, alt- und mittelenglischen Autoren entnommen", "country": "England", "language": "German", "year": "1897" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602864"}}
+{ "author_name": "Kellner, Leon", "title": "Lauras Dream; or, the Moonlanders", "country": "England", "language": "English", "year": "1816" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602865"}}
+{ "author_name": "Napoleon, I., Emperor of the French", "title": "The Bonaparteid; or, a serio-comic sketch of the political life and adventures of the renowned Napoleon Bonaparte, etc", "country": "England", "language": "English", "year": "1816" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602866"}}
+{ "author_name": "P, A. W. A.", "title": "The Battle of Talking; or, Dont ye wish ye may get it? A metrical version of the Home Rule Debates  . By A. W. A. P", "country": "Ireland", "language": "English", "year": "1886" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602867"}}
+{ "author_name": "P, A. W. A.", "title": "The Queens visit to Birmingham! A playful reminiscence ... in random rhyme ... By ... Quiz", "country": "Ireland", "language": "English", "year": "1858" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602868"}}
+{ "author_name": "Dutt, Ramkinoo", "title": "Manipure Tragedy. Composed in rhyming form", "country": "Ireland", "language": "English", "year": "1893" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602869"}}
+{ "author_name": "Dutt, Ramkinoo", "title": "Versified Suggestive Illustration, on the ascendency of Peacock throne suited to Prince Albert Victor of Wales, etc", "country": "Ireland", "language": "English", "year": "1890" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602870"}}
+{ "author_name": "Dutt, Ramkinoo", "title": "The Rime of the Ancient Senator, or, Confessions of An Old Man in a Hurry , a ballad for the times, (with apologies to S. T. C.) by a Primrose Knight", "country": "England", "language": "English", "year": "1889" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602871"}}
+{ "author_name": "Smedley, Edward, Fellow of Sidney Sussex College, Cambridge", "title": "The Death of Saul and Jonathan. A poem", "country": "England", "language": "English", "year": "1814" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602872"}}
+{ "author_name": "Smedley, Edward, Fellow of Sidney Sussex College, Cambridge", "title": "Jonah. A poem", "country": "England", "language": "English", "year": "1815" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602873"}}
+{ "author_name": "Soddy, Tom", "title": "Two Cornish Tales  . Tom Soddy on Cornish Miners, past and present, by the author of Pengersick Castle, &c, and Rud, Whit, an Blue, Male an Faymale Temprance Scity, by R. W. Treneer", "country": "England", "language": "English", "year": "1882" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602874"}}
+{ "author_name": "Stephens, George", "title": "T. W. Rennie and Hanne Rennie. Silver-wedding, etc", "country": "England", "language": "English", "year": "1885" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602875"}}
+{ "author_name": "Stephens, George", "title": "Infant Slavery, or the Children of the Mines and Factories", "country": "England", "language": "English", "year": "1840" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602876"}}
+{ "author_name": "Terry, Leonard", "title": "To the Lions! Christians in the Colosseum. A recitation poem, etc", "country": "England", "language": "English", "year": "1889" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602877"}}
+{ "author_name": "Vandervell, Harry", "title": "Ours is a Happy Little Yacht", "country": "England", "language": "English", "year": "1894" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602878"}}
+{ "author_name": "Vandervell, Harry", "title": "Varnishando; a serio-comic poem: addressed to collectors of paintings. By an admirer of the arts", "country": "England", "language": "English", "year": "1809" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602879"}}
+{ "author_name": "Warne, Emoline Ann", "title": "Lines composed ... on the occasion of Her Majestys Jubilee, June 1887", "country": "England", "language": "English", "year": "1887" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602880"}}
+{ "author_name": "Whitaker, T.", "title": "The Corsican Hydra, or the Terror of the Bourbons. A pindaric poem", "country": "England", "language": "English", "year": "1815" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602881"}}
+{ "author_name": "Whitaker, T.", "title": "A Working-Mans Song", "country": "England", "language": "English", "year": "1885" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602886"}}
+{ "author_name": "Whitaker, T.", "title": "The Battle of the Fly-Laws  By Aquarius", "country": "England", "language": "English", "year": "1875" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602887"}}
+{ "author_name": "Whitaker, T.", "title": "Sapphos Soliloquy: a lament of unrequited love. By Archilochus", "country": "England", "language": "English", "year": "1886" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602888"}}
+{ "author_name": "Bayly, Nathaniel Thomas Haynes", "title": "The Tribute of a Friend", "country": "England", "language": "English", "year": "1819" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602889"}}
+{ "author_name": "Bayly, Nathaniel Thomas Haynes", "title": "Beaconsfield: a national poem", "country": "England", "language": "English", "year": "1890" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602890"}}
+{ "author_name": "Beall, Johnston", "title": "Farewell Ode, written on the occasion of the old tavern of St. Johns Gate  being closed to the public", "country": "England", "language": "English", "year": "1887" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602891"}}
+{ "author_name": "Beattie, James", "title": "The Minstrel; or the Progress of Genius ... The second book", "country": "England", "language": "English", "year": "1774" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602892"}}
+{ "author_name": "Blackwell, Anna", "title": "A Vision. (Penny edition.)", "country": "England", "language": "English", "year": "1898" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602893"}}
+{ "author_name": "Bond, Richard", "title": "Poems Divine and Moral", "country": "England", "language": "English", "year": "1769" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602894"}}
+{ "author_name": "Bowling, Edward Woodley", "title": "The Message to the Angel of the Church in Sardis.-Rev. iii. 1-6. The Seatonian Prize Poem for 1886", "country": "England", "language": "English", "year": "1887" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602895"}}
+{ "author_name": "Bowling, Edward Woodley", "title": "The Seatonian Prize Poem for 1887. On Earth Peace.", "country": "England", "language": "English", "year": "1888" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602896"}}
+{ "author_name": "Bowling, Edward Woodley", "title": "The Bud and the Flower", "country": "England", "language": "English", "year": "1856" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602897"}}
+{ "author_name": "Burns, Robert", "title": "At Robins Grave. A hundred years after. A rough rhyme by a Brother Gauger", "country": "England", "language": "English", "year": "1896" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602898"}}
+{ "author_name": "Burton, Edward Gascoigne", "title": "The Wreck of the Northern Belle ... being a descriptive poem ... to which is added: Midnight on the Cliffs, etc", "country": "England", "language": "English", "year": "1857" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602899"}}
+{ "author_name": "Mason, William", "title": "An Heroic Postscript to the public, occasioned by their favourable reception of a late Heroic Epistle to Sir William Chambers ... By the author of that Epistle", "country": "England", "language": "English", "year": "1774" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602900"}}
+{ "author_name": "De Ricci, James Herman", "title": "We glory in the Name", "country": "England", "language": "English", "year": "1899" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602901"}}
+{ "author_name": "De Ricci, James Herman", "title": "An Elegy written at a Carthusian Monastery in the Austrian Netherlands", "country": "England", "language": "English", "year": "1775" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602902"}}
+{ "author_name": "Fisher, Francis H.", "title": "The Haunted Wood", "country": "England", "language": "English", "year": "1890" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602903"}}
+{ "author_name": "Frost, Arnold", "title": "The Ballad of the Wind, the Devil, and Lincoln Minster ... Third edition, improved", "country": "England", "language": "English", "year": "1898" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602904"}}
+{ "author_name": "Frost, Arnold", "title": "The Kentish Cricketers; a poem. By a Gentleman. Being a reply to a ... parody on ... Chevy Chace; intituled Surry triumphant; or, the Kentish Mens Defeat", "country": "England", "language": "English", "year": "1773" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602905"}}
+{ "author_name": "Goldsmith, Oliver", "title": "The haunch of venison, a poetical epistle to Lord Clare ... With a head of the author, drawn by Henry Bunbury Esq; and etched by Bretherton", "country": "England", "language": "English", "year": "1776" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602906"}}
+{ "author_name": "Goldsmith, Oliver", "title": "Retaliation: a poem ... Including epitaphs on the most distinguished wits of this metropolis", "country": "England", "language": "English", "year": "1774" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602907"}}
+{ "author_name": "Goring, J. H.", "title": "Mick Murphys Wife. A tale of the Moonlighters", "country": "England", "language": "English", "year": "1886" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602908"}}
+{ "author_name": "Goring, J. H.", "title": "An Ode ... in honor of ... Queen Victoria ... By Hari Narayan Somney", "country": "England", "language": "English", "year": "1887" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602909"}}
+{ "author_name": "Hart, Ivry", "title": "Centenary Reminiscences", "country": "Spain", "language": "English", "year": "1897" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602910"}}
+{ "author_name": "Hind, William Lewis", "title": "Poems, etc", "country": "Spain", "language": "English", "year": "1899" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602911"}}
+{ "author_name": "Hind, William Lewis", "title": "The Apostate Ecclesiastic, a poem; being candid animadversions on that Rev. Mock-Patriot Parson H**ne", "country": "England", "language": "English", "year": "1774" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602912"}}
+{ "author_name": "James, Catherine A.", "title": "Teacher Li: a missionary reading ... Arranged as a service of song", "country": "England", "language": "English", "year": "1898" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602913"}}
+{ "author_name": "James, Catherine A.", "title": "Sir John of Lenahall", "country": "England", "language": "English", "year": "1890" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602914"}}
+{ "author_name": "Kennedy, David, Vocalist, the Elder", "title": "Book of words of Mr. Kennedys Entertainment on the songs of Scotland", "country": "England", "language": "English", "year": "1866" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602915"}}
+{ "author_name": "Lloyd, Charles", "title": "Lines suggested by the Fast, appointed on Wednesday, February 27, 1799", "country": "England", "language": "English", "year": "1799" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602916"}}
+{ "author_name": "Newman, Thomas, of Ealing", "title": "Memorial. An elegiac poem on Gladstone, etc", "country": "England", "language": "English", "year": "1898" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602917"}}
+{ "author_name": "Pasmore, Bertha", "title": "Grannies Posey", "country": "England", "language": "English", "year": "1898" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602918"}}
+{ "author_name": "Patris, Frank", "title": "The Thane of Moën", "country": "England", "language": "English", "year": "1888" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602919"}}
+{ "author_name": "Pure, Simon, Esq, of Sherborne, pseudonym", "title": "The Cock of the Walk; or, a true ... account of certain passages in the life of the Knight of the Seven-Leagued Boots ... Edited by Simon Pure", "country": "England", "language": "English", "year": "1841" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602920"}}
+{ "author_name": "Pure, Simon, Esq, of Sherborne, pseudonym", "title": "Recollections", "country": "England", "language": "English", "year": "1828" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602921"}}
+{ "author_name": "Rogers, Edmund", "title": "Lyrics. By Spencer Henry (Edmund Rogers)", "country": "England", "language": "English", "year": "1886" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602922"}}
+{ "author_name": "Ross, John Wilson", "title": "Fact and Fancy. An ode for the jubilee of the Queens reign. Also The University Boat Race, a song", "country": "England", "language": "English", "year": "1886" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602923"}}
+{ "author_name": "Russel, Thomas, m.d", "title": "Two Pastoral Poems ... To which is prefixed, Phyllis, a love-elegy, etc", "country": "Scotland", "language": "English", "year": "1765" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602924"}}
+{ "author_name": "S, E. L.", "title": "A Biblical Zoo. By E. L. S. A companion to Homely Things in Holy Writ", "country": "England", "language": "English", "year": "1899" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602925"}}
+{ "author_name": "S, J. W.", "title": "Recreations. J. W. S", "country": "England", "language": "English", "year": "1897" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602926"}}
+{ "author_name": "Scheyer, Lena", "title": "The Jubilee Memorial , etc", "country": "England", "language": "English", "year": "1887" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602927"}}
+{ "author_name": "Scheyer, Lena", "title": "All The Talents in Ireland! A satirical poem; with notes. By Scrutator. (Dialogue the First.)", "country": "England", "language": "English", "year": "1807" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602928"}}
+{ "author_name": "Short, Frank, Sir", "title": "The Boer Ride", "country": "England", "language": "English", "year": "1898" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602929"}}
+{ "author_name": "Surtees, Henry", "title": "The March to Khartoum and Fall of Omdurman, 1898", "country": "England", "language": "English", "year": "1899" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602930"}}
+{ "author_name": "Tennyson, Alfred Tennyson, Baron", "title": "Enoch Arden. Traduit de langlais par Em. Duglin", "country": "England", "language": "French", "year": "1889" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602931"}}
+{ "author_name": "Thomson, John", "title": "The Secret of the British Constitution and Empire; with a solution of the political problem and a treatise on paper money", "country": "Scotland", "language": "English", "year": "1886" }
+{ "index" : { "_index" : "index_w02", "_id" : "14602932"}}
+{ "author_name": "Watt, James", "title": "The Siege of Caerlaverock Castle", "country": "Scotland", "language": "English", "year": "1898" }

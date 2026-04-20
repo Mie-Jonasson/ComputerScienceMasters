@@ -28,3 +28,7 @@ replay_pid*
 
 # PY
 __pycache__*
+
+# Data Science in Production — exercise dataset CSVs (large; keep locally).
+# Use `git add -f path/to/file.csv` if you intentionally need a small CSV in Git.
+DataScienceInProduction/**/*.csv
