@@ -28,11 +28,11 @@ Lightweight tracker so you can see what is left and what you need to run it.
 
 ### Week 2 — Information retrieval (Elasticsearch API)
 
-Path: `exercise_week02/`, `exercises/w02.md`
+Path: `exercise_week02/`, `w02.md` (mirrors the final lecture slide: **Kibana console, book CSV from `exercise.zip`**)
 
-- [ ] Run the Dev Tools / REST steps in `w02.md` in order: create index, map fields, bulk load, `match` / `match_phrase` / range queries.
-- [ ] Use `bulk_post.txt` (and `get_bulk_post.py` if you prefer scripting) for bulk indexing.
-- [ ] Optionally skim `02_information_retrieval_part01_lecture.pdf` and align your mapping choices with the lecture.
+- [x] Complete all nine items from the last slide: (1) index 3/2, (2) one sample doc, (3) `GET` mapping, (4) delete, (5) custom mapping: **full-text** on `author_name` and `title`, **filtering fields** for country, language, year, (6) set `refresh_interval: -1` before bulk, (7) bulk index, (8) `_count` and sanity-check, (9) one **full-text**, one **exact** (`match_phrase` or similar), one **range** (e.g. on `year`) — `w02.md` now includes a `range` example for step 9c.
+- [x] Use `bulk_post.txt` and/or `get_bulk_post.py` for the bulk step. (Slide may say “10 books”; the repo’s `w02` sample index ends at **100** documents — that is still the same three query types, different volume.)
+- [x] Optionally skim `02_information_retrieval_part01_lecture.pdf` for the DocValues / filtering story behind step 5.
 
 ### Week 3 — Elasticsearch in Python
 
