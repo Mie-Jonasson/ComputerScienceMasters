@@ -8,8 +8,8 @@ Lightweight tracker so you can see what is left and what you need to run it.
 
 ## One-time environment (do this before the notebooks that need it)
 
-- [ ] **Python**: Create a venv; install per-notebook needs (e.g. `exercise_week06/requirements.txt`, `pandas`, `elasticsearch==8.11.1`, `apyori`, Jupyter).
-- [ ] **Elasticsearch (weeks 2–4)**: Local ES 8.x (Docker is fine). Note TLS cert path and `elastic` user password; plug them into the notebooks (replace placeholder sections).
+- [x] **Python**: Create a venv; install per-notebook needs (e.g. `exercise_week06/requirements.txt`, `pandas`, `elasticsearch==8.11.1`, `apyori`, Jupyter).
+- [x] **Elasticsearch (weeks 2–4)**: Local ES 8.x (Docker is fine). Note TLS cert path and `elastic` user password; plug them into the notebooks (replace placeholder sections).
 - [ ] **Java + RankLib (week 4)**: JRE and `RankLib-2.18.jar` in `exercise_week04/` (see `readme2.18_readme.txt`). LTR also needs the Elasticsearch LTR plugin compatible with your ES version.
 - [ ] **Kubernetes (week 12)**: `kubectl` + a cluster (`minikube`, `kind`, or cloud); apply manifests from `exercise_week12/`.
 - [ ] **Docker (week 11)**: For `compose.yaml` under `exercise_week11/application_examples/`.
