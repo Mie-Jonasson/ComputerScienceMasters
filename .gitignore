@@ -34,3 +34,4 @@ __pycache__*
 DataScienceInProduction/**/*.csv
 elastic_pw.txt
 *.crt
+DataScienceInProduction/exam_package/**
