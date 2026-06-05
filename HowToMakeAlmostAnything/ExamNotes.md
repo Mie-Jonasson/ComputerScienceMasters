@@ -2,25 +2,29 @@
 
 All the slides and lectures are part of the syllabus. This includes the following topics (in bold the most common topics in the exam):
 
-3D modelling:
+### 3D modelling:
+
 - Parts and assemblies
 - **Extrusion and revolution**
 - **Symmetry and linear and circular patterns**
 - Assemblies
 - Drawings
 
-3D printing:
+### 3D printing:
+
 - **Advantages and disadvantages**
 - **Different 3D printing techniques: FDM, SLS, SLA**
 - FDM basic settings: Layer height, infill, speed, support material, etc.
 
-Flat sheet cutting:
+### Flat sheet cutting:
+
 - **Advantages and disadvantages**
 - **Different flat sheet cutting techniques: Laser cutting, water jet, plasma cutting**
 - Basic settings for laser cutting: Speed, power and frequency
 - Techniques for flat sheets: finger joints, bending, etc.
 
-Machine elements:
+### Machine elements:
+
 - Structural elements
 - **DOF concept**
 - **Linkages**
@@ -28,7 +32,8 @@ Machine elements:
 - **Linear guides**
 - **Power transmission: Gears, pinion and rack, pinion and endless gear, lead screw and belts**
 
-Electronics:
+### Electronics:
+
 - **Voltage, current and resistance**
 - **How to use a breadboard and a multimeter**
 - **Ohm´s law and voltage dividers**
@@ -37,21 +42,25 @@ Electronics:
 - **Transistors and H-bridge circuits**
 - Voltage regulators and DC/DC converters
 
-Microcontrollers:
+### Microcontrollers:
+
 - Arduino and microcontrollers
 - **Reading sensors with a microcontroller: Circuits and programming**
 - **Using actuators with a microcontroller: Circuits and programming**
 - Digital communications: SPI and I2C
 
-PCBs:
+### PCBs:
+
 - **Advantages and disadvantages (compared to a breadboard)**
 - Components of a PCB: pads, tracks, vias, etc
 - Soldering
 
-Milling and Turning:
+### Milling and Turning:
+
 - **Advantages and disadvantages**
 
-Moulding and casting:
+### Moulding and casting:
+
 - **Advantages and disadvantages**
 - **Moulding design and its properties**
 
