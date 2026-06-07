@@ -134,3 +134,56 @@ Apply this sequence to your prototype and a few machines from the slides:
 - [ ] Smartphone charged; presentation parts assigned
 
 # Notes
+
+## Theory
+### 3D modelling: extrusion, revolution, symmetry, patterns
+
+| Term | Description |
+|------|-------------|
+| **Extrusion** | Create a 3D solid by pushing or pulling a 2D sketch profile along a straight path (distance and direction). Used for prismatic parts like brackets, boxes, and beams. |
+| **Revolution (revolve)** | Create a 3D solid by rotating a 2D profile around an axis. Used for axisymmetric parts like shafts, wheels, and bottles. |
+| **Symmetry (mirror)** | Duplicate geometry across a mirror plane so you only model half the part. Keeps the model parametric and consistent — change one side and the other updates. |
+| **Linear pattern** | Copy a feature or part at equal spacing along a straight line (e.g. a row of holes or repeated ribs). Also **Rectangular pattern** in 2 dimensions with the same idea. |
+| **Circular pattern** | Copy a feature or part at equal angular spacing around an axis (e.g. bolt holes on a flange or teeth on a gear blank). |
+| **Part** | A part is a single fusion file representing one object. |
+| **Assembly** | An assembly is a collection of parts fit together to resemble a bigger gathered object. |
+| **(Technical) Drawing** | A technical drawing is a 2D representation of a 3D part and/or assembly. It can be used as the basis for laser cutting or in order to mass produce a given 3 dimensional part by supplying all relevant dimensions. |
+
+### Manufacturing methods: 3D printing (FDM/SLS/SLA), flat-sheet cutting (laser/water jet/plasma), milling/turning, moulding — pros, cons, and when to use each
+
+todo
+
+### Machine elements: DOF, linkages, bearings, linear guides, power transmission (gears, belts, lead screw, rack & pinion)
+
+todo
+
+### Electronics fundamentals: voltage/current/resistance, Ohm's law, voltage dividers, breadboard, multimeter
+
+todo
+
+### Components: switches, LEDs, potentiometers, IR/US sensors, diodes, DC/stepper/servo motors, transistors, H-bridge
+
+todo
+
+### Microcontrollers: reading sensors, driving actuators, basic SPI/I2C
+
+todo
+
+### PCBs: pros/cons vs breadboard, pads/tracks/vias, soldering basics
+
+todo
+
+## Example Questions
+### Q1
+
+todo
+
+### Q2
+
+todo
+
+### Q3
+
+todo
+
+## The Drink Dispenser
