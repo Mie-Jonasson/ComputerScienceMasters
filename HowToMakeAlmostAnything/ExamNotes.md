@@ -176,6 +176,19 @@ A traditional workflow in a CAD programme contains:
 - Make sure your sketches are **fully constrained**. Unconstrained sketches drift when you edit later features, and fully constraining makes edits easier to follow. 
 - If creating a hole for a screw / shaft, add some clearance to the diameter (of ~nozzle width) to ensure the part will fit through the manufactured part! (f.ex. 3.3 mm is good for M3 screws)
 
+#### Technical Drawings
+A technical drawing is a 2D representation of a 3D part. It is used for multiple purposes, hereunder illustration, description, documentation and the basis for manufacturing parts in a workshop.
+We can represent a part in multiple ways:
+
+- *Projection*: refers to a perspective on the 3D object in 2D space. It may represent a specific angle or a top view.
+- *Multi-view Projection*: Aims at providing a full description of an object by showing the flat surfaces from multiple perspectives (top, bottom, front, back, right, left) - often aimed at describing the object fully with the least amount of sketches.
+- *Exploded-view Drawing*: Displays multiple parts, that are assembled together, exploded apart such that one can examine each individual part of the assembly.
+
+Rules for adding dimensions on the drawing:
+- Add **all** dimensions
+- **Display** dimensions in the most descriptive view of the feature.
+- Dimension lines shall **never cross other lines**
+
 ### Manufacturing methods: 3D printing (FDM/SLS/SLA), flat-sheet cutting (laser/water jet/plasma), milling/turning, moulding — pros, cons, and when to use each
 
 Here is a high level overview of the pros and cons of the main types of manufacturing. Detailed pros / cons of subtypes are described in the following sections.
