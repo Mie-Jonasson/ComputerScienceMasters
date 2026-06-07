@@ -134,10 +134,9 @@ Apply this sequence to your prototype and a few machines from the slides:
 - [ ] Can justify every design and manufacturing decision on your project
 - [ ] Smartphone charged; presentation parts assigned
 
-# Notes
+# Notes on Theory
 
-## Theory
-### 3D modelling: extrusion, revolution, symmetry, patterns
+## 3D modelling: extrusion, revolution, symmetry, patterns
 
 | Term | Description |
 |------|-------------|
@@ -155,7 +154,7 @@ Apply this sequence to your prototype and a few machines from the slides:
 | **Fully constrained sketch** | Every point and line in the sketch has its position and size fully defined (dimensions, angles, coincident/tangent/parallel constraints). Unconstrained geometry is blue; fully constrained turns white (in dark mode). Prevents accidental shape changes when editing. |
 | **Parameterised model** | Key dimensions are defined as named parameters (variables) rather than hard-coded numbers. Change one parameter (e.g. wall thickness) and the whole model updates automatically — essential for iteration and design variants. |
 
-#### Product Design
+### Product Design
 Design a product based in categories, describing the product from each of the following perspectives:
 
 - *Interface*: Type and location of sensors and any user interface (UI)
@@ -171,13 +170,13 @@ A traditional workflow in a CAD programme contains:
 - Extrude / Revolve / Cut the sketched shape into a 3D part
 - Repeat
 
-#### Extra Takeaways
+### Extra Takeaways
 
 - The earlier in the process we can make a working model, the better - the further we get in the production chain, the more expensive it is to iterate and change the product.
 - Make sure your sketches are **fully constrained**. Unconstrained sketches drift when you edit later features, and fully constraining makes edits easier to follow. 
 - If creating a hole for a screw / shaft, add some clearance to the diameter (of ~nozzle width) to ensure the part will fit through the manufactured part! (f.ex. 3.3 mm is good for M3 screws)
 
-#### Technical Drawings
+### Technical Drawings
 A technical drawing is a 2D representation of a 3D part. It is used for multiple purposes, hereunder illustration, description, documentation and the basis for manufacturing parts in a workshop.
 We can represent a part in multiple ways:
 
@@ -190,7 +189,7 @@ Rules for adding dimensions on the drawing:
 - **Display** dimensions in the most descriptive view of the feature.
 - Dimension lines shall **never cross other lines**
 
-### Manufacturing methods: 3D printing (FDM/SLS/SLA), flat-sheet cutting (laser/water jet/plasma), milling/turning, moulding — pros, cons, and when to use each
+## Manufacturing methods: 3D printing (FDM/SLS/SLA), flat-sheet cutting (laser/water jet/plasma), milling/turning, moulding — pros, cons, and when to use each
 
 Here is a high level overview of the pros and cons of the main types of manufacturing. Detailed pros / cons of subtypes are described in the following sections.
 
@@ -202,7 +201,7 @@ Here is a high level overview of the pros and cons of the main types of manufact
 | **Turning** | The workpiece rotates on a lathe while a fixed cutting tool shapes it — for axisymmetric parts. | Very efficient for round parts (shafts, pins, bushings); high precision on cylindrical features; good surface finish | Only axisymmetric (round) parts; material waste; setup time; usually overkill for quick plastic prototypes |
 | **Moulding & casting** | Liquid material is poured or injected into a mould cavity and solidifies (e.g. injection moulding, silicone casting). | Lowest unit cost at high volume (1000+ parts); consistent, repeatable parts; complex shapes in one step | High upfront mould/tooling cost; long lead time to make the mould; design changes are expensive; mainly suited to specific materials (plastics, metals, silicone) |
 
-#### 3D printing types w. pros & cons
+### 3D printing types w. pros & cons
 Traditional manufacturing was *subtractive*, meaning you start with a larger block of material and cut away the parts that are not needed in order to obtain the desired shape. 
 3D printing is, on the other hand, an *additive* manufacturing method, meaning we add material until reaching the desired shape.
 
@@ -213,10 +212,10 @@ Traditional manufacturing was *subtractive*, meaning you start with a larger blo
 | **SLA** *(Stereolithography)* | A laser is used to cure resin in a layer-by-layer fashion on a surface that moves upwards. | More sturdy and elastic results, different material options, high quality and resolution | Expensive, need support material |
 | **SLS** *(Fused Deposition Modelled)* | Melting and placing material (PLA, ABS, TPE) in layers on a build surface, building the part line-by-line | Cheap and accessible, good for prototyping | Anisotropy (stronger on one axis than on other ones due to layers), Needs support, layered surfaces |
 
-##### Anisotropy Explained
+#### Anisotropy Explained
 ![](images/anisotropy.png)
 
-##### Slicers and Settings
+#### Slicers and Settings
 Slicers creates a stack of 2D representations of the 3D model, which results in the 3D model!
 This sections provides an overview of the settings that are relevant to remember:
 
@@ -224,12 +223,12 @@ This sections provides an overview of the settings that are relevant to remember
 - *Infill* (Default: 5% or 10%) defines how much filament should be filled on the inside of parts. Adds stability, but is a waste of material if it is not needed.
 - *Speed* (Default: 15-30 mm/s) defines how quickly the printer head will move. Higher speeds risk dragging the material so it is not properly extruded where it is supposed to be.
 
-##### Common Printing Problems
+#### Common Printing Problems
 
 - *Adhesion* (The base layer is not sticking and has gaps or is tumbled over) - the bed is not leveled, the bed is oily or otherwise dirty - use brim / raft (area around base is printed to support the main print)
 - *Warping* (The base layer is misshaped) - bed is not heated, fan is cooling of too quickly - use brim / raft (area around base is printed to support the main print)
 
-#### Flat Sheet types w. pros & cons
+### Flat Sheet types w. pros & cons
 Flat-sheet cutting is a *subtractive* process: you start with a flat sheet and cut away material along a 2D path. Unlike 3D printing, you cannot build overhangs — but you can bend, stack, or join cut pieces (finger joints) to make 3D structures.
 
 ![](images/flat_sheet.png)
@@ -240,14 +239,14 @@ Flat-sheet cutting is a *subtractive* process: you start with a flat sheet and c
 | **Water jet cutting** | High-pressure water, often mixed with abrasive, erodes material without heat. | No heat-affected zone — no warping; cuts thick and hard materials (metal, stone, glass); high precision; no toxic fumes | Slower than laser on thin sheets; messy; wider kerf; higher machine running cost |
 | **Plasma cutting** | An ionised gas arc melts through conductive sheet metal, blown away by compressed air. | Fast and relatively cheap for thick steel and other conductive metals; good for heavy plate | Rougher edge finish than laser; heat-affected zone; conductive metals only; |
 
-##### Laser settings
+#### Laser settings
 The main settings to remember for laser cutting:
 
 - *Speed* — how fast the head moves. Higher speed = faster cut but may not cut through; too slow can over-burn the material.
 - *Power* — laser intensity. Higher power needed for thicker or denser materials.
 - *Frequency* — pulses per second (on some machines). Affects cut quality on certain materials, especially metals.
 
-##### Flat sheet techniques
+#### Flat sheet techniques
 
 - *Finger joints* — interlocking rectangular teeth cut into sheet edges so two pieces slot together without fasteners. Common in laser-cut plywood boxes.
 - *Kerf* — the width of material removed by the cut. Account for kerf in your CAD so assembled parts fit (typically ~0.1–0.2 mm for laser).
@@ -256,7 +255,7 @@ The main settings to remember for laser cutting:
     - Plastic: Heat bending (on some types)
     - Paper / Cardboard: Folding, possibly with cut hinges
 
-##### Flat Sheet Materials
+#### Flat Sheet Materials
 
 - *Plywood* - expensive, thicker (should ask lab staff before using it)
 - *MDF* - Medium Density Fiberboard (this is what we used!) - brittle & expands with water
@@ -264,37 +263,37 @@ The main settings to remember for laser cutting:
 - *Acrylic* - easy to laser cut but brittle!
 - *POM* - difficult to laser cut, expensive, low friction
 
-### Machine elements: DOF, linkages, bearings, linear guides, power transmission (gears, belts, lead screw, rack & pinion)
+## Machine elements: DOF, linkages, bearings, linear guides, power transmission (gears, belts, lead screw, rack & pinion)
 
 todo
 
-### Electronics fundamentals: voltage/current/resistance, Ohm's law, voltage dividers, breadboard, multimeter
+## Electronics fundamentals: voltage/current/resistance, Ohm's law, voltage dividers, breadboard, multimeter
 
 todo
 
-### Components: switches, LEDs, potentiometers, IR/US sensors, diodes, DC/stepper/servo motors, transistors, H-bridge
+## Components: switches, LEDs, potentiometers, IR/US sensors, diodes, DC/stepper/servo motors, transistors, H-bridge
 
 todo
 
-### Microcontrollers: reading sensors, driving actuators, basic SPI/I2C
+## Microcontrollers: reading sensors, driving actuators, basic SPI/I2C
 
 todo
 
-### PCBs: pros/cons vs breadboard, pads/tracks/vias, soldering basics
+## PCBs: pros/cons vs breadboard, pads/tracks/vias, soldering basics
 
 todo
 
-## Example Questions
-### Q1
+# Example Questions
+## Q1
 
 todo
 
-### Q2
+## Q2
 
 todo
 
-### Q3
+## Q3
 
 todo
 
-## The Drink Dispenser
+# The Drink Dispenser
