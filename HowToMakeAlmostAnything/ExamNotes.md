@@ -213,6 +213,7 @@ Traditional manufacturing was *subtractive*, meaning you start with a larger blo
 | **SLS** *(Fused Deposition Modelled)* | Melting and placing material (PLA, ABS, TPE) in layers on a build surface, building the part line-by-line | Cheap and accessible, good for prototyping | Anisotropy (stronger on one axis than on other ones due to layers), Needs support, layered surfaces |
 
 #### Anisotropy Explained
+
 ![](images/anisotropy.png)
 
 #### Slicers and Settings
@@ -265,7 +266,63 @@ The main settings to remember for laser cutting:
 
 ## Machine elements: DOF, linkages, bearings, linear guides, power transmission (gears, belts, lead screw, rack & pinion)
 
-todo
+Objects move in space based on **forces** applied. **Restrictions** may change how the forces are being actuated in the environment.
+
+A mechanism is formally defined as: *a combination of rigid or resistant bodies, formed and connected [with kinematic pairs] so that they move with definite relative motions with respect to one another* - i.e. it exists with or without motors and simply define bodies that move relative to others bodies.
+
+A machine extends on this with motors, by defining it to also include *transmit force from the source of power to the resistance to be overcome*
+
+### Degrees of Freedom
+One of the most important concepts to understand; usually **DOF = # Motors**, since each possible movement direction in a mechanical part should usually be controlled by driving force.
+Formally: *Number of independent parameters that define the configuration of a machine (position and orientation of all the components)* - some machines have many (plane) while others have few (train on train tracks).
+
+![](images/mechanism_dof.png)
+
+### Joints & Linkages
+Define a pair of two bodies, that constrain the movement of the other. See specific examples and their DOFs in below image:
+
+![](images/joints.png)
+
+#### Bearings
+Formally: *A machine element that constrains relative motion to only the desired motion, and reduces friction between moving parts* - i.e. ensures with a fixed object that another body follows a desired motion pattern in space relative to the fixed object.
+
+Two main types: **Plain Bearings** and **Ball Bearings** (Rolling bearings). Ball bearings produce less friction but require lubrication and are more expensive than plain bearings.
+
+#### Guides
+An element that constrains relative motion to 1 DOF. Particularly, linear guides are used in many applications, such as 3D printers, to limit motion to a single linear direction.
+Types of linear guides:
+
+- **Rail + Carriage**: either plain or with rolling bearings, a rail defines the linear direction and the carriage moves along the rail which it surrounds.
+- **V-slot**: a part is fastened into the v-slot from which it can only move in the linear direction along the slot.
+
+### Structural Elements
+Are the parts of our mechanism that do not move and should remain still. Remember that joints are weak and triangular patterns make them slightly stronger.
+Joints that should remain fixed usually use screws either mounted into a plate or with a bolt tightened on the other side.
+
+![](images/screws.png)
+
+Screw holes for these are either created using **inserts** which are premade metal parts that can be inserted into the hole or **tapping** where the threading is created directly on the hole.
+
+**Thread Rods** may also be utilized as a cheap lead screw for a rail + carriage implementation or to otherwise be used as a structural element.
+
+### Power Transmission
+A *force* is a measure of how much relative acceleration is applied to an object by another object. *Gravity* and *Friction* are two common forces that we always encounter everywhere. Formula: `F = m * a` (Force = Mass * Acceleration) - as a vector in 3D space!
+
+**Torque** describes the turning effect of a force. Torque is also refered to as *Moment* and is defined by: `M = F * d` (Moment / Torque = Force * distance) where distance is the distance to the center point.
+
+Here we list the main types of power transmission and their features:
+
+| Method | Motion | Description | Notes |
+|--------|--------|-------------|-------|
+| **Gears** | Rotational ↔ rotational | Two meshing toothed wheels transfer rotation between shafts. Gear ratio = driven teeth / driving teeth — sets speed and torque trade-off. | Compact and efficient; precise ratio; can change direction. Noisy at high load; requires precise alignment; distance between shafts is fixed by gear size |
+| **Pinion and rack** | Rotational ↔ linear | A small rotating gear (pinion) meshes with a straight toothed bar (rack). Pinion rotation drives the rack linearly — or linear rack motion spins the pinion. | Used in CNC axes, steering systems, and moving a bed along a rail; rack must be straight and supported |
+| **Pinion and endless gear** | Rotational → rotational | The rack is bent into a circle (ring / endless gear); a pinion drives around its inner or outer teeth. Pinion spin rotates a platform or turntable continuously. | Used for spinning trays, indexing tables, and turntables. Smooth continuous rotation; limited load capacity; self-locking and not very efficient; |
+| **Lead screw** | Rotational → linear | A threaded screw turns inside a nut (or nut travels along a fixed screw). Each rotation moves the nut a fixed linear distance (pitch of the thread). | High mechanical advantage; precise positioning; self-locking (won't back-drive under load).; Used in 3D printer Z-axes, vices, and linear actuators; Slower than belts; friction and wear on threads |
+| **Belts** | Rotational ↔ rotational, linear ↔ linear, or rotational ↔ linear | A flexible belt runs over pulleys to transfer motion. **Rot ↔ rot:** belt between two pulleys (like a bike). **Rot ↔ linear:** one pulley drives a belt that pulls a carriage in a straight line (common on 3D printer gantries). **Linear ↔ linear:** belt loop moves a point along a fixed path. | Quiet; can span long distances; cheap; absorbs shock; less precise than gears or lead screws |
+
+![](images/gear_reduction.png)
+
+![](images/gear_types.png)
 
 ## Electronics fundamentals: voltage/current/resistance, Ohm's law, voltage dividers, breadboard, multimeter
 
