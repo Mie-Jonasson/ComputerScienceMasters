@@ -142,12 +142,38 @@ Apply this sequence to your prototype and a few machines from the slides:
 |------|-------------|
 | **Extrusion** | Create a 3D solid by pushing or pulling a 2D sketch profile along a straight path (distance and direction). Used for prismatic parts like brackets, boxes, and beams. |
 | **Revolution (revolve)** | Create a 3D solid by rotating a 2D profile around an axis. Used for axisymmetric parts like shafts, wheels, and bottles. |
+| **Chamfer / Round** | Select one or more edges and round them to a certain circular radius / chamfer with an angle and distance |
 | **Symmetry (mirror)** | Duplicate geometry across a mirror plane so you only model half the part. Keeps the model parametric and consistent — change one side and the other updates. |
 | **Linear pattern** | Copy a feature or part at equal spacing along a straight line (e.g. a row of holes or repeated ribs). Also **Rectangular pattern** in 2 dimensions with the same idea. |
 | **Circular pattern** | Copy a feature or part at equal angular spacing around an axis (e.g. bolt holes on a flange or teeth on a gear blank). |
 | **Part** | A part is a single fusion file representing one object. |
 | **Assembly** | An assembly is a collection of parts fit together to resemble a bigger gathered object. |
 | **(Technical) Drawing** | A technical drawing is a 2D representation of a 3D part and/or assembly. It can be used as the basis for laser cutting or in order to mass produce a given 3 dimensional part by supplying all relevant dimensions. |
+| **CAD** | Computer Aided Design - refers to using software to design parts, such as we do in Fusion360 when making marts and assemblies |
+| **CAM** | Computer Aided Manufacturing - refers to using software to manufacture parts, such as we do in Prusa Slicer to translate our 3D designs into a programme for the Prusa 3D printer to follow in order to manufacture our part. It also encompasses things such as technical drawings. |
+| **Fully constrained sketch** | Every point and line in the sketch has its position and size fully defined (dimensions, angles, coincident/tangent/parallel constraints). Unconstrained geometry is blue; fully constrained turns white (in dark mode). Prevents accidental shape changes when editing. |
+| **Parameterised model** | Key dimensions are defined as named parameters (variables) rather than hard-coded numbers. Change one parameter (e.g. wall thickness) and the whole model updates automatically — essential for iteration and design variants. |
+
+#### Product Design
+Design a product based in categories, describing the product from each of the following perspectives:
+
+- *Interface*: Type and location of sensors and any user interface (UI)
+- *Mechanism*: What kinds of mechanisms make the product function / behave in the desired way?
+- *Outputs*: Which motors are used (strongly coupled to mechanism) and other elements (screens, lights, etc.)
+- *Power*: How is the product powered? (Wall Plug, Batteries, Solar Cells etc.)
+- *Size*: What is the physical size of the product? (height, breadth, depth, weight?) Can also be defined in terms of a specific product-relevant metric such as # of products.
+- **Requirements**: What are the functional requirements for the behavior of the product?
+
+A traditional workflow in a CAD programme contains:
+- Select a 2D plane in 3D space to make a sketch on
+- Draw a sketch on the plane
+- Extrude / Revolve / Cut the sketched shape into a 3D part
+- Repeat
+
+#### Extra Takeaways
+
+- The earlier in the process we can make a working model, the better - the further we get in the production chain, the more expensive it is to iterate and change the product.
+- Make sure your sketches are **fully constrained**. Unconstrained sketches drift when you edit later features, and fully constraining makes edits easier to follow. 
 
 ### Manufacturing methods: 3D printing (FDM/SLS/SLA), flat-sheet cutting (laser/water jet/plasma), milling/turning, moulding — pros, cons, and when to use each
 
