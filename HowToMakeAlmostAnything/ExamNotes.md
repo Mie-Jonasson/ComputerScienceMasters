@@ -86,7 +86,7 @@ Work through these in order. Each step builds on the last; don't skip to electro
 - [x] 3D modelling: extrusion, revolution, symmetry, patterns
 - [x] Manufacturing methods: 3D printing (FDM/SLS/SLA), flat-sheet cutting (laser/water jet/plasma) — pros, cons, and when to use each
 - [ ] Milling/turning, moulding — pros, cons, and when to use each
-- [ ] Machine elements: DOF, linkages, bearings, linear guides, power transmission (gears, belts, lead screw, rack & pinion)
+- [x] Machine elements: DOF, linkages, bearings, linear guides, power transmission (gears, belts, lead screw, rack & pinion)
 - [ ] Electronics fundamentals: voltage/current/resistance, Ohm's law, voltage dividers, breadboard, multimeter
 - [ ] Components: switches, LEDs, potentiometers, IR/US sensors, diodes, DC/stepper/servo motors, transistors, H-bridge
 - [ ] Microcontrollers: reading sensors, driving actuators, basic SPI/I2C
