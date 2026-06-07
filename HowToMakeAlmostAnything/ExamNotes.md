@@ -174,10 +174,46 @@ A traditional workflow in a CAD programme contains:
 
 - The earlier in the process we can make a working model, the better - the further we get in the production chain, the more expensive it is to iterate and change the product.
 - Make sure your sketches are **fully constrained**. Unconstrained sketches drift when you edit later features, and fully constraining makes edits easier to follow. 
+- If creating a hole for a screw / shaft, add some clearance to the diameter (of ~nozzle width) to ensure the part will fit through the manufactured part! (f.ex. 3.3 mm is good for M3 screws)
 
 ### Manufacturing methods: 3D printing (FDM/SLS/SLA), flat-sheet cutting (laser/water jet/plasma), milling/turning, moulding — pros, cons, and when to use each
 
-todo
+Here is a high level overview of the pros and cons of the main types of manufacturing. Detailed pros / cons of subtypes are described in the following sections.
+
+| Method | Description | Pros | Cons |
+|--------|-------------|------|------|
+| **3D printing** | Builds parts layer-by-layer from a digital model (additive — material is added, not cut away). FDM, SLS, and SLA are the main subtypes. | Only little waste, can create complex parts (infeasible assemblies / hollow parts), good for prototyping because of short lead time | Layer lines and weaker strength between layers - less resistant than raw material, slow and costly at high volume |
+| **Laser cutting** | A laser melts or vaporises flat sheet material (acrylic, plywood, thin metal) along a 2D path. | Fast for flat parts; fine detail; good for enclosures, panels, and finger-joint boxes; minimal fixturing | 2D profiles only (3D needs bending or stacking); thickness and material limits; kerf width loses material; fumes from some plastics |
+| **Milling** | A rotating cutter removes material from a solid block (subtractive CNC). | High precision and tight tolerances; wide material choice including metals; excellent surface finish and strength | Material waste; slow and expensive for complex 3D shapes; skilled setup required; poor choice for large production runs of simple parts |
+| **Turning** | The workpiece rotates on a lathe while a fixed cutting tool shapes it — for axisymmetric parts. | Very efficient for round parts (shafts, pins, bushings); high precision on cylindrical features; good surface finish | Only axisymmetric (round) parts; material waste; setup time; usually overkill for quick plastic prototypes |
+| **Moulding & casting** | Liquid material is poured or injected into a mould cavity and solidifies (e.g. injection moulding, silicone casting). | Lowest unit cost at high volume (1000+ parts); consistent, repeatable parts; complex shapes in one step | High upfront mould/tooling cost; long lead time to make the mould; design changes are expensive; mainly suited to specific materials (plastics, metals, silicone) |
+
+#### 3D printing types w. pros & cons
+Traditional manufacturing was *subtractive*, meaning you start with a larger block of material and cut away the parts that are not needed in order to obtain the desired shape. 
+3D printing is, on the other hand, an *additive* manufacturing method, meaning we add material until reaching the desired shape.
+
+| Method | Description | Pros | Cons |
+|--------|-------------|------|------|
+| **LOM** *(Laminated Object Manufacturing)* / **SDL** *(Selective Deposition Lamination)* | sheets are succesively glued together on top of each other and cut with a knife / laser | ------ | layered surfaces |
+| **SLS** *(Selectve Laser Sintering)* | A thin layer of powder is distributed on the printing surface and a laser is used to *sinter* the sections that should be melted together into the manufactured part. A new layer is then distributed on top and process is repeated. | ------ | Grainy surfaces |
+| **SLA** *(Stereolithography)* | A laser is used to cure resin in a layer-by-layer fashion on a surface that moves upwards. | More sturdy and elastic results, different material options, high quality and resolution | Expensive, need support material |
+| **SLS** *(Fused Deposition Modelled)* | Melting and placing material (PLA, ABS, TPE) in layers on a build surface, building the part line-by-line | Cheap | Anisotropy (stronger on one axis than on other ones due to layers), Needs support |
+
+##### Anisotropy Explained
+![](images/anisotropy.png)
+
+##### Slicers and Settings
+Slicers creates a stack of 2D representations of the 3D model, which results in the 3D model!
+This sections provides an overview of the settings that are relevant to remember:
+
+- *Layer Height* (Default: nozzle diameter / 2) defines the distance in the z-direction between each slice in the stack. Large values will give low resolution, but default is often good enough for most prototyping work!
+- *Infill* (Default: 5% or 10%) defines how much filament should be filled on the inside of parts. Adds stability, but is a waste of material if it is not needed.
+- *Speed* (Default: 15-30 mm/s) defines how quickly the printer head will move. Higher speeds risk dragging the material so it is not properly extruded where it is supposed to be.
+
+##### Common Printing Problems
+
+- *Adhesion* (The base layer is not sticking and has gaps or is tumbled over) - the bed is not leveled, the bed is oily or otherwise dirty - use brim / raft (area around base is printed to support the main print)
+- *Warping* (The base layer is misshaped) - bed is not heated, fan is cooling of too quickly - use brim / raft (area around base is printed to support the main print)
 
 ### Machine elements: DOF, linkages, bearings, linear guides, power transmission (gears, belts, lead screw, rack & pinion)
 
