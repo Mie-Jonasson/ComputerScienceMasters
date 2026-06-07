@@ -196,7 +196,7 @@ Here is a high level overview of the pros and cons of the main types of manufact
 | Method | Description | Pros | Cons |
 |--------|-------------|------|------|
 | **3D printing** | Builds parts layer-by-layer from a digital model (additive — material is added, not cut away). FDM, SLS, and SLA are the main subtypes. | Only little waste, can create complex parts (infeasible assemblies / hollow parts), good for prototyping because of short lead time | Layer lines and weaker strength between layers - less resistant than raw material, slow and costly at high volume |
-| **Laser cutting** | A laser melts or vaporises flat sheet material (acrylic, plywood, thin metal) along a 2D path. | Fast for flat parts; fine detail; good for enclosures, panels, and finger-joint boxes; minimal fixturing | 2D profiles only (3D needs bending or stacking); thickness and material limits; kerf width loses material; fumes from some plastics |
+| **Flat-sheet cutting** | Cuts 2D profiles from flat stock (acrylic, plywood, metal plate, etc.) along a programmed path. Main methods: **laser** (melts/vaporises), **water jet** (high-pressure abrasive water), and **plasma** (ionised arc through metal). | Fast for flat parts; low setup cost and minimal fixturing; fine detail; good for enclosures, panels and finger-joint boxes; can combine with bending for 3D shapes | 2D profiles only — true 3D needs bending, stacking, or assembly; thickness and material limits depend on method. |
 | **Milling** | A rotating cutter removes material from a solid block (subtractive CNC). | High precision and tight tolerances; wide material choice including metals; excellent surface finish and strength | Material waste; slow and expensive for complex 3D shapes; skilled setup required; poor choice for large production runs of simple parts |
 | **Turning** | The workpiece rotates on a lathe while a fixed cutting tool shapes it — for axisymmetric parts. | Very efficient for round parts (shafts, pins, bushings); high precision on cylindrical features; good surface finish | Only axisymmetric (round) parts; material waste; setup time; usually overkill for quick plastic prototypes |
 | **Moulding & casting** | Liquid material is poured or injected into a mould cavity and solidifies (e.g. injection moulding, silicone casting). | Lowest unit cost at high volume (1000+ parts); consistent, repeatable parts; complex shapes in one step | High upfront mould/tooling cost; long lead time to make the mould; design changes are expensive; mainly suited to specific materials (plastics, metals, silicone) |
@@ -227,6 +227,41 @@ This sections provides an overview of the settings that are relevant to remember
 
 - *Adhesion* (The base layer is not sticking and has gaps or is tumbled over) - the bed is not leveled, the bed is oily or otherwise dirty - use brim / raft (area around base is printed to support the main print)
 - *Warping* (The base layer is misshaped) - bed is not heated, fan is cooling of too quickly - use brim / raft (area around base is printed to support the main print)
+
+#### Flat Sheet types w. pros & cons
+Flat-sheet cutting is a *subtractive* process: you start with a flat sheet and cut away material along a 2D path. Unlike 3D printing, you cannot build overhangs — but you can bend, stack, or join cut pieces (finger joints) to make 3D structures.
+
+![](images/flat_sheet.png)
+
+| Method | Description | Pros | Cons |
+|--------|-------------|------|------|
+| **Laser cutting** | A focused laser beam melts or vaporises material along a programmed 2D path. | Fast on thin sheets; good for acrylic, plywood, enclosures, and finger-joint boxes; minimal fixturing | Thickness and material limits; kerf width loses material; fumes from some plastics (need ventilation); reflective/thick metals need a more powerful laser |
+| **Water jet cutting** | High-pressure water, often mixed with abrasive, erodes material without heat. | No heat-affected zone — no warping; cuts thick and hard materials (metal, stone, glass); high precision; no toxic fumes | Slower than laser on thin sheets; messy; wider kerf; higher machine running cost |
+| **Plasma cutting** | An ionised gas arc melts through conductive sheet metal, blown away by compressed air. | Fast and relatively cheap for thick steel and other conductive metals; good for heavy plate | Rougher edge finish than laser; heat-affected zone; conductive metals only; |
+
+##### Laser settings
+The main settings to remember for laser cutting:
+
+- *Speed* — how fast the head moves. Higher speed = faster cut but may not cut through; too slow can over-burn the material.
+- *Power* — laser intensity. Higher power needed for thicker or denser materials.
+- *Frequency* — pulses per second (on some machines). Affects cut quality on certain materials, especially metals.
+
+##### Flat sheet techniques
+
+- *Finger joints* — interlocking rectangular teeth cut into sheet edges so two pieces slot together without fasteners. Common in laser-cut plywood boxes.
+- *Kerf* — the width of material removed by the cut. Account for kerf in your CAD so assembled parts fit (typically ~0.1–0.2 mm for laser).
+- *Bending* — shaping a flat 2D sheet into a 3D shape
+    - Metals: Bending deformation (a manual machine applying forces)
+    - Plastic: Heat bending (on some types)
+    - Paper / Cardboard: Folding, possibly with cut hinges
+
+##### Flat Sheet Materials
+
+- *Plywood* - expensive, thicker (should ask lab staff before using it)
+- *MDF* - Medium Density Fiberboard (this is what we used!) - brittle & expands with water
+- *Cardboard* - weak and quickly becomes useless with water / screws etc.
+- *Acrylic* - easy to laser cut but brittle!
+- *POM* - difficult to laser cut, expensive, low friction
 
 ### Machine elements: DOF, linkages, bearings, linear guides, power transmission (gears, belts, lead screw, rack & pinion)
 
