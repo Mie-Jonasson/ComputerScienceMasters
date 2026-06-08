@@ -357,7 +357,26 @@ A circuit can be represented in many ways. The most common ways are the followin
 
 ## Components: switches, LEDs, potentiometers, IR/US sensors, diodes, DC/stepper/servo motors, transistors, H-bridge
 
-todo
+| Component | Description | Example Usage | Pins |
+|-----------|-------------|---------------|------|
+| **Potentiometer** | Functions as a voltage divider, tuning the $V_{out}$ on the signal pin. Reading a potentiometer is done by measuring the voltage between the signal and GND. | changing the intensity of a light bulb | V++, GND, Signal |
+| **Diodes** | A polarized component, if forward-biased, current will flow, and the Voltage will be static at ~2.1V | Connected in a circuit along with resistors (to sustain the remaining Voltages) | V++, GND |
+| **LEDs** | A specific type of Diode, emitting light when current flows | Light an LED in a circuit with power, LED and a smaller resistor | V++, GND |
+| **Switches / Buttons** | Connects or disconnects two points in a circuit. Can have 2 or more terminals. Can also be a switch between two states. | Connect a switch to the LED circuit to only have current flowing to the LED when it is pressed. | V++, GND (but needs high resistance on either side!) |
+| **IR Sensor** | | | |
+| **Transistor** | | | |
+| **H-Bridge** | | | |
+| **DC Motor** | | | |
+| **Stepper Motor** | | | |
+| **Servo Motor** | | | |
+
+### Diode Drawing
+
+![](images/diode.png)
+
+### Reading a Switch
+
+![](images/read_switch.png)
 
 ## Microcontrollers: reading sensors, driving actuators, basic SPI/I2C
 
@@ -378,6 +397,10 @@ todo
 
 ## Q3
 
-todo
+### Circuits to know by heart
+
+1. Control a LED intensity with a potentiometer
+2. Read a potentiometer (what is the position of the knob?), use a multimeter to read the voltage
+3. Use a 3-pin switch and two LEDs. One LED should be always on, and changing the switch status changes the LED that is on
 
 # The Drink Dispenser
