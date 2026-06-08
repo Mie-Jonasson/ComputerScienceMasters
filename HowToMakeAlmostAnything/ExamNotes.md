@@ -326,7 +326,34 @@ Here we list the main types of power transmission and their features:
 
 ## Electronics fundamentals: voltage/current/resistance, Ohm's law, voltage dividers, breadboard, multimeter
 
-todo
+| Term | Definition | Description | Notes / Comments |
+|------|------------|-------------|------------------|
+| **Voltage** | V | Electrical *Potential* Energy - It is a RELATIVE measure, often measured relative to GND (0V) | Potential is the key here; consider it as the height of water in a water tank |
+| **Current** | A / I | Size of *Flow* of Electric Charge | This is how fast the flow of electric charge is. Higher current = more charge moving through at each point in time |
+| **Resistance** | R / $\Omega$ | Amount of Difficulty to *pass* the *current* *through* a conductor | I.e. how much "push power" is needed for the current to move through this obstacle, can also analoguously describe the width of the connector between two water tanks of different V |
+| **Ohm's law** | V = R * I | Describes the relationship between voltage, current and resistance | |
+| **Kirchhoff's First Law** | $\sum{I_i} = 0$ in junction | Describes how everything that flows INTO a junction also flows OUT OF a junction | |
+| **Kirchhoff's Second Law** |  $\sum{V_j} = 0$ in closed loop | Describes how the sum of voltages around a circuit correspond to the total Voltage from GND to V++ | |
+| **Parallel Resistors** | $\frac{1}{R_{tot}} = \frac{1}{R_1} + \frac{1}{R_2}$ + ... | | |
+| **Serial Resistors** | R_{tot} = R_1 + R_2 + ... | | |
+
+| Physical Item | Description | Notes / Comments |
+|------|-------------|------------------|
+| **Power Supply** | Used to supply power to a circuit (kV & GND) | Will usually use CV (Constant Voltage) and a maximum Current (rather than the opposite) |
+| **Multimeter** | Used to measure things in circuits - both connectedness, voltage, current, resistance and more | To measure *Current*, connect the multimeter *In-Series*. To measure *Voltage*, connect the multimeter *In Parallel* for the two points of the Voltage drop measurement. |
+| **Breadboard** | Outer Power rails are connected horizontally, inner rails are connected vertically | Used to build circuits for prototyping and experiments |
+
+| Circuit Name | Description | Notes / Comments |
+|------|-------------|------------------|
+| **Ohms Law Circuit** | Connect a Power supply to a breadboard with a resistor. Measure current & voltage using a multimeter (parallel and in-series as applicable). Disconnect the power supply and measure resistance with the multimeter. | Used to convince yourself that Ohm's Law is true. |
+| **Voltage divider** | With two resistors in parallel we can tune the voltage going out in-between the resistors | $V_{out} = V_{in} * \frac{R_2}{R_1 + R_2}$ (how much relative voltage is left for the second resistor out of the total resistance in the circuit) |
+
+### Representing Circuits
+A circuit can be represented in many ways. The most common ways are the following:
+
+- **Schematic**: symbolic and cleaner representation of a circuit. Lines do not represent wires, but represent a connectedness between voltage levels.
+- **Breadboard / Wiring**: physical representation of the circuit - how it is actually wired in order to work - these are often messier and difficult to read.
+- **Printed Circuit Board**: physical implementation of circuit in a production or advanced prototyping.
 
 ## Components: switches, LEDs, potentiometers, IR/US sensors, diodes, DC/stepper/servo motors, transistors, H-bridge
 
