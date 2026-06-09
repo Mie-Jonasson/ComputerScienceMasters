@@ -87,7 +87,7 @@ Work through these in order. Each step builds on the last; don't skip to electro
 - [x] Manufacturing methods: 3D printing (FDM/SLS/SLA), flat-sheet cutting (laser/water jet/plasma) — pros, cons, and when to use each
 - [ ] Milling/turning, moulding — pros, cons, and when to use each
 - [x] Machine elements: DOF, linkages, bearings, linear guides, power transmission (gears, belts, lead screw, rack & pinion)
-- [ ] Electronics fundamentals: voltage/current/resistance, Ohm's law, voltage dividers, breadboard, multimeter
+- [x] Electronics fundamentals: voltage/current/resistance, Ohm's law, voltage dividers, breadboard, multimeter
 - [ ] Components: switches, LEDs, potentiometers, IR/US sensors, diodes, DC/stepper/servo motors, transistors, H-bridge
 - [ ] Microcontrollers: reading sensors, driving actuators, basic SPI/I2C
 - [ ] PCBs: pros/cons vs breadboard, pads/tracks/vias, soldering basics
@@ -363,10 +363,13 @@ A circuit can be represented in many ways. The most common ways are the followin
 | **Diodes** | A polarized component, if forward-biased, current will flow, and the Voltage will be static at ~2.1V | Connected in a circuit along with resistors (to sustain the remaining Voltages) | V++, GND |
 | **LEDs** | A specific type of Diode, emitting light when current flows | Light an LED in a circuit with power, LED and a smaller resistor | V++, GND |
 | **Switches / Buttons** | Connects or disconnects two points in a circuit. Can have 2 or more terminals. Can also be a switch between two states. | Connect a switch to the LED circuit to only have current flowing to the LED when it is pressed. | V++, GND (but needs high resistance on either side!) |
-| **IR Sensor** | | | |
-| **Transistor** | | | |
-| **H-Bridge** | | | |
-| **DC Motor** | | | |
+| **Optosensor** | An optosensor describe any sensor that uses infrared light for detection. Two main categories: *Reflective* (sensor and emitter point in the same direction and detect reflection of emitter) and *Break beam* (sensor and emitter point toward each other and detect when something is prohibiting the signal between them) | IR Sensor or Shaft Encoder | V++, GND, Signal |
+| **Shaft Encoder** | Shaft encoder are *break beam optosensors*, which use a plate with holes to switch between detection states. | Can be used to "count" ticks or determine position. | - |
+| **IR Sensor** | IR sensors are *reflective optosensors*. It is an *active* sensor that needs to be powered to work. Digital Out (DO) will send signal if above threshold configured with potentiometer. | Detecting a line | V++, GNA, Signal |
+| **Transistor** | Used to switch on / off based on a Voltage signal for handling big currents! (i.e. amplifying a signal current) | Amplifying IR Sensor Signal to drive Motor. Implementing logic gates. | Collector (5V load), Emitter (GND) & Base (Signal) |
+| **H-Bridge** | Used to control the direction of current through a motor. | May be used to change direction of DC Motor. | - |
+| **DC Motor** | Consumes constant voltage and may change direction with the direction of the current. Speed is proportional to Voltage and depends on the LOAD. Torque is proportional to Current (I > 200mA) | Anything that need to move | V++, GND |
+| **Darlington Configuration** | Transistors are used to amplify the current of a signal such that a motor will run. The darlington configuration simply amplifies it twice using 2 NPN transistors | Amplifying IR Sensor Signal to drive Motor | - |
 | **Stepper Motor** | | | |
 | **Servo Motor** | | | |
 
@@ -377,6 +380,24 @@ A circuit can be represented in many ways. The most common ways are the followin
 ### Reading a Switch
 
 ![](images/read_switch.png)
+
+### DC Motors
+
+![](images/dc_motor.png)
+
+![](images/dc_motor_2.png)
+
+![](images/H_bridge.png)
+
+### Transistors
+
+![](images/transistor.png)
+
+![](images/transistor_motor.png)
+
+![](images/darlington.png)
+
+![](images/transistor_gates.png)
 
 ## Microcontrollers: reading sensors, driving actuators, basic SPI/I2C
 
