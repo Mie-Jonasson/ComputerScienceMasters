@@ -370,8 +370,8 @@ A circuit can be represented in many ways. The most common ways are the followin
 | **H-Bridge** | Used to control the direction of current through a motor. | May be used to change direction of DC Motor. | - |
 | **DC Motor** | Consumes constant voltage and may change direction with the direction of the current. Speed is proportional to Voltage and depends on the LOAD. Torque is proportional to Current (I > 200mA) | Anything that need to move | V++, GND |
 | **Darlington Configuration** | Transistors are used to amplify the current of a signal such that a motor will run. The darlington configuration simply amplifies it twice using 2 NPN transistors | Amplifying IR Sensor Signal to drive Motor | - |
-| **Stepper Motor** | | | |
-| **Servo Motor** | | | |
+| **Stepper Motor** | todo | | |
+| **Servo Motor** | todo | | |
 
 ### Diode Drawing
 
@@ -401,7 +401,37 @@ A circuit can be represented in many ways. The most common ways are the followin
 
 ## Microcontrollers: reading sensors, driving actuators, basic SPI/I2C
 
-todo
+### Microcontroller - **IC** (Integrated Curcuit)
+It contains all of the following components and function as a "mini"-computer / dedicated computer running a single program.
+- **CPU**: Main processor handling logic of the computer
+- **Memory**: RAM (short term variable values) & ROM (flash storage for program and other permanent storage)
+- **Inputs & Outputs**: Digital Pins (In & Out), Analog Pins (In), Timers, Serial Ports, Parallel Ports
+- **Internal Oscillator**
+
+The IC works by connecting all of these components together through many transistors and provides relevant pins in an outwards interface that may be easily connected to PCBs and BreadBoards. See below image:
+
+![](images/ic.png)
+
+The ATmega328P is an example of an IC controller, and has the following specs and pin overview:
+
+![](images/atmega328p.png)
+
+![](images/atmega328p_pins.png)
+
+### Arduino - **uController**
+The Arduino is kind of like a "wrapper" around a micro controller, making ti easier to interact with and control. The arduino is a *PCB with a microcontroller and connectors* - in particular it also adds an easier interface by providing a simple API and coding experience (USB porting and C++ coding).
+
+![](images/arduino.png)
+
+Lecture statement: An Arduino is an electronic board with a microcontroller and expansion boards ready to use! (extension boards / PCBs are colled *shields*)
+
+**Remember!** to use transistors when driving motors with an Arduino, as the current is too high for the arduino to handle.
+
+#### Inputs and Outputs
+
+![](images/arduino_input.png)
+
+![](images/arduino_output.png)
 
 ## PCBs: pros/cons vs breadboard, pads/tracks/vias, soldering basics
 
