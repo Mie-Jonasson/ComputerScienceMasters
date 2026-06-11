@@ -370,8 +370,6 @@ A circuit can be represented in many ways. The most common ways are the followin
 | **H-Bridge** | Used to control the direction of current through a motor. | May be used to change direction of DC Motor. | - |
 | **DC Motor** | Consumes constant voltage and may change direction with the direction of the current. Speed is proportional to Voltage and depends on the LOAD. Torque is proportional to Current (I > 200mA) | Anything that need to move | V++, GND |
 | **Darlington Configuration** | Transistors are used to amplify the current of a signal such that a motor will run. The darlington configuration simply amplifies it twice using 2 NPN transistors | Amplifying IR Sensor Signal to drive Motor | - |
-| **Stepper Motor** | todo | | |
-| **Servo Motor** | todo | | |
 
 ### Diode Drawing
 
@@ -398,6 +396,46 @@ A circuit can be represented in many ways. The most common ways are the followin
 ![](images/darlington.png)
 
 ![](images/transistor_gates.png)
+
+## Advanced Electronics: Stable Voltage, advanced sensors and motors
+
+| Component | Description | Solves Problem... | Cons | Notes |
+|-----------|-------------|-------------------|------|-------|
+| **Linear Regulators** | use a fixed Voltage reference and a transistor to produce constant output voltage | Input Voltage Variations | Generates Heat when Vin >>> Vout, can only decrease i.e. it must hold that Vin > Vout | Place capacitors for both Vin and Vout for stability. When powering the arduino with the 12V plug, a linear regulator is used to produce the 5V port. |
+| **DC/DC Converter** | Converts one DC voltage to another DC voltage. *Buck* steps down, *Boost* steps up, *Buck-Boost* may do either. Almost no energy loss. | Input Voltage Variations | Noisy (not suitable for precise analog measurements) | Power In = Power Out, but the Current (I) changes inversely proportional to the voltage. |
+| **Ultrasonic Sensor** | Similar to IR sensors but works with sound and time rather than light reflections. Sends a signal through the trigger and measures time passed before receiving the echo. | | | |
+| **Stepper Motor** | todo | | | |
+| **Servo Motor** | todo | | | |
+
+### Schematics
+
+- **Linear Regulator**
+
+![](images/linear_regulator.png)
+
+- **Buck-Boost**
+
+![](images/buck_boost.png)
+
+### Communication Protocols
+Sometimes we may want to communicate between multiple uControllers. This is done through *digital protocols*.
+Multiple devices are connected together in a *master-slave* type connection, where one device is the primary communicator and controller. It is also easy to implement and has medium latency (400 kHz - 5 MHz).
+There are multiple types, some of which are:
+
+- **USART** - Universal Synchronous Asynchronous Receiver Transceiver (Serial)
+    ![](images/usart.png)
+    - F.ex. Computer to Arduino communication. (Only 2 devices in communication)
+    - Uses two lines on each communication device, *Rx* (Receiver) & *Tx* (Transmitter) that are crossed over to send signals.
+- **I2C (Wire or TWI)**
+    ![](images/i2c.png)
+    - Uses two lines (SDA & SCL) with pull-up resistors.
+    - Slaves have unique addresses and multiple can be connected to the same bus.
+- **SPI**
+    ![](images/spi.png)
+    - uses three shared lines (MISO, MOSI, SCLK)
+    - Slaves each use their own extra line and therefore does not need an address.
+
+![](images/arduino_headers.png)
 
 ## Microcontrollers: reading sensors, driving actuators, basic SPI/I2C
 
@@ -432,6 +470,10 @@ Lecture statement: An Arduino is an electronic board with a microcontroller and 
 ![](images/arduino_input.png)
 
 ![](images/arduino_output.png)
+
+#### Power
+
+![](images/arduino_power.png)
 
 ## PCBs: pros/cons vs breadboard, pads/tracks/vias, soldering basics
 
