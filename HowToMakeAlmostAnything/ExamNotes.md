@@ -88,8 +88,8 @@ Work through these in order. Each step builds on the last; don't skip to electro
 - [ ] Milling/turning, moulding — pros, cons, and when to use each
 - [x] Machine elements: DOF, linkages, bearings, linear guides, power transmission (gears, belts, lead screw, rack & pinion)
 - [x] Electronics fundamentals: voltage/current/resistance, Ohm's law, voltage dividers, breadboard, multimeter
-- [ ] Components: switches, LEDs, potentiometers, IR/US sensors, diodes, DC/stepper/servo motors, transistors, H-bridge
-- [ ] Microcontrollers: reading sensors, driving actuators, basic SPI/I2C
+- [x] Components: switches, LEDs, potentiometers, IR/US sensors, diodes, DC/stepper/servo motors, transistors, H-bridge, ultrasonic sensors, voltage converters
+- [x] Microcontrollers: reading sensors, driving actuators, basic SPI/I2C
 - [ ] PCBs: pros/cons vs breadboard, pads/tracks/vias, soldering basics
 
 ### 2. Practice Q1 — Manufacturing
@@ -107,7 +107,7 @@ Always justify with cost, time, tolerance, material properties, and surface fini
 Apply this sequence to your prototype and a few machines from the slides:
 
 - [ ] Identify components: linear guides, bearings, motors, belts/gears/screws, structural elements
-- [ ] Trace power: motor → reduction (if any) → end effector
+- [ ] Trace power: motor -> reduction (if any) -> end effector
 - [ ] Count DOFs
 - [ ] Name sensors and actuators — which type, and **why**?
 - [ ] Identify driver (H-bridge, stepper driver) and microcontroller
@@ -314,11 +314,11 @@ Here we list the main types of power transmission and their features:
 
 | Method | Motion | Description | Notes |
 |--------|--------|-------------|-------|
-| **Gears** | Rotational ↔ rotational | Two meshing toothed wheels transfer rotation between shafts. Gear ratio = driven teeth / driving teeth — sets speed and torque trade-off. | Compact and efficient; precise ratio; can change direction. Noisy at high load; requires precise alignment; distance between shafts is fixed by gear size |
-| **Pinion and rack** | Rotational ↔ linear | A small rotating gear (pinion) meshes with a straight toothed bar (rack). Pinion rotation drives the rack linearly — or linear rack motion spins the pinion. | Used in CNC axes, steering systems, and moving a bed along a rail; rack must be straight and supported |
-| **Pinion and endless gear** | Rotational → rotational | The rack is bent into a circle (ring / endless gear); a pinion drives around its inner or outer teeth. Pinion spin rotates a platform or turntable continuously. | Used for spinning trays, indexing tables, and turntables. Smooth continuous rotation; limited load capacity; self-locking and not very efficient; |
-| **Lead screw** | Rotational → linear | A threaded screw turns inside a nut (or nut travels along a fixed screw). Each rotation moves the nut a fixed linear distance (pitch of the thread). | High mechanical advantage; precise positioning; self-locking (won't back-drive under load).; Used in 3D printer Z-axes, vices, and linear actuators; Slower than belts; friction and wear on threads |
-| **Belts** | Rotational ↔ rotational, linear ↔ linear, or rotational ↔ linear | A flexible belt runs over pulleys to transfer motion. **Rot ↔ rot:** belt between two pulleys (like a bike). **Rot ↔ linear:** one pulley drives a belt that pulls a carriage in a straight line (common on 3D printer gantries). **Linear ↔ linear:** belt loop moves a point along a fixed path. | Quiet; can span long distances; cheap; absorbs shock; less precise than gears or lead screws |
+| **Gears** | Rotational <-> rotational | Two meshing toothed wheels transfer rotation between shafts. Gear ratio = driven teeth / driving teeth — sets speed and torque trade-off. | Compact and efficient; precise ratio; can change direction. Noisy at high load; requires precise alignment; distance between shafts is fixed by gear size |
+| **Pinion and rack** | Rotational <-> linear | A small rotating gear (pinion) meshes with a straight toothed bar (rack). Pinion rotation drives the rack linearly — or linear rack motion spins the pinion. | Used in CNC axes, steering systems, and moving a bed along a rail; rack must be straight and supported |
+| **Pinion and endless gear** | Rotational -> rotational | The rack is bent into a circle (ring / endless gear); a pinion drives around its inner or outer teeth. Pinion spin rotates a platform or turntable continuously. | Used for spinning trays, indexing tables, and turntables. Smooth continuous rotation; limited load capacity; self-locking and not very efficient; |
+| **Lead screw** | Rotational -> linear | A threaded screw turns inside a nut (or nut travels along a fixed screw). Each rotation moves the nut a fixed linear distance (pitch of the thread). | High mechanical advantage; precise positioning; self-locking (won't back-drive under load).; Used in 3D printer Z-axes, vices, and linear actuators; Slower than belts; friction and wear on threads |
+| **Belts** | Rotational <-> rotational, linear <-> linear, or rotational <-> linear | A flexible belt runs over pulleys to transfer motion. **Rot <-> rot:** belt between two pulleys (like a bike). **Rot <-> linear:** one pulley drives a belt that pulls a carriage in a straight line (common on 3D printer gantries). **Linear <-> linear:** belt loop moves a point along a fixed path. | Quiet; can span long distances; cheap; absorbs shock; less precise than gears or lead screws |
 
 ![](images/gear_reduction.png)
 
