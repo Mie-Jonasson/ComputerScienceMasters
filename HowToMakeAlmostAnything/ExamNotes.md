@@ -404,8 +404,8 @@ A circuit can be represented in many ways. The most common ways are the followin
 | **Linear Regulators** | use a fixed Voltage reference and a transistor to produce constant output voltage | Input Voltage Variations | Generates Heat when Vin >>> Vout, can only decrease i.e. it must hold that Vin > Vout | Place capacitors for both Vin and Vout for stability. When powering the arduino with the 12V plug, a linear regulator is used to produce the 5V port. |
 | **DC/DC Converter** | Converts one DC voltage to another DC voltage. *Buck* steps down, *Boost* steps up, *Buck-Boost* may do either. Almost no energy loss. | Input Voltage Variations | Noisy (not suitable for precise analog measurements) | Power In = Power Out, but the Current (I) changes inversely proportional to the voltage. |
 | **Ultrasonic Sensor** | Similar to IR sensors but works with sound and time rather than light reflections. Sends a signal through the trigger and measures time passed before receiving the echo. | | | |
-| **Stepper Motor** | todo | | | |
-| **Servo Motor** | todo | | | |
+| **Stepper Motor** | uses magnets and coils to rotate at known step intervals | move things known relative distances from starting position | needs homing at each restart. Consumes a lot of current at all times. | |
+| **Servo Motor** | rotates to a desired angular position in its range given a signal | move things between angles with precision and with "memory" (i.e. does not need reset position after restart) | limited motion space | uses a potentiometer to determine its position |
 
 ### Schematics
 
@@ -416,6 +416,24 @@ A circuit can be represented in many ways. The most common ways are the followin
 - **Buck-Boost**
 
 ![](images/buck_boost.png)
+
+### Servo Motor
+
+![](images/servo.png)
+
+![](images/servo_2.png)
+
+![](images/servo_control.png)
+
+### Stepper Motor
+
+![](images/stepper.png)
+
+![](images/stepper_control.png)
+
+Important with a large (47 not 1) electrolytic capacitor for below circuit!
+
+![](images/stepper_driver.png)
 
 ### Communication Protocols
 Sometimes we may want to communicate between multiple uControllers. This is done through *digital protocols*.
