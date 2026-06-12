@@ -90,7 +90,7 @@ Work through these in order. Each step builds on the last; don't skip to electro
 - [x] Electronics fundamentals: voltage/current/resistance, Ohm's law, voltage dividers, breadboard, multimeter
 - [x] Components: switches, LEDs, potentiometers, IR/US sensors, diodes, DC/stepper/servo motors, transistors, H-bridge, ultrasonic sensors, voltage converters
 - [x] Microcontrollers: reading sensors, driving actuators, basic SPI/I2C
-- [ ] PCBs: pros/cons vs breadboard, pads/tracks/vias, soldering basics
+- [x] PCBs: pros/cons vs breadboard, pads/tracks/vias, soldering basics
 
 ### 2. Practice Q1 — Manufacturing
 
@@ -197,9 +197,36 @@ Here is a high level overview of the pros and cons of the main types of manufact
 |--------|-------------|------|------|
 | **3D printing** | Builds parts layer-by-layer from a digital model (additive — material is added, not cut away). FDM, SLS, and SLA are the main subtypes. | Only little waste, can create complex parts (infeasible assemblies / hollow parts), good for prototyping because of short lead time | Layer lines and weaker strength between layers - less resistant than raw material, slow and costly at high volume |
 | **Flat-sheet cutting** | Cuts 2D profiles from flat stock (acrylic, plywood, metal plate, etc.) along a programmed path. Main methods: **laser** (melts/vaporises), **water jet** (high-pressure abrasive water), and **plasma** (ionised arc through metal). | Fast for flat parts; low setup cost and minimal fixturing; fine detail; good for enclosures, panels and finger-joint boxes; can combine with bending for 3D shapes | 2D profiles only — true 3D needs bending, stacking, or assembly; thickness and material limits depend on method. |
-| **Milling** | A rotating cutter removes material from a solid block (subtractive CNC). | High precision and tight tolerances; wide material choice including metals; excellent surface finish and strength | Material waste; slow and expensive for complex 3D shapes; skilled setup required; poor choice for large production runs of simple parts |
-| **Turning** | The workpiece rotates on a lathe while a fixed cutting tool shapes it — for axisymmetric parts. | Very efficient for round parts (shafts, pins, bushings); high precision on cylindrical features; good surface finish | Only axisymmetric (round) parts; material waste; setup time; usually overkill for quick plastic prototypes |
+| **Milling** | A rotating cutter removes material from a solid block (subtractive CNC). | isotropic (same strength in all directions), nice finished and good tolerances, works with many different materials and may be quick depending on the geometry | a lot of waste material, cannot do high complexity, complex to use the machinery, expensive because of manual step as well as wear & tear |
+| **Turning** | The workpiece rotates on a lathe while a fixed cutting tool shapes it — for revolution parts. |  |  |
 | **Moulding & casting** | Liquid material is poured or injected into a mould cavity and solidifies (e.g. injection moulding, silicone casting). | Lowest unit cost at high volume (1000+ parts); consistent, repeatable parts; complex shapes in one step | High upfront mould/tooling cost; long lead time to make the mould; design changes are expensive; mainly suited to specific materials (plastics, metals, silicone) |
+
+### Milling
+Here you can see how milling and drilling are different, particularly in the way that milling works in 3 dimensions while drilling only works in 1 dimension.
+
+![](images/milling.png)
+
+![](images/milling_subtypes.png)
+
+And this is what a milling machine looks like:
+
+![](images/cnc.png)
+
+![](images/cnc_comparison.png)
+
+Milling can be performed with many different cutting tools and end types giving different cutting profiles.
+
+![](images/milling_tool.png)
+
+It is important to clamp the parts properly in order to ensure reliable cutting where the part does not move.
+
+![](images/clamping.png)
+
+### Turning
+
+![](images/lathe.png)
+
+![](images/lathe_tool.png)
 
 ### 3D printing types w. pros & cons
 Traditional manufacturing was *subtractive*, meaning you start with a larger block of material and cut away the parts that are not needed in order to obtain the desired shape. 
