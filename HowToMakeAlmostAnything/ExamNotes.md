@@ -199,7 +199,9 @@ Here is a high level overview of the pros and cons of the main types of manufact
 | **Flat-sheet cutting** | Cuts 2D profiles from flat stock (acrylic, plywood, metal plate, etc.) along a programmed path. Main methods: **laser** (melts/vaporises), **water jet** (high-pressure abrasive water), and **plasma** (ionised arc through metal). | Fast for flat parts; low setup cost and minimal fixturing; fine detail; good for enclosures, panels and finger-joint boxes; can combine with bending for 3D shapes | 2D profiles only — true 3D needs bending, stacking, or assembly; thickness and material limits depend on method. |
 | **Milling** | A rotating cutter removes material from a solid block (subtractive CNC). | isotropic (same strength in all directions), nice finished and good tolerances, works with many different materials and may be quick depending on the geometry | a lot of waste material, cannot do high complexity, complex to use the machinery, expensive because of manual step as well as wear & tear |
 | **Turning** | The workpiece rotates on a lathe while a fixed cutting tool shapes it — for revolution parts. |  |  |
-| **Moulding & casting** | Liquid material is poured or injected into a mould cavity and solidifies (e.g. injection moulding, silicone casting). | Lowest unit cost at high volume (1000+ parts); consistent, repeatable parts; complex shapes in one step | High upfront mould/tooling cost; long lead time to make the mould; design changes are expensive; mainly suited to specific materials (plastics, metals, silicone) |
+| **Moulding & casting** | Liquid material is poured or injected into a mould cavity and solidifies (e.g. injection moulding, silicone casting). | better than 3D printed parts with nice finish at high speed and low unit cost | cannot make high complexity shapes, mould design is time consuming and high quality moulds are expensive => only useful if producing A LOT! |
+
+![](images/manufacturing_overview.png)
 
 ### Milling
 Here you can see how milling and drilling are different, particularly in the way that milling works in 3 dimensions while drilling only works in 1 dimension.
@@ -227,6 +229,41 @@ It is important to clamp the parts properly in order to ensure reliable cutting 
 ![](images/lathe.png)
 
 ![](images/lathe_tool.png)
+
+### Moulding
+Moulding is useful when producing A LOT of parts in a feasible time frame and at a lower cost. Therefore, it is also one of the most common methods for mass production!
+There are two main categories of moulding:
+
+![](images/moulding.png)
+
+The main differences are that injection uses pressure while casting uses gravity & injection is only for plastic while casting is for metal, resin & silicone.
+
+Injection moulding machine parts:
+
+![](images/injection_moulding.png)
+
+But how do we design a mould that fulfills our requirements?
+One popular concept is using as **sprue** as a funnal from the injection point to multiple individual parts. When we do this we name *runners* for the channels that are not part of the final product and *gates* where runners connect to the production parts.
+
+Mould production methodologies are many - here is a short overview
+
+| Method | Material | Duration | Comments |
+|--------|----------|----------|----------|
+| 3D Print | Special Resins | <100 - 20 cycles |  |
+| Milling | Aluminum, Steel | >1000 cycles |  |
+| Resin | Resin |  |  |
+
+![](images/resin_mould.png)
+
+Common problem when injection moulding:
+- **flash**: the mould overflows or is otherwise mis-aligned
+- **short shot**: the mould is underfilled due to either not enough plastic / pressure / temperature etc.
+- **warping**: the item is warped out of the intended shape due to wall thickness, non-uniform cooling, changes in material etc.
+
+common problems when casting:
+- **bubbles**: if pouring happens too fast or slow allowing air bubbles to be trapped in the item, with no air vents to escape.
+- **mould not water tight**: check the mould for any holes and seal it using wax or silicon.
+- **flash**: the mould overflows due to not enough clamping or not properly sealed.
 
 ### 3D printing types w. pros & cons
 Traditional manufacturing was *subtractive*, meaning you start with a larger block of material and cut away the parts that are not needed in order to obtain the desired shape. 
