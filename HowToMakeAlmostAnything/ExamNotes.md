@@ -85,7 +85,7 @@ Work through these in order. Each step builds on the last; don't skip to electro
 
 - [x] 3D modelling: extrusion, revolution, symmetry, patterns
 - [x] Manufacturing methods: 3D printing (FDM/SLS/SLA), flat-sheet cutting (laser/water jet/plasma) — pros, cons, and when to use each
-- [ ] Milling/turning, moulding — pros, cons, and when to use each
+- [x] Milling/turning, moulding — pros, cons, and when to use each
 - [x] Machine elements: DOF, linkages, bearings, linear guides, power transmission (gears, belts, lead screw, rack & pinion)
 - [x] Electronics fundamentals: voltage/current/resistance, Ohm's law, voltage dividers, breadboard, multimeter
 - [x] Components: switches, LEDs, potentiometers, IR/US sensors, diodes, DC/stepper/servo motors, transistors, H-bridge, ultrasonic sensors, voltage converters
@@ -94,7 +94,7 @@ Work through these in order. Each step builds on the last; don't skip to electro
 
 ### 2. Practice Q1 — Manufacturing
 
-For parts from your project, lecture slides, or exam examples, answer all three variants:
+Work through every image in `Exam Questions Spring 2026/all_parts/` (plus your own prototype). For each part, answer all three variants:
 
 - [ ] Default: what process and material, and why?
 - [ ] "What if it must be metal?"
@@ -102,9 +102,20 @@ For parts from your project, lecture slides, or exam examples, answer all three 
 
 Always justify with cost, time, tolerance, material properties, and surface finish.
 
+**Exam examples to cover:**
+
+- [ ] **Injection-moulded enclosure** (bosses, ribs, draft angles, uniform wall thickness) — why injection moulding vs 3D print?
+- [ ] **Bent sheet-metal bracket** (laser/water-jet flat pattern → press-brake bends; bend allowance / K-factor)
+- [ ] **Sheet-metal chassis** (tab-and-slot joints, ventilation cutouts, mounting flanges — laser cut + bend)
+- [ ] **L-brackets** (2D cut + single 90° bend; chamfered corners; when is milling or casting better?)
+- [ ] **Nested SLS dodecahedron** (impossible to mill as one piece; powder-bed self-support; nylon)
+- [ ] **SLA resin dragon** (fine detail, overhangs, support removal — vs FDM for the same geometry)
+- [ ] **Servo mounting bracket** (prototype: FDM; metal version: CNC mill; 1000 units: die-cast or injection mould)
+- [ ] **Lego-style blocks** (mass-production injection moulding — why not 3D print at scale?)
+
 ### 3. Practice Q2 — How a machine works
 
-Apply this sequence to your prototype and a few machines from the slides:
+Apply this sequence to your prototype and every machine in `Exam Questions Spring 2026/all_mechanisms/`:
 
 - [ ] Identify components: linear guides, bearings, motors, belts/gears/screws, structural elements
 - [ ] Trace power: motor -> reduction (if any) -> end effector
@@ -112,12 +123,34 @@ Apply this sequence to your prototype and a few machines from the slides:
 - [ ] Name sensors and actuators — which type, and **why**?
 - [ ] Identify driver (H-bridge, stepper driver) and microcontroller
 
+**Exam examples to cover:**
+
+- [ ] **AxiDraw plotter** — 2× stepper (X, Y on timing belts + smooth rods) + 1× servo (Z pen up/down); why servo not stepper for Z?
+- [ ] **Prusa i3 3D printer** — Cartesian 3-axis; lead screws (Z) vs belts (X, Y); extruder stepper; end-stops; heated bed/nozzle
+- [ ] **EEZYbot ARM** — 3+ servos; spur-gear reduction at base; 3D-printed links; count arm DOFs
+- [ ] **3-finger gripper** — 1× DC motor → lead screw → linkage; 1 DOF (open/close all fingers); FDM fingers
+- [ ] **Crawling robot** — DC motor → worm gear → spur gear → axle; plain bushings on wooden chassis
+- [ ] **N20 acrylic car** — 4× geared DC motors; laser-cut acrylic base; standoffs; 4WD vs 2WD trade-offs
+- [ ] **Spirograph drawing machine** — gear train; laser-cut plywood + acrylic; pen linkage; motor drives turntable
+- [ ] **CNC router (HIGH-Z)** — lead screw + linear guide rail; E-stop; drag chain; subtractive vs additive
+
 ### 4. Practice Q3 — Electronics
 
-- [ ] Explain how to read a switch and a potentiometer (circuit + code)
-- [ ] Explain how to control a DC motor (direction and speed) and how a servo works internally
-- [ ] Wire from memory on breadboard or simulator: button, LED with resistor, potentiometer, DC motor via H-bridge, servo
-- [ ] Draw schematics with correct symbols for every component used in the course
+Work through every image in `Exam Questions Spring 2026/all_electronics/` and wire each circuit from memory on a breadboard (or simulator):
+
+- [ ] **Push-button switch** — pull-up or pull-down resistor; `digitalRead()` + debouncing
+- [ ] **Potentiometer** — voltage divider; `analogRead(A0)`; map to output range
+- [ ] **LED + resistor** — read colour bands (e.g. 270 Ω); series resistor limits current; long leg = anode; PWM on `~` pins
+- [ ] **DC motor (single direction)** — NPN transistor as low-side switch; 1 kΩ base resistor; motor on separate supply
+- [ ] **DC motor (bidirectional)** — H-bridge (PNP top, NPN bottom); flyback diodes; PWM for speed; never short VCC→GND
+- [ ] **Servo (SG90)** — PWM signal pin; internal potentiometer feedback loop; 5 V power; not same as DC motor
+- [ ] **Stepper (28BYJ-48 + A4988)** — STEP/DIR from Arduino; VMOT separate supply; 100 µF cap across VMOT–GND
+- [ ] **TCRT5000 IR sensor** — VCC/GND/D0/A0; pot sets digital threshold; `digitalRead(D0)` vs `analogRead(A0)`
+
+Also:
+
+- [ ] Draw schematics with correct symbols for every component above
+- [ ] Explain bench power supply use (voltage/current limit) vs Arduino USB/5 V pin
 - [ ] Redo relevant MAs until wiring is automatic
 
 ### 5. Tie it together on your prototype
