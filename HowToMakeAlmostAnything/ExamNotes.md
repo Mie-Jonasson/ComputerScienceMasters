@@ -495,7 +495,57 @@ Lecture statement: An Arduino is an electronic board with a microcontroller and 
 
 ## PCBs: pros/cons vs breadboard, pads/tracks/vias, soldering basics
 
-todo
+*Breadboards* are super good for fast prototyping, because it is easy and quick to connect various components. BUT! it falls short on being reliable because it is *manually assembled*, may *fall apart* due to vibrations and other external factors and quickly becomes messy and difficult to analyze (making it difficult to find bugs and retain the overview).
+
+*PCBs* offer a more stable solution. Here is an overview:
+
+![](images/pcb.png)
+
+![](images/pcb_terms.png)
+
+There are two main soldering approaches:
+
+- **THT** (Through-Hole Technology) - components are placed on component side, passed through the holes in the board and soldered to pads on the opposite side.
+    - Easy to solder manually
+    - Mechanical resistance => Connectors
+- **SMT** (Surface-Mount Technology) - components are placed directly on top of pads and soldered to the pads. This is particularly always used for double layer PCBs.
+    - Easy to solder in an oven
+    - Only uses one side of the board
+    - smaller components & easier to assemble
+
+### Footprints
+
+Footprints are printed on PCBs to indicate the location where specific components should be soldered.
+
+![](images/pcb_footprint.png)
+
+![](images/pcb_other_footprints.png)
+
+### ECAD (Electronic Computer Aided Design)
+ECAD is the computer aided design of electronics circuits. In particular we will seek to:
+- define the schematic view, in a tool such as Fritzing (including all relevant annotations and connections)
+- export the *netlist* from the schematic view
+- import the netlist and start defining the layout of the physical board (contour, mounting holes, placing components, making connection tracks)
+
+Here is a list of ECAD tools:
+
+![](images/ECAD.png)
+
+![](images/ECAD_opensource.png)
+
+### Production
+PCBs are produced through **etching** - but be aware of toxic fumes and acids. See this [video](https://www.youtube.com/watch?v=tWnfnt2rNO0).
+
+One can also **order printed PCBs** of professional quality with all the details of an industry-grade PCB, but it takes 1-2 weeks.
+
+#### Soldering
+Soldering is done to connect components to printed PCBs.
+It is basically a way of "glueing" the components onto the printed board for a securely fastened component that does not fall apart and is conducting reliably.
+To get these effects, soldering properly is important. See below image and the "Soldering Is Easy" Comic Strip.
+
+![](images/solder.png)
+
+Soldering can be done using soldering irons / hot guns and ovens. It is important to wait for the soldered part to *cool down* before touching it and remember that *solder* contains many **dangerous chemicals**, and you need to avoid breathing soldering fumes!!!
 
 # Example Questions
 ## Q1
