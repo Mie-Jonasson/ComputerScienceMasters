@@ -16,16 +16,36 @@ Look at each image **before** reading the questions. Work through the **core seq
 
 ![](all_mechanisms/axidraw_large_plain.jpg)
 
-**What is it?** White cantilevered machine over a notebook: two parallel rods per axis, black toothed belts, two large black motors on the frame, a small blue motor on the pen carriage holding a marker, spiral-wrapped cables.
+**What is it?** The machine is a drawing machine, intended to draw with any pen or pencil on the 2D plane that it is placed on top of.
 
 **Core sequence:** *(apply the five steps above)*
+1. Components
+    - Main Structure with rods, plastic parts and a pen (and cable management)
+    - Likely linear bearings on each of the rods.
+    - 2 stepper motors & 1 servo motor
+    - belts and pulleys
+2. Power
+    - Each stepper motor controls one axis of movement in the XY-plane. The leftmost motor spins a pulley which moves the belt (rotating -> linear translation), that moves the platform with the second stepper motor.
+    - The second stepper motor also spins a pulley which moves a belt to move the pen closer or further away from the motor location.
+    - The servo motor controls the Z-direction of the movement and therefore whether the pen touches the underlying surface or not.
+3. DOFs
+    - 3: XYZ drawing machine.
+4. Sensors & Actuators
+    - I do not see any sensors in the setup, but there may be some somewhere to reset the stepper motors and detect when the pen is touching the underlying surface.
+    - The actuators are 2 steppers and 1 servo.
+5. Driver / Microcontroller
+    - Not visible on the picture. Most likely contains 2 stepper drivers. The controller need to be able to take some kind of program / 2D drawing and use the machine's 3-axis movement to make that drawing.
 
 **Extra questions:**
 
 - How many controlled axes? Which axis only needs up/down, not precise positioning?
+    - we control 3 axes. The Z-direction only needs up/down as we are only controlling whether the pen is on the paper or not.
 - Why might one axis use a different actuator type than the other two?
+    - Because of the movement types - the up/down movement of the pen is in a very limited range while the movement around the plane should be precise relatively speaking and on a broader range.
 - Where are the linear guides and what slides along them?
+    - The rods are used as linear guides for the movement on the XY-plane, i.e. the movement of the platform with a stepper motor and the movement of the pen-holder.
 - What is the end effector and how is it angled relative to the paper?
+    - The end effector is the pen drawing on the paper.
 
 ---
 

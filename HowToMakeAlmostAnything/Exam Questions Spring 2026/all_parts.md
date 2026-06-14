@@ -13,15 +13,25 @@ Look at each image **before** reading the questions. Identify the process and ma
 **Core questions:**
 
 1. **Default:** What process and material would you use, and why?
+    I would start with 3D printing if it was for a small local production or for smaller use cases, as this offers the quickest "idea to physical object" time at a reasonable cost. FDM would be the cheapest/fastest option, but going for SLA (the resin curing stuff) will provide a nicer finish.
 2. **Metal:** What if it must be metal?
+    Then i would probably opt for casting, i.e. pouring melted metal into a mould. Depending on the needs, there might also exist an option for producing this by laser cutting and bending metal sheets, but it is probably more difficult for the inner parts of the box.
 3. **Volume:** What if you need 1000 units?
+    Then i would use injection moulding, which is fast and cheap for large quantities, and also has better material properties than 3D printing.
 
 **Extra questions:**
 
 - What structural features add stiffness without thickening the walls?
+    - Few thicker patterns (X on lid f.ex.) add stability without making the entire part thicker.
 - Where would the parting line be on the finished assembly?
+    - We would have a mould for each piece where the parting line for the lid would be on the large flat face
+    - For the main part, parting line would be the outer perimeter on the top rim.
 - What design rules prevent sink marks on the outer surface?
+    - Stable wall thickness.
+    - Draft angles (to allow easy ejection).
 - What are the mounting posts (bosses) for?
+    - They are for securely fastening the two pieces together after filling whatever needs to go inside, and still allowing easy access to the inside of the box.
+    - Some bosses are also for mounting particular items securely inside the box.
 
 ---
 
@@ -34,15 +44,23 @@ Look at each image **before** reading the questions. Identify the process and ma
 **Core questions:**
 
 1. **Default:** What process and material would you use, and why?
+    - 3D print as a default prototyping approach, as it offers quick iterations. I do note that this piece would require quite a bit of support structures in the process. Per default i would go for FDM anyways, as it is faster and cheaper and therefore provides quicker iterations over the design, especially if only needing a single or few items. If the item is to be put under pressure from multiple angles i would consider going for SLS or SLA as they do not have the same amount of challenges with anisotropy.
 2. **Metal:** What if it must be metal?
+    - In this case i would probably go for CNC milling.
 3. **Volume:** What if you need 1000 units?
+    - Injection moulding, just as the item seems to actually be made (see marks from ejection tool and time stamping) due to the low cost-per-unit at scale. This method also produces isotropic items, as opposed to the FDM approach. The lead-time and -cost of producing the mould pays off when we need to produce many copies of the item.
 
 **Extra questions:**
 
 - What is the purpose of the ribbing on the underside?
+    - added stability of the part without making a thick and firm part (saving material without weakening the structure)
 - Why use slots instead of only round holes for some mount points?
+    - I do not know. I imagine that it is useful if you are mounting it on another part which either has some minor variances by production method or by intention (f.ex. different sizes). Or, if it is mounted on the something that may change shape a bit (like materials widening / retracting based on outside temperatures in summer vs winter)
 - What visual clues on the part suggest how it was made?
+    - There are round marks from the ejection.
+    - There is a time-wheel which is also common in injection moulding.
 - Why might tapered (not perfectly vertical) walls be required on the ribs?
+    - This is to avoid creating a pressured chamber when ejecting the item from the mould. draft angles allow space around the item while ejecting such that the item is not warped or otherwise destroyed while being ejected from the mould.
 
 ---
 

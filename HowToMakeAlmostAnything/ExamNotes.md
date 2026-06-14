@@ -307,7 +307,7 @@ Traditional manufacturing was *subtractive*, meaning you start with a larger blo
 | **LOM** *(Laminated Object Manufacturing)* / **SDL** *(Selective Deposition Lamination)* | sheets are succesively glued together on top of each other and cut with a knife / laser | Cheap materials, good for mock-ups | layered surfaces, weakness between layers, waste from cutting layers |
 | **SLS** *(Selectve Laser Sintering)* | A thin layer of powder is distributed on the printing surface and a laser is used to *sinter* the sections that should be melted together into the manufactured part. A new layer is then distributed on top and process is repeated. | loose powder acts as support structure | Grainy surfaces, post processing can be difficult / expensive |
 | **SLA** *(Stereolithography)* | A laser is used to cure resin in a layer-by-layer fashion on a surface that moves upwards. | More sturdy and elastic results, different material options, high quality and resolution | Expensive, need support material |
-| **SLS** *(Fused Deposition Modelled)* | Melting and placing material (PLA, ABS, TPE) in layers on a build surface, building the part line-by-line | Cheap and accessible, good for prototyping | Anisotropy (stronger on one axis than on other ones due to layers), Needs support, layered surfaces |
+| **FDM** *(Fused Deposition Modelled)* | Melting and placing material (PLA, ABS, TPE) in layers on a build surface, building the part line-by-line | Cheap and accessible, good for prototyping | Anisotropy (stronger on one axis than on other ones due to layers), Needs support, layered surfaces |
 
 #### Anisotropy Explained
 
