@@ -44,7 +44,7 @@ Look at each image **before** reading the questions. Identify the process and ma
 **Core questions:**
 
 1. **Default:** What process and material would you use, and why?
-    - 3D print as a default prototyping approach, as it offers quick iterations. I do note that this piece would require quite a bit of support structures in the process. Per default i would go for FDM anyways, as it is faster and cheaper and therefore provides quicker iterations over the design, especially if only needing a single or few items. If the item is to be put under pressure from multiple angles i would consider going for SLS or SLA as they do not have the same amount of challenges with anisotropy.
+    - 3D print as a default prototyping approach, as it offers quick iterations. I do note that this piece would require quite a bit of support structures in the process. Per default i would go for FDM anyways, as it is faster and cheaper in terms of lead time and therefore provides quicker iterations over the design, especially if only needing a single or few items. If the item is to be put under pressure from multiple angles i would consider going for SLS or SLA as they do not have the same amount of challenges with anisotropy.
 2. **Metal:** What if it must be metal?
     - In this case i would probably go for CNC milling.
 3. **Volume:** What if you need 1000 units?
@@ -68,20 +68,23 @@ Look at each image **before** reading the questions. Identify the process and ma
 
 ![](all_parts/QT7ljKqPxkFyJ73htDzGgJUCAy41pgiHoiF5XBkanEvAwF832Qk5lqBWdoQ5dmI5HYUtyFt9LVWYiDM86z1lYBmArLtr7SIzXeLnh_Ns9EGcl6QBsZOtj33BLY-_9Iz5YDTdIYfB_jlXytagLIWYuGw0jvR1apFq1xX-JNGR4Kjtq96zPQ8W8KSDDsRpxUKPnwFzJ3MG.jpg)
 
-**What is it?** Four identical small grey curved shells (~business-card scale) with internal ribs, raised circular posts with holes, edge alignment pins/slots, and faint circular marks on flat interior surfaces.
+**What is it?** Four identical small grey curved shells (~business-card scale) with internal ribs, raised circular posts with holes, edge alignment pins/slots, and faint circular marks on flat interior surfaces. - battery holders for AA batteries.
 
 **Core questions:**
 
 1. **Default:** What process and material would you use, and why?
-2. **Metal:** What if it must be metal?
+    - For minor productions i would go for 3D printing due to the low lead time. Per default i would pick FDM due to availability and price, yet iu recognize that FDM would require support and may suffer from unlucky anisotropy. It may be a better option to use SLS or SLA if available.
 3. **Volume:** What if you need 1000 units?
+    - Then I would go for injection moulding, which also seems to be the production method of these particular items.
 
 **Extra questions:**
 
 - What is the function of the alignment pins and slots?
 - How do raised mounting posts differ from plain through-holes?
 - Why is consistent wall thickness important for this geometry?
+    - It is important in relation to injection moulding to avoid warping of the structures if cooled unevenly.
 - At what production quantity does your chosen process become the most economical?
+    - when we start around 1000 items or more, the lead time of creating the mould pays off by the lower per-unit cost.
 
 ---
 
@@ -90,20 +93,31 @@ Look at each image **before** reading the questions. Identify the process and ma
 ![](all_parts/201904220001.jpg)
 
 **What is it?** Two heavy steel blocks laid open side by side. Each has machined rectangular cavities, four corner alignment pins or matching holes, and brass hose fittings on the edges. Fine machining marks visible on cavity surfaces.
+THIS IS THE INJECTION MOULD!!!
 
 **Core questions:**
 
 1. **Default:** What is this tool used for, what process does it enable, and what material are the *finished parts* made from?
+    - This is an injection mould made of metal, which can be used to produce the pieces (looks like 4 pieces) by injecting molten plastic and cooling it down.
+    - Corner pins ensure the mould is properly aligned, and channels (sprues) between the different parts allow us to fill the entire mould with material at once.
 2. **Metal:** The tool is already metal — what material is it, and why?
+    - Metal mould, probably milled to obtain a single high quality mould for mass production.
 3. **Volume:** What if you need 1000 units?
+    - Injection moulding is a large-scale manufacturing method, I do not see how we would need many more of the mould.
 
 **Extra questions:**
 
 - What is the purpose of the four corner alignment pins?
+    - Make sure the two parts of the mould are aligned properly.
 - What do the brass fittings connect to, and why?
+    - Maybe these are for cooling system around the mould?
 - What design feature must the finished part include so it releases from this tool?
+    - Draft angles so the part slides out easily.
+    - Ejection pins to push the part out of the mould.
 - Where is the parting line on a finished part from this tool?
+    - The perimeter of each mould cavity where these two mould parts join together.
 - Is this a single-cavity or multi-cavity tool?
+    - Multi-cavity, there are 4 different parts.
 
 ---
 
@@ -116,8 +130,9 @@ Look at each image **before** reading the questions. Identify the process and ma
 **Core questions:**
 
 1. **Default:** What process and material would you use, and why?
-2. **Metal:** What if the blocks must be metal?
+    We may do some prototyping initially using 3D printing, but this is a clear case for using injection moulding. These are namely building blocks, and do not have much function individually but only if producing a larger quantity. When making large quantities, it is cheaper at unit-level to use injection moulding and also gives a nicer finish and isotropic final product compared to f.ex. FDM.
 3. **Volume:** What if you need 1000 units (or millions)?
+    - I would still use injection moulding for the same reason as mentioned.
 
 **Extra questions:**
 
