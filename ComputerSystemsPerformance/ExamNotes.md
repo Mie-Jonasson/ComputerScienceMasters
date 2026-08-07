@@ -99,6 +99,99 @@ Is a particular type of experiment aiming to measure which effect each parameter
 
 ## Lecture 2 - Memory Hierarchy & Parallelism
 
+Typical storage hierarchy has *registers* and *caches* closest to the core, *main memory* (som type of RAM) at the edge of the caches & *persistent memory* past the main memory. When moving from the caches closest to the core and outward toward persistent & archival storage, the following holds:
+- Less data locality - data is much further away from the source of processing
+- More access latency - retrieving or placing data takes a longer time as it is further away from the source of processing
+- Less bandwidth
+- More Storage Capacity per cost - the hardware is a cheaper storage option
+
+Note the following interesting considerations:
+- The persistent memory may have a further internal hierarchy, f.ex. by having an SSD next to the main memory and a hard disk at the next level of the hierarchy.
+- Not all memory needs to be local - it can be remotely located and accessed with the extra latency for communication.
+- Data transfer between registers, caches and main memory is managed by hardware whilst moving data to persistent storage is managed with software.
+- When moving data we cannot move single bytes and oddly sized pieces, we always move a certain "page size" or "cache line" which gets smaller on smaller storage devices, meaning if we want a single piece of information from disk to the registers we move a big chunk of data to begin with and then take smaller and smaller pieces as we go towards the smaller more expensive storage.
+
+![](images/latency.png)
+
+| Level | Access latency | Capacity |
+| --- | --- | --- |
+| Registers (inside the core) | 1 cycle / ~0.2 ns | 16×8 B |
+| L1-I / L1-D | 1–2 ns | 32 KB each |
+| L2 | 3–7 ns | 256 KB |
+| L3 / LLC (last-level cache) | 10–40 ns | 8–10 MB |
+| Main memory (DRAM) | 80–140 ns | 16–64 GB |
+| NVMe SSD | 10–40 μs | 1–2 TB |
+| Hard disk | 3–10 ms | 1–2 TB |
+| Archival storage (tape) | ~100 s | 8 TB |
+
+### Locality
+Locality refers to how programs often tend to access the same or similar item close together in time or space. We generally refer to **temporal locality** as locality where recently referenced items are likely to be referenced again and **spatial locality** as locality where nearby addresses of a referenced item are likely to be referenced.
+
+This locality is important and can be exploited on both hardware and software level to create more efficient programmes.
+The goal is to optimise for locality in the cores, such that latency of fetching data from lower levels is reduced! But there are a lot of small details that are important to be aware of, such as what happens when there is *no space left in the cache* - how is data replaced, to still ensure f.ex. temporal localities are sustained. Also, how to handle *replacement of data* is relevant - is it an immediate effect or on replacement it is written back to the lower level cache?
+
+![](images/locality_example.png)
+
+### RAM (Main Memory & Caches)
+Random-Access Memory (RAM) is memory that provides *almost constant random-access latency* wherever data is. This is fast memory, but it is *volatile* and will not sustain between power down and power up.
+
+A fun quirk is the **sequential access is slightly faster** than random access in RAM, because the hardware often **prefetches adjacent blocks**, such that the next-coming data items are quickly obtained from prefetched data in the case that they were adjacent in memory.
+There are two main sub-divisions of RAM, namely:
+- *DRAM* (Dynamic RAM) - common for Main Memory - requires refresh even when the power is on!
+- *SRAM* (Static RAM) - common for caches / registers - more energy-efficient AND expensive!
+
+![](images/caches.png)
+
+### CPUs
+CPU stands for Central Processing Unit and is the part of the computer that is performing instructions using data.
+We used to have single-core CPUs, but nowadays almost all systems are **multi-core** (i.e. multiple CPU cores in a single processor) or even **multi-socket** (i.e. multiple processor units with each multiple cores).
+This does not mean that CPUs have gotten any faster or complex - they are actually pretty similar - but just gives extra power for processing in parallel.
+
+![](images/moore.png)
+
+#### Parallelism
+Parallelism is the way we are gaining more efficient computing at this point. One such type is **implicit parallelism** which utilizes "downtime" when there is access latency to perform other tasks in the meantime (just like someone with ADHD who is utilizing it as a skill). Note that implicit parallelism happens within a single core CPU.
+
+![](images/subscalar_cpu.png)
+
+**RISC** Instruction stages:
+- **fetch** - get the instruction from the cache
+- **decode** - understand instruction and required input data
+- **execute** - perform teh operation
+- **memory** - access memory if needed
+- **write** - write-back results into registers
+
+![](images/superscalar_cpu.png)
+
+The other main type is **explicit parallelism**, where we run threads on different cores. This only utilizes the system when specified to do so, meaning it requires hard work to leverage it well. This is where we introduce *multi-core*, *multi-socket* and *distributed systems* (i.e. multiple different machines even).
+The main challenge in explicit parallelism is **synchronization** of threads when accessing the *system state* and *data*, because we want the threads to produce a desired sequentially consistent result even as they are working in parallel.
+
+Here is an overview of the memory hierarchy of some of the mentioned types of processor systems; note particularly where the shared data is located compared to the core in terms of data locality:
+
+![](images/multicore.png)
+
+![](images/multisocket.png)
+
+When working with *multi-socket* systems we may utilize **NUMA** (Non-Uniform Memory Access) to access the Main Memory of the other socket (which corresponds to a remote Main Memory, and therefore has a longer access latency).
+NUMA impacts the multi-socket situation such that there are the following latencies between threads:
+- Within-core: 10 cycles
+- Within-socket: 50 cycles
+- Other-socket: 500 cycles
+
+### Terminology
+- **OoO Execution** - Out-of-Order Execution - refers to how instructions may be executed in an alternate order than specified given that the instructions are unrelated (i.e. they are not dependent on each other)
+- **SIMD** - single-instruction multiple-data - an implicit data parallelism where the same instruction is a applied to multiple data points at a time, achieving vector operations easily. This kind of parallelism needs to be specified in software though.
+- **SMT** / **Hyperthreading** - Simultaneous Multithreading - Has more register space and divides it between threads that then have each their own context window, and the threads are swapped in each CPU cycle. This may struggle if done wrong, as it puts extra pressure on caches and other shared resources.
+- **TLB** - TODO
+- **Pagesize** - TODO
+
+### Useful Commands:
+- Memory hierarchy topology: `lstopo --output-format svg -v --no-io > cpu.svg`
+- CPU topology: `lscpu`
+- Checking Pagesize: `cat /proc/meminfo`
+- Core-by-Core Info: `cat /proc/cpuinfo`
+- Core-by-Core Info + TLB: `cpuid`
+
 ## Lecture 3 - Profiling
 
 ## Lecture 4 - Queueing Theory, Common Mistakes, Plotting Graphs
