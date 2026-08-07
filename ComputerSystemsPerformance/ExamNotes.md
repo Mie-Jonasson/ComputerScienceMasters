@@ -40,6 +40,24 @@ Don't hesitate to ask if you have any questions.
 
 # Project Walk-through
 
+## Project 1
+
+### Analysis of paper
+
+- **goal**: investigating how existing data partitioning mechanisms behave on multicore hardware. do old findings still hold?
+- **system**:
+    - *application-level*: 4 partitioning mechanisms
+    - *OS-level*: general purpose OS
+    - *hardware-level*: multicore hardware
+- **metrics**: tuples per second (throughput), data TLB misses, data cache misses, metadata overhead
+- **parameters (k)**: page size, hash bits (or #partitions), #threads,
+- **levels (l)**:
+    - *page size*: 8KB, 64KB, 4MB, 256MB
+    - *hash bits*: 1 … 18, #threads: 1, 2, 4, 8, 16, 32
+- **type of experiment**: measurements (main), analytical approach to cache/tlb misses
+- **workloads**: with uniform data (8byte keys – 8byte payloads), 2 tuples
+- **experimental runs**: 8 trials
+
 # Curriculum Walk-through
 
 ## Lecture 1 - Performance Analysis & Experimental Design
