@@ -10,3 +10,9 @@
 [submodule "DevOps/MiniTwit"]
 	path = DevOps/MiniTwit
 	url = https://github.com/TienCamLy/MiniTwit.git
+[submodule "PracticalConcurrentAndParallelProgramming/PCPP_group_"]
+	path = PracticalConcurrentAndParallelProgramming/PCPP_group_
+	url = https://github.itu.dk/krpa/PCPP_group_.git
+[submodule "PracticalConcurrentAndParallelProgramming/PCPP2025-Public"]
+	path = PracticalConcurrentAndParallelProgramming/PCPP2025-Public
+	url = https://github.itu.dk/jst/PCPP2025-Public.git
