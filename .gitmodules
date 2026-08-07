@@ -4,3 +4,9 @@
 [submodule "AlgorithmDesign/Algorithm-Design"]
 	path = AlgorithmDesign/Algorithm-Design
 	url = https://github.itu.dk/miejo/Algorithm-Design.git
+[submodule "DevOps/ITU-MiniTwit"]
+	path = DevOps/ITU-MiniTwit
+	url = https://github.com/Mie-Jonasson/ITU-MiniTwit.git
+[submodule "DevOps/MiniTwit"]
+	path = DevOps/MiniTwit
+	url = https://github.com/TienCamLy/MiniTwit.git
