@@ -293,6 +293,61 @@ Scalability is an interesting metric that may take different shapes. It all depe
 
 ## Lecture 5 - Operating Systems
 
+Running things on hardware can be tough - the OS acts as the middle layer, ensuring resources are shared between all running processes. Resources to be shared are CPU, Memory and i/o devices.
+
+![](images/os_ui.png)
+
+Users are not interacting directly with the hardware, but simply make requests to for example read/write a file, allocating memory, sending network packets etc. This is the **system call interface** which separates the user from the kernel space.
+
+The **process management** gives the illusion of an infinite number of cores. Per default the processor will allocate threads on cores to a process when the process is not asking for a specific core. The OS handles the job of assigning processes on cores.
+There is only a certain number of threads that can be active at a time, namely the number of logical cores / hardware contexts - for hyper-threading cores this is usually 2 per CPU core. If we have more threads than this, they will share a context window in the caches and possibly interrupt each other.
+
+The **memory management** gives the illusion of infinite memory. I.e. each process running from the user space through the OS has its own virtual memory set with its own memory address space. The OS will switch your process memory back and forth as needed using more memory than physically available by swapping it to the disk. If things are swapped back and forth too much, it is not good and is called *thrashing*.
+
+![](images/mappings.png)
+
+![](images/filesystem.png)
+
+![](images/filesystem_2.png)
+
+- *file blocks* - has data stored in files. If block size is too large, it will cause small files to waste space. If block size is too small, it will cause too many block addresses to keep track of. Most common is 4KB.
+- *inode* - has metadata about files and where to find them.
+- *inode table* - maps the inode number to the inode in storage.
+- *bitmap* - an overview of which blocks are free - 0 / 1 for each file block.
+- *super block* - has metadata about the entire file system (size of bitmap, number of each component, offsets etc.)
+- *boot block* - starts / boots the OS
+
+![](images/network_stack.png)
+
+The **device drivers** are drivers to control hardware components - it is OS-dependent and device-hardware-dependent. Allows controlling other hardware such as a mouse, printer, keyboard etc.
+
+The **processor-dependent code** is the translator between low-level machine code and the specific processor instruction set. Some processors support some hardware speed-ups while others do not.
+
+### Microkernel
+
+![](images/microkernel.png)
+![](images/microkernel_2.png)
+
+### Traditional Database Systems
+
+OS and DB have many things in common and solve many similar problems - but they differ in DB being very application specific while OS is more general and cannot be as controlled.
+
+![](images/database.png)
+
+- **admission control** - prevents receiving too many requests at the same time
+- **dispatch and scheduling** - after receiving a client request, decides how to execute on which threads etc.
+- **catalog** - management of metadata
+- **memory manager** - keeps track of all available memory
+- **monitoring and other utilities**
+- **replication and loading services**
+- **client communication layer**
+- **query parsing, optimization, & execution**
+- **relational operators**
+- **access methods**
+- **locking, latching and logging**
+- **buffer manager** - keeps track of data read from disk into main memory
+- **disk space manager** - keeps track of data in disk storage
+
 ## Lecture 6 - Benchmarking
 
 ## Lecture 7 - Storage Devices
