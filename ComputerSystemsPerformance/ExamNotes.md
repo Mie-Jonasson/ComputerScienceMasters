@@ -244,8 +244,52 @@ Perf is a commandline performance measurement tool. Here are some useful command
 Visualizing with FlameGraph:
 ![](images/flamegraph.png)
 
-
 ## Lecture 4 - Queueing Theory, Common Mistakes, Plotting Graphs
+
+### Common Mistakes
+- common mistakes when defining **goals**
+    - *unclear / under-specified* problem or goal
+    - *biased goals*, in danger of confirmation biases i.e. only finding proofs confirming the desired state.
+    - *analysis without understanding* the problem underlying what is investigated
+- common mistakes when defining **methodology**
+    - *unsystematic approach*, i.e. arbitrary choice of parameters and not thinking through the experiments
+    - *incorrect metrics*, i.e. something that is not comparable or does not measure what we are interested in analyzing
+    - *unrepresentative workloads*, i.e. a workload that does not represent the real-life use case or intended application
+    - *wrong evaluation technique*, i.e. often pick most comfortable setup
+- common mistakes in terms of **completeness**
+    - *overlook important parameters*, i.e. being careful with your setup such that it does not have any unintended behavior making it unsuitable for what is being tested
+    - *ignore significant factors*, i.e. making sure to experiment with all relevant parameters
+    - *inappropriate level of detail*, i.e. running too many or too few experiments to say anything concrete about the goal.
+- common mistakes in the **analysis**
+    - *no analysis*, i.e. simply presenting results without reasoning about them and finding trends
+    - *errorneous analysis*, i.e. looking at the wrong things, averaging wrong things, false numbers, representativeness of reported numbers
+    - *no sensitivity analysis*, i.e. not experimenting with the right granularity of levels to see the details
+    - *too complex analysis*, i.e. working with a too complex scenario instead of starting simple
+    - *ignoring errors in input*, i.e. wrong interpretation of parameters, equaling things that are not actually equal
+    - *improper treatment of outliers*, i.e. distinguishing between errors and natural phenomenons in the measurements; what is because of noise and other things that could have been avoided
+    - *ignoring variability*, i.e. ignoring the variance seen in the outputs across runs when writing the analysis
+- common mistakes with **presentation**
+    - *assuming no change*, i.e. assuming results hold on other non-comparable or future systems
+    - *improper presentation of results*, i.e. use the right tools and honest communication when presenting results, such that they are conveyed to the receiver
+    - *ignoring social aspects*, i.e. communication skills
+    - *omitting assumptions and limitations*, i.e. not communicating them clearly, leading to misleading results and analysis
+- common mistakes with **graphs**
+    - missing *units* and *axis titles* on your axes
+    - let 1 graph tell a *single story* to not mix unrelated signals! Also make sure to *avoid crowded* graphs with too many items at the same time.
+    - *Starting the axis at non-zero* in a misleading way without stating it clearly
+    - *Not having a shared y-axis* when comparing graphs
+    - Make sure the *graph type* fits what is being measured and be consistent
+    - Make sure text is sized properly
+    - Make sure to use the space available optimally to show best detail
+    - Black-and-white printing friendliness
+
+### Queueing Theory
+
+![](images/queues.png)
+
+### Scalability
+
+Scalability is an interesting metric that may take different shapes. It all depends on which scalability we are interested in measuring - in terms of cores, dataset size, servers .... ?
 
 ## Lecture 5 - Operating Systems
 
