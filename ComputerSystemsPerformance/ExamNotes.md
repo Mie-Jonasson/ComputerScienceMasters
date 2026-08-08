@@ -211,6 +211,39 @@ NUMA impacts the multi-socket situation such that there are the following latenc
 - Core-by-Core Info + TLB: `cpuid`
 
 ## Lecture 3 - Profiling
+When programmes run poorly, how do we fix it? We could give up or try things blindly?
+Or! we can make measurements to find the actual problem and tracing it to the source. Profiling is about finding **bottlenecks** in code to explain why a programme runs with the speed it does.
+A bottleneck is the *limiting factor/component for the capacity/throughput* of a software system. Fixing bottlenecks is a continuous journey - when you fix one bottleneck, the next bottleneck will reveal itself.
+Here are some common examples:
+- Coarse- vs. fine-grained locking for synchronization
+- I/O data latency on access - can be improved by optimizing caching and data locality
+- unnecessary duplicate work, were multiple threads perform the same procedure
+
+We usually care about bottlenecks for one of the following reasons:
+- Our system cannot satisfy the current workload. Can be solved by throwing more hardware at it or fixing the bottlenecks to run more efficiently long-term.
+- Want to cut down costs by running the existing workload on less hardware.
+
+We can find bottleneck by either using existing tooling (Intel VTune, gprof dtrace, perf) or by making our own custom measurements of what we are interested in investigating.
+
+### Examples
+![](images/bottleneck_1.png)
+![](images/bottleneck_2.png)
+
+Often business priorities, ease of use, speed and other factors impact real-life production cycles, and thus a lot of obvious bottle necks exist in real life systems.
+
+### perf
+Perf is a commandline performance measurement tool. Here are some useful commands:
+- `perf list` - list all measureable events that can be monitored
+- `perf stat ls` - get a stat over running the command 'ls' 
+    - flag `-d`
+    - flag `-e event_1,event_2` measure specific types of events instead of defaults
+- `perf record <command>`- makes a performance recording over running the command
+    - flag `-g` adds a call graph
+- `perf report` - produces the report over the recording
+
+Visualizing with FlameGraph:
+![](images/flamegraph.png)
+
 
 ## Lecture 4 - Queueing Theory, Common Mistakes, Plotting Graphs
 
@@ -231,3 +264,9 @@ NUMA impacts the multi-socket situation such that there are the following latenc
 ## Lecture 12 - Snowflake Guest Lecture
 
 # Exercise Walkthrough
+
+## Week 1 - getting started
+
+## Week 2 - Core Affinity
+
+## Week 3 - Using Perf to measure Fibonacci & core affinity
