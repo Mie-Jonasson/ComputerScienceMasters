@@ -455,7 +455,48 @@ Some takeaways:
 - break your system before teh customer does
 - there will be queueing - you need to decide where!
 
-## Lecture 9 - Hardware Acceleration & GPUs
+## Lecture 9 - Hardware Acceleration & CUDA
+**Hardware Acceleration** is referring to the use of *specialized computer hardware* that perform some tasks more efficiently compared to general purpose CPUs.
+It is an active research topic how these specialized components are best managed - directly managing it or managing it through the OS.
+
+**CPU** (Central Processing Unit) is the general purpose processor and has two subtypes:
+- *CISC* (Complete Instruction Set Computing) - this is the type that dominates laptops 7 desktops and servers. Examples are Intel Core i7, Intel Xeon, AMD Ryzen 7, AMD Opteron.
+- *RISC* (Reduced Instruction Set Computing) - this has a lighter core design and dominates embedded systems. Also competes in server market today.
+
+**GPU** (Graphics Processing Unit) is a specialized processor, that is really good at rendering graphics (read: images). It is *based on SIMT* (Single Instruction Multiple Thread).
+A subset is *GPGPU* (General-Purpose GPU) which are used to perform tasks traditionally solved by CPUs, such as sorting. Most devices these days will have an integrated GPU in them to accelerate graphics rendering & AI.
+NVIDIA dominates the market, followed by AMD.
+GPUs (and CPUs with many cores) typically utilize *high bandwidth memory* (HBM) which consists of DRAM stacked in 3D - this is required to support the high level of parallelism which requires a higher bandwidth!
+
+![](images/gpu_memory.png)
+
+**FPGA** (Field Programmable Gate Array) is not specialized by default, but can be programmed to be specialized. Initially used for telecommunications and networking, today it is used in many data centers across all layers.
+*Altera* and *Xilinx* are the most common ones.
+
+![](images/fpga.png)
+
+**ASIC** (Application-Specific Integrated Circuit) is a custom specialized chip, f.ex. for crypto-mining or voice recording. It is programmed in *HDL* (Hardware Description Language) and is super fast and energy efficient, but requires large volume to be cost-effective.
+
+| Processor | Shorthand Name | Good For |
+|-----------|----------------|----------|
+| Central Processing Unit | CPU | Latency-oriented tasks, single-core performance, general-purpose |
+| Graphics Processing Unit | GPU | Throughput-oriented and "embarassingly parallel" tasks (graphics, matrices, sorting) |
+| Field Programmable Gate Array | FPGA | Specialized efficient and cheaper than custom chips |
+| Application-Specific Integrated Circuit | ASIC | Specialized to single task and runs super fats and energy efficient |
+
+Additionally, even more specialized processors exist in the realm of machine learning, such as Google's **TPU** (Tensor Processing Unit) or AWS' **Trainium** and **Inferentium**, all three specialized in deep learning in the cloud.
+
+### CUDA
+Compute Unified Device Architecture. CUDA C/C++ is based on standard C/C++. Programming Guide [here](https://docs.nvidia.com/cuda/cuda-c-programming-guide/).
+Code examples run during the lecture are found [here](https://github.com/ehsanyousefzadehasl/CUDA_for_ITU).
+
+When talking about **Heterogenous Computing** we are working with setup of a CPU that is the *host* and GPU that is the *device*. Anything that is run sequentially is run on the CPU host, while anything that runs in parallel is passed of to the GPU device. Overall the process has teh following steps:
+1. copy input data from CPU to GPU
+2. copy GPU programme and run it locally on the device
+3. copy results from GPU to CPU
+
+![](images/thread_shared_memory.png)
+
 
 ## Lecture 10 - AI Performance
 
