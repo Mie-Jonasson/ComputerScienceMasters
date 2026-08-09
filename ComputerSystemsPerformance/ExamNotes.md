@@ -433,6 +433,27 @@ the benefits of fast storage wasted by
 **Computational Storage** is when computation is done on the IO path, i.e. the storage device itself (disk) has ram and compute to perform computations right at the data source.
 
 ## Lecture 8 - Oracle Guest Lecture
+Bjørn Kisbye Engsig from Oracle came and told a story based on an anecdote of supermarkets packed with customers and all lanes open - but queues are only getting longer due to a failed credit card payment system.
+
+He recommends reading computer science classics:
+- The art of computer programming, by Knuth
+- An introduction to database systems, by C.J. Date
+- The Lord of The Rings, by J.R. Tolkien
+
+He highlights looking at the entire system in order to understand the underlying performance - what does each layer in a system perform and how long does it take? what is the throughput we can use? how much is communicated over networks and how latent is the communication?
+
+He highlights that making *the database do the work* is almost always the right decision, even though you are not a database developer, this will ensure that things are executed as close to the data as possible and avoids network latencies.
+
+![](images/oracle.png)
+
+Using a queue - an ACTUAL queue - is a very good idea, because it allows you to manage when things are "let in" to your system such that the system remains accessible and performance once you are let in is almost guaranteed.
+Therefore, the queue needs to be put as far out in the system as possible, such that end user are not let in before resources are available. -> and these queues need to be placed between all layer to guarantee smooth movement through systems.
+
+Some takeaways:
+- Always cache data when possible
+- Only add components when actually needed - each component in the stack adds to the response time
+- break your system before teh customer does
+- there will be queueing - you need to decide where!
 
 ## Lecture 9 - Hardware Acceleration & GPUs
 
