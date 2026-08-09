@@ -587,6 +587,38 @@ Collocation is relevant, because why not run multiple jobs while the the GPU is 
 
 ## Lecture 11 - Cloud
 
+**cloud computing** is a model that replaces traditional enterprise computing systems with one that is layered on top of warehouse-scale computers.
+
+Old-school datacenters had a number of applications each running on dedicated hardware and get managed separately. Warehouse-scale computers have fewer large-scale applications that share resources and everything is managed as a whole.
+Cloud computing is built from:
+- **servers** - low-end and general purpose that are connected and specialized processors as relevant
+- **storage** - hard disks and SSDs 
+- **network** - intra-rack and inter-rack
+- **buildings and infrastructure** - power supplies, cooling solution and other practical physical concerns.
+
+![](images/rack.png)
+
+![](images/disaggregate_storage.png)
+
+In traditional systems, a rule-of-thumb is that data that is reused *at least every 5 minutes* should be cached. what about in the cloud? In the cloud it is if you access *at least every half an hour*!
+
+Cloud computing in big corporations is often built in-house and specialized for the use cases that need to run on the infrastructure. F.ex. Google stack:
+
+![](images/google_stack.png)
+
+![](images/berkely_stack.png)
+
+Specialization doesn't just end there - laptops such as Macbook M1/M2/M3 cores have specialized in power efficiency for some cores yet still retain more compute-intensive cores for other applications and also has a GPU with 10 cores built in.
+General purpose does not mean no specialization, it just means specialization limited to what is generally relevant for the device.
+
+Not on types of parallelism:
+
+![](images/types_of_parallelism.png)
+
+and at last a short comparison between HPC and CLOUD goals:
+
+![](images/hpc_vs_cloud.png)
+
 ## Lecture 12 - Snowflake Guest Lecture
 
 # Exercise Walkthrough
