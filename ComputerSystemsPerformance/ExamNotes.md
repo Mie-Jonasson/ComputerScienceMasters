@@ -497,8 +497,93 @@ When talking about **Heterogenous Computing** we are working with setup of a CPU
 
 ![](images/thread_shared_memory.png)
 
-
 ## Lecture 10 - AI Performance
+We train models (deep learning) to optimize for a certain task, allowing it to learn from its mistakes by performing stochastic gradient descent. We train in steps, and since we have millions of steps we throw GPUs at it.
+
+Often when working within the realms of AI we only measure what the model has learned but not what it takes to learn it on the hardware level. I.e. utilization of processors, power used etc.
+F.ex. a GPU might sit idle when:
+- The disk is slow
+- The CPU is preparing data
+- The batch is too small for the number of cores
+- Data is ping-ponging between CPU and GPU memory
+
+A lot of data scientists use MLFlow to track experiments. It has a tracking server storing experiments, python client the you use in your ML scripts and web UI used to explore the experiments. Terminology:
+- *experiment* - a named project
+- *run* - one training job inside an experiment
+- *param* - a fixed hyper parameter
+- *metric* - a value logged over time
+- *artifact* - a file with some type of info
+- *tag* - free-form string for filtering
+
+Use: `mlflow.enable_system_metrics_logging()` to also track CPU utilization, memory, disk I/O, power draw, temperature.
+
+### RadT
+Another additional option is **radT** (resource-aware data science tracker) which is a thin layer on top of MLFlow and captures hardware metrics throughout a run.
+
+![](images/radt.png)
+
+![](images/radt_listener.png)
+
+```bash
+# Install the python client
+pip install radt
+
+# Start the server stack
+git clone https://github.com/itu-rad/radt.git
+cd radt
+docker compose up
+
+# Setting Environment Variables
+export MLFLOW_TRACKING_URI=http://localhost/mlflow/
+export MLFLOW_TRACKING_USERNAME=radt
+export MLFLOW_TRACKING_PASSWORD=radt_password
+
+# Running with radt
+# before
+python train.py --batch-size 256 --lr 0.01
+# after
+radt train.py --batch-size 256 --lr 0.01
+```
+
+RadT can also be defined from a csv or YAML configuration and run using this syntax:
+```csv
+Experiment,Workload,Name,Status,Run,Devices,Collocation,File,Listeners,Params
+0,1,cifar resnet18,,,0,-,train.py,smi+top,--batch-size 128 --lr 0.01
+
+================================================================================
+
+Experiment,Workload,Name,Status,Run,Devices,Collocation,File,Listeners,Params
+0,1,solo,,,0,-,train.py,smi+dcgmi,--batch-size 128
+0,2,shared-a,,,0,-,train.py,smi+dcgmi,--batch-size 128
+0,2,shared-b,,,0,-,train.py,smi+dcgmi,--batch-size 128
+0,3,mps-a,,,0,mps,train.py,smi+dcgmi,--batch-size 128
+0,3,mps-b,,,0,mps,train.py,smi+dcgmi,--batch-size 128
+```
+```bash
+radt experiment_single.csv
+```
+
+or this syntax:
+```yaml
+name: resnet18-batchsize-lr
+experiment: 0
+collocation: "-"
+devices: 0
+listeners: smi+top
+file: train.py
+method: grid # this defines "try all combinations of parameters"
+parameters:
+  batch-size: {values: [32, 64, 128, 256]}
+  learning-rate: {values: [0.001, 0.01, 0.1]}
+```
+```bash
+radt resnet18-batchsize-lr.yaml
+```
+
+### Collocation
+Collocation is relevant, because why not run multiple jobs while the the GPU is waiting due to data or communication latency? There are three regimes on NVIDIA processors:
+
+![](images/collocation_regime.png)
 
 ## Lecture 11 - Cloud
 
