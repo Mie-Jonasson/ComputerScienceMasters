@@ -350,6 +350,53 @@ OS and DB have many things in common and solve many similar problems - but they 
 
 ## Lecture 6 - Benchmarking
 
+A **workload** is a set of operations or requests executed on a system.
+A **benchmark** is one or more workloads used to assess a system's performance against other systems.
+
+### Synthetic vs Real workloads
+
+| Aspect | Synthetic | Real |
+| --- | --- | --- |
+| Representativeness | Mimics real behavior; may be uniform or skewed, not fully representative | Actual production behavior; you know exactly what ran |
+| Ease of use | Easy to develop/use; independent of customer; can simplify features | Harder to obtain/deploy; privacy scrubbing; may need a lot of storage |
+| Controllability | Easy to tune parameters and stress specific behaviors | Harder sensitivity analysis; only covers paths the workload hits |
+| Bottom line | Both have value | Both have value |
+
+### Types of benchmarks
+Whenever we create a system, we tend to desire to evaluate the performance against other systems. If we do not have these other systems, that may be difficult!
+
+**Micro-Benchmarks** are used to evaluate specific lower-level system operations, e.g., memory latency, reading from disk, syscall cost …
+- *pros*
+    - focused on a specific system component
+    - controllable workload
+    - helpful for detecting bottlenecks
+    - easy to run
+- *cons*
+    - ignores interactions with teh rest of the system
+    - may not be representative / realistic
+
+**Macro-Benchmarks** are used to evaluate higher-level system behavior. 
+- *pros*
+    - realistic evaluation of behavior
+    - reflect real workloads and use cases
+- *cons*
+    - performance issue causes not imminent
+    - may have confidential information
+    - harder to scale & control
+
+When finding a benchmark, find commonly used benchmarking workloads in related works such that results are comparable. If the use case is novel or different, using a benchmark and modifying it slightly is also an option.
+
+### Standard benchmarks
+- *processors* - SPEC (Standard Performance Evaluation Corporation)
+- *data management systems* - TPC (Transaction Processing Performance Council), YCSB (Yahoo! Cloud Serving Benchmark)
+- *machine learning systems* - MLCommons, TPCx-AI
+- *storage* - fio
+
+SPEC and TPC are non-profit standardization organizations, and are therefore good defaults for fair comparisons between companies when talking about hardware and database systems respectively.
+Developing benchmarks for common use cases is a huge contribution to the community!
+
+BUT! **Benchmarks can be gamed** by configuration - hardwired things, systems design to fit the benchmark, unfair configuration. We also need to make sure what we report; bugs may make code run super fast which we may be oblivious to if we do not check the validity of the results.
+
 ## Lecture 7 - Storage Devices
 
 ## Lecture 8 - Oracle Guest Lecture

@@ -1,0 +1,10 @@
+Progress presentations for project#1.
+Presentation time: 7 min.
+Feedback time: 7 min.
+
+For your presentations, please include:
+- Which algorithm are you working with?
+- What language did you go with, and are there any special or specific implementation choices that you have made?
+- What is your experimental setup?
+- What are your current results?
+- Concluding remarks.
