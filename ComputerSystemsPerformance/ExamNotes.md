@@ -28,7 +28,7 @@ Don't hesitate to ask if you have any questions.
 # To-Dos
 
 - [ ] Print Project Reports
-- [ ] Read-through and highlight relevant parts of the project reports (f.ex. all figures and conclusions)
+- [x] Read-through and highlight relevant parts of the project reports (f.ex. all figures and conclusions)
 - [ ] Write down main points and takeaways from projects
 - [ ] Get handwritten notes from the Ipad and copy them into this repo
 - [x] Go through slides and write down takeaways, terminology etc. in an easy overview
