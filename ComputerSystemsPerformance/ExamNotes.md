@@ -397,7 +397,40 @@ Developing benchmarks for common use cases is a huge contribution to the communi
 
 BUT! **Benchmarks can be gamed** by configuration - hardwired things, systems design to fit the benchmark, unfair configuration. We also need to make sure what we report; bugs may make code run super fast which we may be oblivious to if we do not check the validity of the results.
 
-## Lecture 7 - Storage Devices
+## Lecture 7 - Persistent Storage Devices
+**Tape** is *cheap* way of storing data, but only allows *sequential* access the data. Today, this is only used for archival storage.
+
+**Hard disk** have many disks with a number of *tracks* on each disks. Disks are placed on top of each other, and tracks at the same diameter make a *cylinder*. A track is composed of adjacent *blocks* that are the unit of read/write operations. Blocks are composed of *sectors* which are fixed size.
+When accessing data on a hard disk, the data locality is crucial to the access latency. The *I/O latency* for hard disks is = seek_time + rotational_delay + transfer time = ~1-20 ms + ~0-10 ms + ~<1ms for 4KB. I.e. the seek time (move disk arm to track) and rotational delay (find block on track) are the main contributors to the latency. This is also the reason that *sequential access is much faster than random access* on hard disks. But we can have sequential in many ways on hard disks:
+- Adjacent block on the same track
+- Block on the same cylinder (short rotational delay)
+- Block on adjacent cylinder (short seek time to switch track)
+
+**RAID** (Redundant Array of Independent Disks) - several disks gives the illusion of a single large disk. Increases performance and reliability because the disks may work independently.
+Performance and reliability rely on *data striping* (data is partitioned and distributed on the disks) and *redundancy* (duplicating data on multiple disks to avoid accidental data loss)
+
+**Persistent Memory** - *NVM* (Non-Volatile Memory), *SCM* (Storage Class Memory), *NVRAM* (Non-Volatile RAM) - faster than hard disks / SSDs and slower then Main memory. It is persistent and *byte-addressable* and has *no significant difference between random and sequential access*. Was commercialized by Intel but discontinued for economical reasons few years later.
+
+**SSD** (Solid State Disk) has evolved a lot while other types of storage remained similar in performance over the years, hereunder better pricing and capacity. Data management is therefore shifting from in-memory optimized to SSD optimized.
+
+![](images/ssd.png)
+
+![](images/ssd_geometry.png)
+
+- cannot *override* a unit before it is erased
+- unused blocks are handled by *garbage collection* such that they can be reused
+- *write amplification* = data is physically written
+- Writing data may trigger garbage collection
+- *wear leveling* - some cells / blocks die over time
+- read/write *latencies* are unpredictable if a request gets stuck in garbage collection
+
+disks have *computational units* inside them handling communication and logical mapping of addresses to their physical location, as well as handling wear leveling and caching. SSDs are more complex than Hard Disks in the part of the unit due to the *flash translation layer*
+the benefits of fast storage wasted by
+- data movement overheads (from device to host & across network)
+- black-box generic flash-translation layers
+- multitude of software layers
+
+**Computational Storage** is when computation is done on the IO path, i.e. the storage device itself (disk) has ram and compute to perform computations right at the data source.
 
 ## Lecture 8 - Oracle Guest Lecture
 
