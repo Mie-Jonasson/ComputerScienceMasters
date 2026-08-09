@@ -31,9 +31,8 @@ Don't hesitate to ask if you have any questions.
 - [ ] Read-through and highlight relevant parts of the project reports (f.ex. all figures and conclusions)
 - [ ] Write down main points and takeaways from projects
 - [ ] Get handwritten notes from the Ipad and copy them into this repo
-- [ ] Go through slides and write down takeaways, terminology etc. in an easy overview
-- [ ] Go through exercises and write down outcomes and discussions
-- [ ] Write up a terminology overview used in projects, exercises and curriculum
+- [x] Go through slides and write down takeaways, terminology etc. in an easy overview
+- [x] Write up a terminology overview used in projects, exercises and curriculum
 - [ ] Rehearse talking out loud about the projects
 - [ ] Rehearse talking out loud about course curriculum
 - [ ] Unexplained / Weak results; what would we do different?
