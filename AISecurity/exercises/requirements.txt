@@ -1,7 +1,9 @@
 cleverhans
-torch
 torchvision
-matplotlib
-numpy
-easydict
 datasets
+EasyDict
+scikit-learn
+torch
+matplotlib
+tqdm 
+ipywidgets
