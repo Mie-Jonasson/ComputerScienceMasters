@@ -35,3 +35,7 @@ DataScienceInProduction/**/*.csv
 elastic_pw.txt
 *.crt
 DataScienceInProduction/exam_package/**
+
+# AI Security
+*.vclo
+AISecurity/lab_2_verification/data/
