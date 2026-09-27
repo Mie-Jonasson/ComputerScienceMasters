@@ -27,3 +27,15 @@ run-mnist:
 	--dataset trainingImages:tutorial/chapter-3/chapter-code/t2-images.idx \
 	--dataset trainingLabels:tutorial/chapter-3/chapter-code/t2-labels.idx \
 	--solver Marabou
+
+train-fashion-mnist:
+	python 04_fashion_mnist.py
+
+verify-fashion-mnist:
+	vehicle verify \
+		--specification tutorial/chapter-3/exercises/FMNIST/fashionRobustness-solution.vcl \
+		--network classifier:onnx_models/vanilla_classifier.onnx \
+		--parameter epsilon:0.005 \
+		--dataset trainingImages:tutorial/chapter-3/exercises/FMNIST/idxdata/0-49Images.idx \
+		--dataset trainingLabels:tutorial/chapter-3/exercises/FMNIST/idxdata/0-49Labels.idx \
+		--solver Marabou
