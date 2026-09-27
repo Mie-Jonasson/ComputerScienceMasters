@@ -51,3 +51,6 @@ verify-fashion-mnist-robust:
 		--dataset trainingImages:tutorial/chapter-3/exercises/FMNIST/idxdata/0-49Images.idx \
 		--dataset trainingLabels:tutorial/chapter-3/exercises/FMNIST/idxdata/0-49Labels.idx \
 		--solver Marabou
+
+load-wine-data:
+	python 05_load_wine_data.py
