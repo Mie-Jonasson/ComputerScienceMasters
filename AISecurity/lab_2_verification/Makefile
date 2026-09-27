@@ -31,6 +31,9 @@ run-mnist:
 train-fashion-mnist:
 	python 04_fashion_mnist.py
 
+train-fashion-mnist-robust:
+	python 04_fashion_mnist.py --robust --specification tutorial/chapter-4/chapter-code/fmnist-robustness.vcl
+
 verify-fashion-mnist:
 	vehicle verify \
 		--specification tutorial/chapter-3/exercises/FMNIST/fashionRobustness-solution.vcl \
