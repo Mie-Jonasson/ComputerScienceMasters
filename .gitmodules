@@ -16,3 +16,7 @@
 [submodule "PracticalConcurrentAndParallelProgramming/PCPP2025-Public"]
 	path = PracticalConcurrentAndParallelProgramming/PCPP2025-Public
 	url = https://github.itu.dk/jst/PCPP2025-Public.git
+[submodule "AISecurity/lab_2_verification/tutorial"]
+	path = AISecurity/lab_2_verification/tutorial
+	url = https://github.com/vehicle-lang/tutorial.git
+	branch = exercises
