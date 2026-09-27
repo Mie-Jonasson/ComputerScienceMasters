@@ -1,0 +1,308 @@
+python 05_load_wine_data.py
+First 5 records:    fixed acidity  volatile acidity  citric acid  ...  alcohol  quality  Id
+0            7.4              0.70         0.00  ...      9.4        5   0
+1            7.8              0.88         0.00  ...      9.8        5   1
+2            7.8              0.76         0.04  ...      9.8        5   2
+3           11.2              0.28         0.56  ...      9.8        6   3
+4            7.4              0.70         0.00  ...      9.4        5   4
+
+[5 rows x 13 columns]
+python 06_train_wine_quality_predictor.py --epochs 100
+  0%|          | 0/100 [00:00<?, ?it/s]  9%|▉         | 9/100 [00:00<00:01, 86.54it/s] 21%|██        | 21/100 [00:00<00:00, 104.46it/s] 33%|███▎      | 33/100 [00:00<00:00, 110.99it/s] 45%|████▌     | 45/100 [00:00<00:00, 114.10it/s] 57%|█████▋    | 57/100 [00:00<00:00, 115.89it/s] 69%|██████▉   | 69/100 [00:00<00:00, 116.01it/s] 81%|████████  | 81/100 [00:00<00:00, 116.81it/s] 93%|█████████▎| 93/100 [00:00<00:00, 117.49it/s]100%|██████████| 100/100 [00:00<00:00, 114.53it/s]
+/Users/jonasson/Documents/MSc Computer Science/ComputerScienceMasters/AISecurity/lab_2_verification/06_train_wine_quality_predictor.py:75: DeprecationWarning: You are using the legacy TorchScript-based ONNX export. Starting in PyTorch 2.9, the new torch.export-based ONNX exporter has become the default. Learn more about the new export logic: https://docs.pytorch.org/docs/stable/onnx_export.html. For exporting control flow: https://pytorch.org/tutorials/beginner/onnx/export_control_flow_model_to_onnx_tutorial.html
+  torch.onnx.export(
+/Users/jonasson/Documents/MSc Computer Science/ComputerScienceMasters/AISecurity/lab_2_verification/06_train_wine_quality_predictor.py:85: DeprecationWarning: You are using the legacy TorchScript-based ONNX export. Starting in PyTorch 2.9, the new torch.export-based ONNX exporter has become the default. Learn more about the new export logic: https://docs.pytorch.org/docs/stable/onnx_export.html. For exporting control flow: https://pytorch.org/tutorials/beginner/onnx/export_control_flow_model_to_onnx_tutorial.html
+  torch.onnx.export(
+Epoch: 1, mean loss: 2.1137, train accuracy: 0.0%
+Epoch: 2, mean loss: 2.0723, train accuracy: 0.0%
+Epoch: 3, mean loss: 2.0219, train accuracy: 30.5%
+Epoch: 4, mean loss: 1.9492, train accuracy: 42.3%
+Epoch: 5, mean loss: 1.8436, train accuracy: 42.3%
+Epoch: 6, mean loss: 1.6997, train accuracy: 42.3%
+Epoch: 7, mean loss: 1.5367, train accuracy: 42.3%
+Epoch: 8, mean loss: 1.3962, train accuracy: 42.3%
+Epoch: 9, mean loss: 1.3040, train accuracy: 42.3%
+Epoch: 10, mean loss: 1.2538, train accuracy: 42.2%
+Epoch: 11, mean loss: 1.2260, train accuracy: 45.5%
+Epoch: 12, mean loss: 1.2105, train accuracy: 46.9%
+Epoch: 13, mean loss: 1.2005, train accuracy: 45.7%
+Epoch: 14, mean loss: 1.1947, train accuracy: 47.9%
+Epoch: 15, mean loss: 1.1881, train accuracy: 48.1%
+Epoch: 16, mean loss: 1.1834, train accuracy: 50.0%
+Epoch: 17, mean loss: 1.1789, train accuracy: 50.0%
+Epoch: 18, mean loss: 1.1741, train accuracy: 49.8%
+Epoch: 19, mean loss: 1.1703, train accuracy: 51.5%
+Epoch: 20, mean loss: 1.1651, train accuracy: 51.9%
+Epoch: 21, mean loss: 1.1603, train accuracy: 51.4%
+Epoch: 22, mean loss: 1.1555, train accuracy: 52.1%
+Epoch: 23, mean loss: 1.1503, train accuracy: 53.9%
+Epoch: 24, mean loss: 1.1457, train accuracy: 52.7%
+Epoch: 25, mean loss: 1.1391, train accuracy: 53.0%
+Epoch: 26, mean loss: 1.1332, train accuracy: 53.6%
+Epoch: 27, mean loss: 1.1265, train accuracy: 53.9%
+Epoch: 28, mean loss: 1.1202, train accuracy: 54.5%
+Epoch: 29, mean loss: 1.1144, train accuracy: 54.2%
+Epoch: 30, mean loss: 1.1073, train accuracy: 54.4%
+Epoch: 31, mean loss: 1.1000, train accuracy: 54.9%
+Epoch: 32, mean loss: 1.0929, train accuracy: 54.5%
+Epoch: 33, mean loss: 1.0858, train accuracy: 55.7%
+Epoch: 34, mean loss: 1.0793, train accuracy: 55.2%
+Epoch: 35, mean loss: 1.0726, train accuracy: 55.9%
+Epoch: 36, mean loss: 1.0653, train accuracy: 55.9%
+Epoch: 37, mean loss: 1.0597, train accuracy: 55.5%
+Epoch: 38, mean loss: 1.0530, train accuracy: 56.3%
+Epoch: 39, mean loss: 1.0481, train accuracy: 55.7%
+Epoch: 40, mean loss: 1.0410, train accuracy: 56.6%
+Epoch: 41, mean loss: 1.0363, train accuracy: 56.4%
+Epoch: 42, mean loss: 1.0309, train accuracy: 56.4%
+Epoch: 43, mean loss: 1.0261, train accuracy: 56.4%
+Epoch: 44, mean loss: 1.0215, train accuracy: 56.7%
+Epoch: 45, mean loss: 1.0203, train accuracy: 55.7%
+Epoch: 46, mean loss: 1.0136, train accuracy: 56.8%
+Epoch: 47, mean loss: 1.0098, train accuracy: 57.0%
+Epoch: 48, mean loss: 1.0073, train accuracy: 56.7%
+Epoch: 49, mean loss: 1.0035, train accuracy: 58.0%
+Epoch: 50, mean loss: 1.0009, train accuracy: 58.4%
+Epoch: 51, mean loss: 0.9992, train accuracy: 58.1%
+Epoch: 52, mean loss: 0.9960, train accuracy: 57.8%
+Epoch: 53, mean loss: 0.9933, train accuracy: 58.4%
+Epoch: 54, mean loss: 0.9917, train accuracy: 57.7%
+Epoch: 55, mean loss: 0.9896, train accuracy: 57.7%
+Epoch: 56, mean loss: 0.9874, train accuracy: 57.6%
+Epoch: 57, mean loss: 0.9863, train accuracy: 57.7%
+Epoch: 58, mean loss: 0.9839, train accuracy: 57.8%
+Epoch: 59, mean loss: 0.9822, train accuracy: 57.8%
+Epoch: 60, mean loss: 0.9818, train accuracy: 58.4%
+Epoch: 61, mean loss: 0.9804, train accuracy: 58.9%
+Epoch: 62, mean loss: 0.9788, train accuracy: 58.9%
+Epoch: 63, mean loss: 0.9772, train accuracy: 59.1%
+Epoch: 64, mean loss: 0.9754, train accuracy: 59.1%
+Epoch: 65, mean loss: 0.9746, train accuracy: 59.1%
+Epoch: 66, mean loss: 0.9729, train accuracy: 59.0%
+Epoch: 67, mean loss: 0.9735, train accuracy: 58.9%
+Epoch: 68, mean loss: 0.9714, train accuracy: 59.7%
+Epoch: 69, mean loss: 0.9698, train accuracy: 59.1%
+Epoch: 70, mean loss: 0.9685, train accuracy: 59.4%
+Epoch: 71, mean loss: 0.9675, train accuracy: 59.8%
+Epoch: 72, mean loss: 0.9666, train accuracy: 60.1%
+Epoch: 73, mean loss: 0.9666, train accuracy: 60.6%
+Epoch: 74, mean loss: 0.9639, train accuracy: 60.2%
+Epoch: 75, mean loss: 0.9635, train accuracy: 60.0%
+Epoch: 76, mean loss: 0.9644, train accuracy: 59.7%
+Epoch: 77, mean loss: 0.9622, train accuracy: 60.6%
+Epoch: 78, mean loss: 0.9628, train accuracy: 59.8%
+Epoch: 79, mean loss: 0.9599, train accuracy: 60.0%
+Epoch: 80, mean loss: 0.9596, train accuracy: 60.5%
+Epoch: 81, mean loss: 0.9581, train accuracy: 60.5%
+Epoch: 82, mean loss: 0.9586, train accuracy: 59.9%
+Epoch: 83, mean loss: 0.9573, train accuracy: 60.5%
+Epoch: 84, mean loss: 0.9559, train accuracy: 60.7%
+Epoch: 85, mean loss: 0.9558, train accuracy: 60.5%
+Epoch: 86, mean loss: 0.9547, train accuracy: 60.6%
+Epoch: 87, mean loss: 0.9552, train accuracy: 60.9%
+Epoch: 88, mean loss: 0.9543, train accuracy: 60.0%
+Epoch: 89, mean loss: 0.9529, train accuracy: 60.9%
+Epoch: 90, mean loss: 0.9525, train accuracy: 60.9%
+Epoch: 91, mean loss: 0.9517, train accuracy: 60.9%
+Epoch: 92, mean loss: 0.9517, train accuracy: 60.8%
+Epoch: 93, mean loss: 0.9511, train accuracy: 60.5%
+Epoch: 94, mean loss: 0.9516, train accuracy: 60.1%
+Epoch: 95, mean loss: 0.9504, train accuracy: 60.8%
+Epoch: 96, mean loss: 0.9491, train accuracy: 60.8%
+Epoch: 97, mean loss: 0.9510, train accuracy: 61.2%
+Epoch: 98, mean loss: 0.9498, train accuracy: 60.1%
+Epoch: 99, mean loss: 0.9514, train accuracy: 60.9%
+Epoch: 100, mean loss: 0.9483, train accuracy: 60.4%
+vehicle verify \
+		--specification 06_wine.vcl \
+		--network classifier:onnx_models/wine_classifier.onnx \
+		--parameter epsilon:0.005 \
+		--dataset trainingInputs:data/wine/wine-features.idx \
+		--dataset trainingLabels:data/wine/wine-labels.idx \
+		--property robust \
+		--solver Marabou
+  robust!0 [.......................................................] 0/7 queries  robust!0 [===============================>.......................] 4/7 queries  robust!0 [=======================================================] 7/7 queries
+  robust!1 [.......................................................] 0/7 queries  robust!1 [===============================>.......................] 4/7 queries  robust!1 [=======================================================] 7/7 queries
+  robust!2 [.......................................................] 0/7 queries  robust!2 [===============================>.......................] 4/7 queries  robust!2 [=======================================================] 7/7 queries
+  robust!3 [.......................................................] 0/7 queries  robust!3 [===============================>.......................] 4/7 queries  robust!4 [.......................................................] 0/7 queries  robust!4 [===============================>.......................] 4/7 queries  robust!4 [=======================================================] 7/7 queries
+  robust!5 [.......................................................] 0/7 queries  robust!5 [===============================>.......................] 4/7 queries  robust!5 [=======================================================] 7/7 queries
+  robust!6 [.......................................................] 0/7 queries  robust!6 [===============================>.......................] 4/7 queries  robust!6 [=======================================================] 7/7 queries
+  robust!7 [.......................................................] 0/7 queries  robust!7 [===============================>.......................] 4/7 queries  robust!8 [.......................................................] 0/7 queries  robust!8 [===============================>.......................] 4/7 queries  robust!9 [.......................................................] 0/7 queries  robust!9 [===============================>.......................] 4/7 queries  robust!9 [=======================================================] 7/7 queries
+  robust!10 [......................................................] 0/7 queries  robust!10 [==============================>.......................] 4/7 queries  robust!10 [======================================================] 7/7 queries
+  robust!11 [......................................................] 0/7 queries  robust!11 [==============================>.......................] 4/7 queries  robust!12 [......................................................] 0/7 queries  robust!12 [=======================>..............................] 3/7 queries  robust!13 [......................................................] 0/7 queries  robust!13 [==============================>.......................] 4/7 queries  robust!14 [......................................................] 0/7 queries  robust!14 [==============================>.......................] 4/7 queries  robust!14 [======================================================] 7/7 queries
+  robust!15 [......................................................] 0/7 queries  robust!15 [==============================>.......................] 4/7 queries  robust!16 [......................................................] 0/7 queries  robust!16 [==============================>.......................] 4/7 queries  robust!16 [======================================================] 7/7 queries
+  robust!17 [......................................................] 0/7 queries  robust!17 [==============================>.......................] 4/7 queries  robust!18 [......................................................] 0/7 queries  robust!18 [==============================>.......................] 4/7 queries  robust!18 [======================================================] 7/7 queries
+  robust!19 [......................................................] 0/7 queries  robust!19 [==============================>.......................] 4/7 queries  robust!19 [======================================================] 7/7 queries
+Verifying properties:
+    result: [92m🗸[m - Marabou proved no counterexample exists
+    result: [92m🗸[m - Marabou proved no counterexample exists
+    result: [92m🗸[m - Marabou proved no counterexample exists
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 4.999801734924317e-3, -4.999967171192169e-3, 5.000002384185791e-3, 5.000150174617767e-3, -1.265698567390442e-3, 4.999964589118958e-3, -5.000278151512146e-3, 4.999726978302002e-3, 4.9996527347564695e-3, 4.999582027435303e-3, 4.9997068548202515e-3 ]
+    result: [92m🗸[m - Marabou proved no counterexample exists
+    result: [92m🗸[m - Marabou proved no counterexample exists
+    result: [92m🗸[m - Marabou proved no counterexample exists
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 5.000093185424805e-3, 4.999654947280884e-3, 0.0, 4.9999487776756285e-3, 4.999800390243531e-3, 5.000228328704834e-3, 4.99953467464447e-3, 5.0003418693542485e-3, 5.0000179901123045e-3, 5.000331001758575e-3, 4.999905987739563e-3 ]
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 4.999899257659912e-3, 5.000483352661133e-3, 4.999999552965164e-3, 5.0004689173698425e-3, 5.000390793323517e-3, 4.999982294559478e-3, 4.999826249599457e-3, 4.999707315444946e-3, 4.9998031959533696e-3, 4.9995653028488156e-3, 4.999833649635315e-3 ]
+    result: [92m🗸[m - Marabou proved no counterexample exists
+    result: [92m🗸[m - Marabou proved no counterexample exists
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 4.999899257659912e-3, 5.000439580917358e-3, 4.999991655349732e-3, 5.000208847522736e-3, 4.999809304237365e-3, 4.999982294559478e-3, 5.00008799123764e-3, 5.0000266761779785e-3, 4.999742866516113e-3, 4.999906490325928e-3, 5.000427933216095e-3 ]
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 4.9997681541442875e-3, 5.000032828807831e-3, 5.000002384185791e-3, 4.999831431865692e-3, 4.999933833122253e-3, 4.9996803398132325e-3, 5.000181955337525e-3, 5.000029354095459e-3, 4.999761037826538e-3, 5.000000455856323e-3, 4.9999932270050045e-3 ]
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 5.000430669784546e-3, 5.000285448074341e-3, 4.999990463256836e-3, 4.999831431865692e-3, 4.9997549781799315e-3, 4.999964589118958e-3, 5.0004489154815675e-3, 5.000029354095459e-3, 5.000389604568481e-3, 4.999805686950683e-3, 4.999952993869782e-3 ]
+    result: [92m🗸[m - Marabou proved no counterexample exists
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 5.000430669784546e-3, 4.99976181602478e-3, 4.999993443489075e-3, 5.000208847522736e-3, 5.0002114505767825e-3, 5.000365325927734e-3, 4.999633857250213e-3, 5.000003633499146e-3, 4.999664728164673e-3, 5.000417060852051e-3, 4.999833649635315e-3 ]
+    result: [92m🗸[m - Marabou proved no counterexample exists
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 4.999848327636718e-3, 4.9998204889297486e-3, 5.0000005960464475e-3, 4.99972898721695e-3, 4.999787573814392e-3, 5.000452011108399e-3, 5.000342282295227e-3, 4.999707315444946e-3, 5.000065963745117e-3, 4.999710353851318e-3, 5.000032782554627e-3 ]
+    result: [92m🗸[m - Marabou proved no counterexample exists
+    result: [92m🗸[m - Marabou proved no counterexample exists
+robust:
+    verified:  12/20
+    falsified: 8/20
+    timed-out: 0/20
+    errored:   0/20
+vehicle verify \
+		--specification 06_wine.vcl \
+		--network classifier:onnx_models/wine_classifier.onnx \
+		--parameter epsilon:0.01 \
+		--dataset trainingInputs:data/wine/wine-features.idx \
+		--dataset trainingLabels:data/wine/wine-labels.idx \
+		--property robust \
+		--solver Marabou
+  robust!0 [.......................................................] 0/7 queries  robust!0 [===============================>.......................] 4/7 queries  robust!0 [=======================================================] 7/7 queries
+  robust!1 [.......................................................] 0/7 queries  robust!1 [===============================>.......................] 4/7 queries  robust!1 [=======================================================] 7/7 queries
+  robust!2 [.......................................................] 0/7 queries  robust!2 [===============================>.......................] 4/7 queries  robust!2 [=======================================================] 7/7 queries
+  robust!3 [.......................................................] 0/7 queries  robust!3 [===============================>.......................] 4/7 queries  robust!4 [.......................................................] 0/7 queries  robust!4 [===============================>.......................] 4/7 queries  robust!4 [=======================================================] 7/7 queries
+  robust!5 [.......................................................] 0/7 queries  robust!5 [===============================>.......................] 4/7 queries  robust!5 [=======================================================] 7/7 queries
+  robust!6 [.......................................................] 0/7 queries  robust!6 [===============================>.......................] 4/7 queries  robust!6 [=======================================================] 7/7 queries
+  robust!7 [.......................................................] 0/7 queries  robust!7 [===============================>.......................] 4/7 queries  robust!8 [.......................................................] 0/7 queries  robust!8 [===============================>.......................] 4/7 queries  robust!9 [.......................................................] 0/7 queries  robust!9 [===============================>.......................] 4/7 queries  robust!9 [=======================================================] 7/7 queries
+  robust!10 [......................................................] 0/7 queries  robust!10 [==============================>.......................] 4/7 queries  robust!10 [======================================================] 7/7 queries
+  robust!11 [......................................................] 0/7 queries  robust!11 [=======================>..............................] 3/7 queries  robust!12 [......................................................] 0/7 queries  robust!12 [==============================>.......................] 4/7 queries  robust!13 [......................................................] 0/7 queries  robust!13 [==============================>.......................] 4/7 queries  robust!14 [......................................................] 0/7 queries  robust!14 [==============================>.......................] 4/7 queries  robust!14 [======================================================] 7/7 queries
+  robust!15 [......................................................] 0/7 queries  robust!15 [==============================>.......................] 4/7 queries  robust!16 [......................................................] 0/7 queries  robust!16 [==============================>.......................] 4/7 queries  robust!16 [======================================================] 7/7 queries
+  robust!17 [......................................................] 0/7 queries  robust!17 [==============================>.......................] 4/7 queries  robust!18 [......................................................] 0/7 queries  robust!18 [==============================>.......................] 4/7 queries  robust!18 [======================================================] 7/7 queries
+  robust!19 [......................................................] 0/7 queries  robust!19 [==============================>.......................] 4/7 queriesVerifying properties:
+    result: [92m🗸[m - Marabou proved no counterexample exists
+    result: [92m🗸[m - Marabou proved no counterexample exists
+    result: [92m🗸[m - Marabou proved no counterexample exists
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 9.999801734924317e-3, 1.000003282880783e-2, 1.0000002384185792e-2, 1.0000150174617767e-2, 1.0000301432609559e-2, 9.999964589118957e-3, -9.984278151512146e-3, 9.999726978302002e-3, 9.99965273475647e-3, 9.999582027435302e-3, 9.999706854820252e-3 ]
+    result: [92m🗸[m - Marabou proved no counterexample exists
+    result: [92m🗸[m - Marabou proved no counterexample exists
+    result: [92m🗸[m - Marabou proved no counterexample exists
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 1.0000093185424806e-2, 9.999654947280884e-3, 0.0, 9.999948777675629e-3, 9.99980039024353e-3, 1.0000228328704834e-2, 9.99953467464447e-3, 1.0000341869354248e-2, 1.0000017990112305e-2, 1.0000331001758575e-2, 9.999905987739564e-3 ]
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 9.999899257659912e-3, 1.0000483352661132e-2, 9.999999552965164e-3, 1.0000468917369842e-2, 1.0000390793323518e-2, 9.999982294559479e-3, 9.999826249599457e-3, 9.999707315444946e-3, 9.99980319595337e-3, 9.999565302848816e-3, 9.999833649635316e-3 ]
+    result: [92m🗸[m - Marabou proved no counterexample exists
+    result: [92m🗸[m - Marabou proved no counterexample exists
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 9.999899257659912e-3, 1.000043958091736e-2, 9.99999165534973e-3, 1.0000208847522736e-2, 9.999809304237366e-3, 9.999982294559479e-3, 1.000008799123764e-2, 1.0000026676177979e-2, 9.999742866516113e-3, 9.999906490325929e-3, 1.0000427933216096e-2 ]
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 9.999768154144287e-3, 1.000003282880783e-2, 1.0000002384185792e-2, 9.999831431865691e-3, 9.999933833122254e-3, 9.999680339813232e-3, 1.0000181955337525e-2, 1.0000029354095458e-2, 9.999761037826538e-3, 1.0000000455856323e-2, 9.999993227005005e-3 ]
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 1.0000430669784547e-2, 1.0000285448074341e-2, 9.999990463256836e-3, 9.999831431865691e-3, 9.999754978179932e-3, 9.999964589118957e-3, 1.0000448915481568e-2, 1.0000029354095458e-2, 1.0000389604568482e-2, 9.999805686950684e-3, 9.999952993869781e-3 ]
+    result: [92m🗸[m - Marabou proved no counterexample exists
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 1.0000430669784547e-2, 9.99976181602478e-3, 9.999993443489074e-3, 1.0000208847522736e-2, 1.0000211450576783e-2, 1.0000365325927735e-2, 9.999633857250214e-3, 1.0000003633499146e-2, 9.999664728164673e-3, 1.000041706085205e-2, 9.999833649635316e-3 ]
+    result: [92m🗸[m - Marabou proved no counterexample exists
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 9.999848327636719e-3, 9.999820488929749e-3, 1.0000000596046449e-2, 9.99972898721695e-3, 9.999787573814391e-3, 1.0000452011108399e-2, 1.0000342282295228e-2, 9.999707315444946e-3, 1.0000065963745117e-2, 9.999710353851318e-3, 1.0000032782554626e-2 ]
+    result: [92m🗸[m - Marabou proved no counterexample exists
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 9.999747026443481e-3, 1.0000124330520629e-2, 9.99999463558197e-3, 9.999831431865691e-3, 9.999537052631378e-3, 1.000011929178238e-2, 9.999844891548157e-3, 1.0000358152389527e-2, 9.999737051010132e-3, -3.5954012479782103e-3, -1.0000166350364685e-2 ]
+robust:
+    verified:  11/20
+    falsified: 9/20
+    timed-out: 0/20
+    errored:   0/20
+vehicle verify \
+		--specification 06_wine.vcl \
+		--network classifier:onnx_models/wine_classifier.onnx \
+		--parameter epsilon:0.05 \
+		--dataset trainingInputs:data/wine/wine-features.idx \
+		--dataset trainingLabels:data/wine/wine-labels.idx \
+		--property robust \
+		--solver Marabou
+  robust!0 [.......................................................] 0/7 queries  robust!0 [===============================>.......................] 4/7 queries  robust!0 [=======================================================] 7/7 queries
+  robust!1 [.......................................................] 0/7 queries  robust!1 [===============================>.......................] 4/7 queries  robust!1 [=======================================================] 7/7 queries
+  robust!2 [.......................................................] 0/7 queries  robust!2 [===============================>.......................] 4/7 queries  robust!3 [.......................................................] 0/7 queries  robust!3 [===============================>.......................] 4/7 queries  robust!4 [.......................................................] 0/7 queries  robust!4 [===============================>.......................] 4/7 queries  robust!4 [=======================================================] 7/7 queries
+  robust!5 [.......................................................] 0/7 queries  robust!5 [===============================>.......................] 4/7 queries  robust!5 [=======================================================] 7/7 queries
+  robust!6 [.......................................................] 0/7 queries  robust!6 [===============================>.......................] 4/7 queries  robust!6 [=======================================================] 7/7 queries
+  robust!7 [.......................................................] 0/7 queries  robust!7 [===============================>.......................] 4/7 queries  robust!8 [.......................................................] 0/7 queries  robust!8 [===============================>.......................] 4/7 queries  robust!9 [.......................................................] 0/7 queries  robust!9 [=======================>...............................] 3/7 queries  robust!9 [===============================================>.......] 6/7 queries  robust!9 [=======================================================] 7/7 queries
+  robust!10 [......................................................] 0/7 queries  robust!10 [==============================>.......................] 4/7 queries  robust!11 [......................................................] 0/7 queries  robust!11 [==============================>.......................] 4/7 queries  robust!12 [......................................................] 0/7 queries  robust!12 [==============================>.......................] 4/7 queries  robust!13 [......................................................] 0/7 queries  robust!13 [==============================>.......................] 4/7 queries  robust!14 [......................................................] 0/7 queries  robust!14 [==============================>.......................] 4/7 queries  robust!15 [......................................................] 0/7 queries  robust!15 [==============================>.......................] 4/7 queries  robust!16 [......................................................] 0/7 queries  robust!16 [==============================>.......................] 4/7 queries  robust!16 [======================================================] 7/7 queries
+  robust!17 [......................................................] 0/7 queries  robust!17 [==============================>.......................] 4/7 queries  robust!18 [......................................................] 0/7 queries  robust!18 [==============================>.......................] 4/7 queries  robust!19 [......................................................] 0/7 queries  robust!19 [==============================>.......................] 4/7 queriesVerifying properties:
+    result: [92m🗸[m - Marabou proved no counterexample exists
+    result: [92m🗸[m - Marabou proved no counterexample exists
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ -5.000010074234009e-2, 5.000013131523132e-2, 3.999999910593033e-2, -4.9999589755535125e-2, 4.9999933833122255e-2, 6.732228328704834e-3, 5.0000304998397825e-2, 5.0000030055999754e-2, 4.9999742866516116e-2, -5.0000256196975706e-2, -5.000029314517975e-2 ]
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 4.999980173492432e-2, 5.000003282880783e-2, 5.000000238418579e-2, 5.0000150174617765e-2, 5.0000301432609556e-2, 4.9999964589118956e-2, 4.999972184848785e-2, 4.9999726978302e-2, 4.999965273475647e-2, 4.9999582027435305e-2, 4.9999706854820254e-2 ]
+    result: [92m🗸[m - Marabou proved no counterexample exists
+    result: [92m🗸[m - Marabou proved no counterexample exists
+    result: [92m🗸[m - Marabou proved no counterexample exists
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 5.00000931854248e-2, 4.999965494728088e-2, 0.0, 2.054794877767563e-2, 4.999980039024353e-2, 5.0000228328704835e-2, 4.999953467464447e-2, 5.0000341869354245e-2, 5.0000017990112305e-2, 5.0000331001758574e-2, 4.999990598773956e-2 ]
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 4.9999899257659915e-2, 5.0000483352661135e-2, 1.9999999552965164e-2, 5.000046891736984e-2, 5.000039079332352e-2, 4.999998229455948e-2, 4.240282624959946e-2, 4.9999707315444945e-2, 4.999980319595337e-2, 4.999956530284882e-2, 4.999983364963532e-2 ]
+    result: [92m🗸[m - Marabou proved no counterexample exists
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ -5.0000417657852174e-2, 5.00000840511322e-2, 0.0, 3.5912088475227354e-3, 4.999957905006409e-2, 4.999960390949249e-2, 5.0000149889945986e-2, 4.999966728782654e-2, 5.000012665557861e-2, -4.99995630235672e-2, -4.999976808452606e-2 ]
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 4.9999899257659915e-2, 5.000043958091736e-2, 4.999999165534973e-2, 4.7945208847522736e-2, 4.9999809304237364e-2, 4.999998229455948e-2, 5.000008799123764e-2, 5.000002667617798e-2, 4.9999742866516116e-2, 4.999990649032593e-2, 5.0000427933216095e-2 ]
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 4.999976815414429e-2, -2.360896717119217e-2, 5.000000238418579e-2, 4.999983143186569e-2, 4.225933833122254e-3, 4.999968033981323e-2, -4.999981804466248e-2, 5.0000029354095456e-2, 4.999976103782654e-2, 5.000000045585632e-2, 4.9999993227005005e-2 ]
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 5.0000430669784546e-2, 5.000028544807434e-2, 4.999999046325684e-2, 4.999983143186569e-2, 4.999975497817993e-2, 4.9999964589118956e-2, 5.000044891548157e-2, 5.0000029354095456e-2, 5.0000389604568485e-2, 4.9999805686950685e-2, 4.999995299386978e-2 ]
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 4.999974702644348e-2, 5.000048684501648e-2, 5.000000238418579e-2, 5.0000410244464874e-2, 5.0000440241336826e-2, 5.0000203172683715e-2, 4.9999983590126036e-2, 5.0000019916534424e-2, 5.000011429977417e-2, 3.326374380302429e-2, -4.9999967217445374e-2 ]
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 5.0000430669784546e-2, 4.999976181602478e-2, 4.999999344348907e-2, 4.7945208847522736e-2, 5.000021145057678e-2, 5.0000365325927734e-2, 4.999963385725022e-2, 5.000000363349914e-2, 4.9999664728164674e-2, 5.000041706085205e-2, 4.999983364963532e-2 ]
+    result: [92m🗸[m - Marabou proved no counterexample exists
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 4.9999848327636716e-2, 4.999982048892975e-2, 5.000000059604645e-2, 4.999972898721695e-2, 4.999978757381439e-2, 5.00004520111084e-2, 5.0000342282295225e-2, 4.9999707315444945e-2, 5.0000065963745115e-2, 4.999971035385132e-2, 5.0000032782554625e-2 ]
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 4.999951084327698e-2, 5.000048684501648e-2, 4.999999642372131e-2, 3.4246575087308884e-2, 4.9999537052631375e-2, 4.99997260055542e-2, 4.999967114114762e-2, 4.9999686950683596e-2, 4.9999779209136966e-2, 2.9413548578262328e-2, -5.000038038444519e-2 ]
+
+    result: [91m✗[m - Marabou found a counterexample
+      perturbation: [ 4.999974702644348e-2, 5.000012433052063e-2, 4.999999463558197e-2, 4.999983143186569e-2, 4.9999537052631375e-2, 4.477611929178238e-2, 1.7667844891548157e-2, 5.0000358152389526e-2, 4.999973705101013e-2, -2.832140124797821e-2, 4.999983364963532e-2 ]
+robust:
+    verified:  7/20
+    falsified: 13/20
+    timed-out: 0/20
+    errored:   0/20
+make[1]: *** No rule to make target `verify-wine-alcohol'.  Stop.
