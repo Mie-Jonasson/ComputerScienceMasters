@@ -112,6 +112,7 @@ finally:
             model,
             torch.randn(1,1,28,28),
             "onnx_models/robust_classifier.onnx", # file name
+            opset_version=12,  # Marabou 1.0 cannot parse the default opset 20
             external_data=False, # required for Marabou verification
         )
     else:
