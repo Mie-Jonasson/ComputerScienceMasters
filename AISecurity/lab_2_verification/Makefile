@@ -52,5 +52,29 @@ verify-fashion-mnist-robust:
 		--dataset trainingLabels:tutorial/chapter-3/exercises/FMNIST/idxdata/0-49Labels.idx \
 		--solver Marabou
 
+EPOCHS ?= 5
+EPS ?= 0.01
+
 load-wine-data:
 	python 05_load_wine_data.py
+
+train-wine:
+	python 06_train_wine_quality_predictor.py --epochs $(EPOCHS)
+
+verify-wine-robust:
+	vehicle verify \
+		--specification 06_wine.vcl \
+		--network classifier:onnx_models/wine_classifier.onnx \
+		--parameter epsilon:$(EPS) \
+		--dataset trainingInputs:data/wine/wine-features.idx \
+		--dataset trainingLabels:data/wine/wine-labels.idx \
+		--property robust \
+		--solver Marabou
+
+run-wine:
+	make load-wine-data >> wine_results_$(EPOCHS)_epochs.txt 2>&1
+	make train-wine >> wine_results_$(EPOCHS)_epochs.txt 2>&1
+	make verify-wine-robust EPS=0.005 >> wine_results_$(EPOCHS)_epochs.txt 2>&1
+	make verify-wine-robust EPS=0.01 >> wine_results_$(EPOCHS)_epochs.txt 2>&1
+	make verify-wine-robust EPS=0.05 >> wine_results_$(EPOCHS)_epochs.txt 2>&1
+	make verify-wine-alcohol >> wine_results_$(EPOCHS)_epochs.txt 2>&1
