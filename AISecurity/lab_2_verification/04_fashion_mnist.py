@@ -104,12 +104,14 @@ model.eval()
 
 try:
     os.mkdir('onnx_models')
+except FileExistsError:
+    pass
 finally:
     if args.robust:
         torch.onnx.export(
             model,
             torch.randn(1,1,28,28),
-            "classifier.onnx", # file name
+            "onnx_models/robust_classifier.onnx", # file name
             external_data=False, # required for Marabou verification
         )
     else:

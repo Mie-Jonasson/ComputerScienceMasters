@@ -42,3 +42,12 @@ verify-fashion-mnist:
 		--dataset trainingImages:tutorial/chapter-3/exercises/FMNIST/idxdata/0-49Images.idx \
 		--dataset trainingLabels:tutorial/chapter-3/exercises/FMNIST/idxdata/0-49Labels.idx \
 		--solver Marabou
+
+verify-fashion-mnist-robust:
+	vehicle verify \
+		--specification tutorial/chapter-4/chapter-code/fmnist-robustness.vcl \
+		--network classifier:onnx_models/robust_classifier.onnx \
+		--parameter epsilon:0.005 \
+		--dataset trainingImages:tutorial/chapter-3/exercises/FMNIST/idxdata/0-49Images.idx \
+		--dataset trainingLabels:tutorial/chapter-3/exercises/FMNIST/idxdata/0-49Labels.idx \
+		--solver Marabou
