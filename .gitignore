@@ -39,3 +39,8 @@ DataScienceInProduction/exam_package/**
 # AI Security
 *.vclo
 AISecurity/lab_2_verification/data/
+
+# LaTeX Compilation
+*.aux
+*.log
+*.out
