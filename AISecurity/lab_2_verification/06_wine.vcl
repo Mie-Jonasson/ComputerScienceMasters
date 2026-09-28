@@ -43,12 +43,18 @@ alcohol = 10
 highQuality : Features -> Bool
 highQuality x = advises x 5 or advises x 6 or advises x 7
 
+equals : Features -> Features -> Bool
+equals x y = forall k . x ! k == y ! k
+
+highAlcoholAround : Features -> Bool
+highAlcoholAround x = forall y .
+  validInput y and equals y x and y ! alcohol >= 0.3 => -- 0.3 ~10.??% after scaling
+    highQuality y
+
 @property
 robust : Vector Bool n
 robust = foreach i . robustAround (trainingInputs ! i) (trainingLabels ! i)
 
 @property
-highAlcoholIsGood : Bool
-highAlcoholIsGood = forall x .
-  validInput x and x ! alcohol >= 0.7 =>
-    highQuality x
+highAlcoholIsGood : Vector Bool n
+highAlcoholIsGood = foreach i . highAlcoholAround (trainingInputs ! i)

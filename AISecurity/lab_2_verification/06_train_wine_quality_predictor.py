@@ -146,3 +146,6 @@ finally:
         dynamo=False,
         external_data=False,
     )
+    with torch.no_grad():
+        scores = model(torch.from_numpy(X[:N_VERIFY])).numpy().astype(np.float64)
+    idx2numpy.convert_to_file("data/wine/wine-scores.idx", scores)
