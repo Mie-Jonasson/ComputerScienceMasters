@@ -76,6 +76,16 @@ verify-wine-robust:
 		--property robust \
 		--solver Marabou
 
+verify-wine-alcohol:
+	vehicle verify \
+		--specification 06_wine.vcl \
+		--network classifier:$(NETWORK) \
+		--parameter epsilon:$(EPS) \
+		--dataset trainingInputs:data/wine/wine-features.idx \
+		--dataset trainingLabels:data/wine/wine-labels.idx \
+		--property highAlcoholIsGood \
+		--solver Marabou
+
 run-wine:
 	mkdir -p $(RESULTS)
 	make load-wine-data >> $(RESULTS)/wine_results_$(EPOCHS)_epochs.txt 2>&1

@@ -36,6 +36,19 @@ robustAround input label = forall perturbation .
   boundedByEpsilon perturbation and validInput perturbed =>
     advises perturbed label
 
+-- alcohol is the last normalised feature; 0.7 is a high ABV after min-max scaling.
+-- labels 5, 6, 7 are quality scores 6, 7, 8
+alcohol = 10
+
+highQuality : Features -> Bool
+highQuality x = advises x 5 or advises x 6 or advises x 7
+
 @property
 robust : Vector Bool n
 robust = foreach i . robustAround (trainingInputs ! i) (trainingLabels ! i)
+
+@property
+highAlcoholIsGood : Bool
+highAlcoholIsGood = forall x .
+  validInput x and x ! alcohol >= 0.7 =>
+    highQuality x
