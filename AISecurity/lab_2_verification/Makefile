@@ -54,6 +54,8 @@ verify-fashion-mnist-robust:
 
 EPOCHS ?= 5
 EPS ?= 0.01
+NETWORK ?= onnx_models/wine_classifier.onnx
+RESULTS ?= results
 
 load-wine-data:
 	python 05_load_wine_data.py
@@ -61,10 +63,13 @@ load-wine-data:
 train-wine:
 	python 06_train_wine_quality_predictor.py --epochs $(EPOCHS)
 
+train-wine-robust:
+	python 06_train_wine_quality_predictor.py --epochs $(EPOCHS) --robust --specification 06_wine.vcl
+
 verify-wine-robust:
 	vehicle verify \
 		--specification 06_wine.vcl \
-		--network classifier:onnx_models/wine_classifier.onnx \
+		--network classifier:$(NETWORK) \
 		--parameter epsilon:$(EPS) \
 		--dataset trainingInputs:data/wine/wine-features.idx \
 		--dataset trainingLabels:data/wine/wine-labels.idx \
@@ -72,9 +77,17 @@ verify-wine-robust:
 		--solver Marabou
 
 run-wine:
-	make load-wine-data >> wine_results_$(EPOCHS)_epochs.txt 2>&1
-	make train-wine >> wine_results_$(EPOCHS)_epochs.txt 2>&1
-	make verify-wine-robust EPS=0.005 >> wine_results_$(EPOCHS)_epochs.txt 2>&1
-	make verify-wine-robust EPS=0.01 >> wine_results_$(EPOCHS)_epochs.txt 2>&1
-	make verify-wine-robust EPS=0.05 >> wine_results_$(EPOCHS)_epochs.txt 2>&1
-	make verify-wine-alcohol >> wine_results_$(EPOCHS)_epochs.txt 2>&1
+	mkdir -p $(RESULTS)
+	make load-wine-data >> $(RESULTS)/wine_results_$(EPOCHS)_epochs.txt 2>&1
+	make train-wine >> $(RESULTS)/wine_results_$(EPOCHS)_epochs.txt 2>&1
+	make verify-wine-robust EPS=0.005 >> $(RESULTS)/wine_results_$(EPOCHS)_epochs.txt 2>&1
+	make verify-wine-robust EPS=0.01 >> $(RESULTS)/wine_results_$(EPOCHS)_epochs.txt 2>&1
+	make verify-wine-robust EPS=0.05 >> $(RESULTS)/wine_results_$(EPOCHS)_epochs.txt 2>&1
+	make verify-wine-alcohol >> $(RESULTS)/wine_results_$(EPOCHS)_epochs.txt 2>&1
+
+run-wine-robust:
+	mkdir -p $(RESULTS)
+	make train-wine-robust >> $(RESULTS)/wine_results_$(EPOCHS)_epochs_robust.txt 2>&1
+	make verify-wine-robust NETWORK=onnx_models/wine_robust_classifier.onnx EPS=0.005 >> $(RESULTS)/wine_results_$(EPOCHS)_epochs_robust.txt 2>&1
+	make verify-wine-robust NETWORK=onnx_models/wine_robust_classifier.onnx EPS=0.01 >> $(RESULTS)/wine_results_$(EPOCHS)_epochs_robust.txt 2>&1
+	make verify-wine-robust NETWORK=onnx_models/wine_robust_classifier.onnx EPS=0.05 >> $(RESULTS)/wine_results_$(EPOCHS)_epochs_robust.txt 2>&1
