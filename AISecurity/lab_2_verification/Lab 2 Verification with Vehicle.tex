@@ -1,0 +1,109 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{parskip}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue,
+  citecolor=black
+}
+
+\title{Lab 2: Verification using Vehicle}
+\author{AI Security}
+\date{Due: Monday 28 September, 23:59}
+
+\begin{document}
+
+\maketitle
+
+\section*{Overview}
+
+The purpose of this assignment is to work through the Vehicle tutorial and apply its methods to a model and dataset of your own. The tutorial is available at \url{https://vehicle-lang.github.io/tutorial/}, and the accompanying reference code is at \url{https://github.com/vehicle-lang/tutorial}. You are expected to follow the tutorial first and then adapt its examples, rather than to write everything from scratch. Kaggle (\url{https://www.kaggle.com/datasets}) is a common website to find datasets and to find a dataset that interests you. I would choose a dataset with a modest number of input features, since verification time grows quickly.
+
+\section{Specification and Robustness Testing}
+
+Select a dataset that we haven't used in class and that is not used in the Vehicle tutorial and train a simple classifier on it. We recommend that you choose a simple classifier similar to the ones used in the examples. Export the trained model to ONNX.
+
+\begin{enumerate}[leftmargin=*]
+  \item Train your model and export it to a \texttt{.onnx} file.
+
+  \item Write a Vehicle specification containing two properties:
+    \begin{enumerate}[label=(\alph*)]
+      \item an $\varepsilon$-ball classification robustness property;
+      \item one property that is not a robustness property. The property should be motivated by the dataset you have chosen.
+    \end{enumerate}
+
+  \item Verify both properties using Marabou. Repeat the verification for at least three values of $\varepsilon$.
+
+  \item Train your model for several different numbers of epochs and repeat the verification for each. Report accuracy, loss, the values of $\varepsilon$ used, and the number of instances for which the property was verified.
+\end{enumerate}
+
+\begin{center}
+\begin{tabular}{lrrrrrr}
+  \toprule
+  Model & Epochs & Accuracy & Loss & $\varepsilon$ & Corrrectly Classified & Verified & Falsified \\
+  \midrule
+  Wine MLP & 5 & 40.4\% & 1.756 & 0.005 & 3/20 & 3/20 & 17/20 \\
+           & 5 & 40.4\% & 1.756 & 0.01 & 3/20 & 3/20 & 17/20 \\
+           & 5 & 40.4\% & 1.756 & 0.05 & & 3/20 & 17/20 \\
+  Wine MLP & 25 & 56.2\% & 1.102 & 0.005 & 13/20 & 13/20 & 7/20 \\
+           & 25 & 56.2\% & 1.102 & 0.01 & 13/20 & 12/20 & 8/20 \\
+           & 25 & 56.2\% & 1.102 & 0.05 & 13/20 & 9/20 & 11/20 \\
+  Wine MLP & 50 & 54.2\% & 1.073 & 0.005 & 11/20 & 11/20 & 9/20 \\
+           & 50 & 54.2\% & 1.073 & 0.01 & 11/20 & 11/20 & 9/20 \\
+           & 50 & 54.2\% & 1.073 & 0.05 & 11/20 & 8/20 & 12/20 \\
+  Wine MLP & 100 & 60.4\% & 0.948 & 0.005 & 13/20 & 12/20 & 8/20 \\
+           & 100 & 60.4\% & 0.948 & 0.01 & 13/20 & 11/20 & 9/20 \\
+           & 100 & 60.4\% & 0.948 & 0.05 & 13/20 & 7/20 & 13/20 \\
+  Wine MLP & 150 & 62.0\% & 0.908 & 0.005 & 13/20 & 13/20 & 7/20 \\
+           & 150 & 62.0\% & 0.908 & 0.01 & 13/20 & 11/20 & 9/20 \\
+           & 150 & 62.0\% & 0.908 & 0.05 & 13/20 & 3/20 & 17/20 \\
+  \bottomrule
+\end{tabular}
+\end{center}
+\newpage
+\subsection*{Discussion}
+
+Using your results, address the following.
+
+\begin{enumerate}[leftmargin=*]
+  \item How does the largest verifiable $\varepsilon$ change as you train for longer?
+
+  \item Describe why verification outcomes degrade as $\varepsilon$ grows. Report how verification time varied.
+
+  \item Your robustness property is tested on specific instances from your dataset. What does verifying those instances tell you about inputs your model will encounter in deployment?
+
+  \item Determine the largest $\varepsilon$ that would verify all examples and the smallest $\varepsilon$ at which you could find a counterexample. Comment on the gap between the two.
+
+  \item For your non-robustness property: describe a failure or attack that violating it would enable.
+
+\end{enumerate}
+
+
+\section{Robustness Variants and Counterexample Validation}
+
+\begin{enumerate}[leftmargin=*]
+  \item Specify and verify one further robustness variant, for example standard robustness, strong classification robustness, or Lipschitz robustness. State the definition you are using and explain how it differs from the property in Section~1.
+
+  \item Take one counterexample returned by Marabou and evaluate it on your network directly. Include the input and the resulting output scores in your report.
+\end{enumerate}
+
+\section*{Submission}
+
+Submit the following via learnIT by the deadline given above:
+
+\begin{itemize}[leftmargin=*]
+  \item your code, including all Vehicle specification files;
+  \item the trained model in ONNX format;
+  \item dataset and .py files you used to train and evaluate your model;
+  \item a report in PDF format addressing the tasks in Sections 1 and 2.
+\end{itemize}
+
+An oral assessment will be held during the exercise session on 29 September. If you are unable to attend that session, contact the TA at \href{mailto:samgha@itu.dk}{samgha@itu.dk} in advance and we'll figure out another time.
+
+\end{document}
