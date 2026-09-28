@@ -87,6 +87,19 @@ verify-wine-robust:
 		--property robust \
 		--solver Marabou
 
+DELTA ?= 0.1
+
+verify-wine-standard:
+	vehicle verify \
+		--specification 06_wine_standard.vcl \
+		--network classifier:$(NETWORK) \
+		--parameter epsilon:$(EPS) \
+		--parameter delta:$(DELTA) \
+		--dataset trainingInputs:data/wine/wine-features.idx \
+		--dataset trainingScores:data/wine/wine-scores.idx \
+		--property standardRobust \
+		--solver Marabou
+
 verify-wine-alcohol:
 	vehicle verify \
 		--specification 06_wine.vcl \
