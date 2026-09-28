@@ -5,6 +5,10 @@
 \usepackage{booktabs}
 \usepackage{hyperref}
 \usepackage{parskip}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\newcommand{\done}{\checkmark}
 
 \hypersetup{
   colorlinks=true,
@@ -30,59 +34,62 @@ The purpose of this assignment is to work through the Vehicle tutorial and apply
 Select a dataset that we haven't used in class and that is not used in the Vehicle tutorial and train a simple classifier on it. We recommend that you choose a simple classifier similar to the ones used in the examples. Export the trained model to ONNX.
 
 \begin{enumerate}[leftmargin=*]
-  \item Train your model and export it to a \texttt{.onnx} file.
+  \item Train your model and export it to a \texttt{.onnx} file. \done
 
   \item Write a Vehicle specification containing two properties:
     \begin{enumerate}[label=(\alph*)]
-      \item an $\varepsilon$-ball classification robustness property;
-      \item one property that is not a robustness property. The property should be motivated by the dataset you have chosen.
+      \item an $\varepsilon$-ball classification robustness property; \done
+      \item one property that is not a robustness property. The property should be motivated by the dataset you have chosen. \done \textit{I chose to define a property that is whether high alcohol content wine is classified as good. I am unsure if this is what was intended?}
     \end{enumerate}
 
-  \item Verify both properties using Marabou. Repeat the verification for at least three values of $\varepsilon$.
+  \item Verify both properties using Marabou. Repeat the verification for at least three values of $\varepsilon$. \done
 
-  \item Train your model for several different numbers of epochs and repeat the verification for each. Report accuracy, loss, the values of $\varepsilon$ used, and the number of instances for which the property was verified.
+  \item Train your model for several different numbers of epochs and repeat the verification for each. Report accuracy, loss, the values of $\varepsilon$ used, and the number of instances for which the property was verified. \done
 \end{enumerate}
 
+\textbf{Before commencing my answers, i just want to note that the latter parts on my work on this
+lab (including writing these answers) were done in short time as i had already spent around ~10 hours
+getting stuff to run, then having to redesign my ML model only to see no improvement and trying
+to do various maneuvers to create a decent classifier with no success. This hand-in reflects
+what I have been able to do in 10-12 hours of work on the lab.
+}
+
 \begin{center}
-\begin{tabular}{lrrrrrr}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrrr}
   \toprule
-  Model & Epochs & Accuracy & Loss & $\varepsilon$ & Correctly Classified & Verified & Falsified \\
+  Model & Epochs & Accuracy & Loss & $\varepsilon$ & Correctly Classified & Verified & Falsified & Alcohol Property Verified & Alcohol Property Falsified \\
   \midrule
-  Wine MLP & 5 & 40.4\% & 1.756 & 0.005 & 12/50 & 12/50 & 38/50 \\
-           & 5 & 40.4\% & 1.756 & 0.01 & 12/50 & 12/50 & 38/50 \\
-           & 5 & 40.4\% & 1.756 & 0.05 & 12/50 & 12/50 & 38/50 \\
-  Wine MLP & 25 & 56.2\% & 1.102 & 0.005 & 32/50 & 30/50 & 20/50 \\
-           & 25 & 56.2\% & 1.102 & 0.01 & 32/50 & 29/50 & 21/50 \\
-           & 25 & 56.2\% & 1.102 & 0.05 & 32/50 & 18/50 & 32/50 \\
-  Wine MLP & 50 & 54.2\% & 1.073 & 0.005 & 26/50 & 26/50 & 24/50 \\
-           & 50 & 54.2\% & 1.073 & 0.01 & 26/50 & 26/50 & 24/50 \\
-           & 50 & 54.2\% & 1.073 & 0.05 & 26/50 & 16/50 & 34/50 \\
-  Wine MLP & 100 & 60.4\% & 0.948 & 0.005 & 31/50 & 29/50 & 21/50 \\
-           & 100 & 60.4\% & 0.948 & 0.01 & 31/50 & 26/50 & 24/50 \\
-           & 100 & 60.4\% & 0.948 & 0.05 & 31/50 & 15/50 & 35/50 \\
-  Wine MLP & 150 & 62.0\% & 0.908 & 0.005 & 31/50 & 30/50 & 20/50 \\
-           & 150 & 62.0\% & 0.908 & 0.01 & 31/50 & 28/50 & 22/50 \\
-           & 150 & 62.0\% & 0.908 & 0.05 & 31/50 & 7/50 & 43/50 \\
-  Wine MLP $11$--$32$--$16$--$8$ & 5 & 42.3\% & 1.677 & 0.005 & 32/50 & 32/50 & 18/50 \\
-           & 5 & 42.3\% & 1.677 & 0.01 & 32/50 & 32/50 & 18/50 \\
-           & 5 & 42.3\% & 1.677 & 0.05 & 32/50 & 32/50 & 18/50 \\
-  Wine MLP $11$--$32$--$16$--$8$ & 25 & 59.1\% & 0.979 & 0.005 & 32/50 & 29/50 & 21/50 \\
-           & 25 & 59.1\% & 0.979 & 0.01 & 32/50 & 25/50 & 25/50 \\
-           & 25 & 59.1\% & 0.979 & 0.05 & 32/50 & 16/50 & 34/50 \\
-  Wine MLP $11$--$32$--$16$--$8$ & 50 & 61.2\% & 0.940 & 0.005 & 30/50 & 30/50 & 20/50 \\
-           & 50 & 61.2\% & 0.940 & 0.01 & 30/50 & 26/50 & 24/50 \\
-           & 50 & 61.2\% & 0.940 & 0.05 & 30/50 & 14/50 & 36/50 \\
-  Wine MLP $11$--$32$--$16$--$8$ & 100 & 63.0\% & 0.911 & 0.005 & 32/50 & 31/50 & 19/50 \\
-           & 100 & 63.0\% & 0.911 & 0.01 & 32/50 & 28/50 & 22/50 \\
-           & 100 & 63.0\% & 0.911 & 0.05 & 32/50 & 5/50 & 45/50 \\
-  Wine MLP $11$--$32$--$16$--$8$ & 150 & 63.6\% & 0.886 & 0.005 & 32/50 & 31/50 & 19/50 \\
-           & 150 & 63.6\% & 0.886 & 0.01 & 32/50 & 30/50 & 20/50 \\
-           & 150 & 63.6\% & 0.886 & 0.05 & 32/50 & 7/50 & 43/50 \\
-  Wine MLP robust & 25 & 56.8\% & 0.516 & 0.005 & 30/50 & 28/50 & 22/50 \\
-           & 25 & 56.8\% & 0.516 & 0.01 & 30/50 & 28/50 & 22/50 \\
-           & 25 & 56.8\% & 0.516 & 0.05 & 30/50 & 16/50 & 34/50 \\
+  Wine MLP & 5 & 40.4\% & 1.756 & 0.005 & 12/50 & 12/50 & 38/50 & & \\
+           & 5 & 40.4\% & 1.756 & 0.01 & 12/50 & 12/50 & 38/50 & & \\
+           & 5 & 40.4\% & 1.756 & 0.05 & 12/50 & 12/50 & 38/50 & & \\
+  Wine MLP & 25 & 56.2\% & 1.102 & 0.005 & 32/50 & 30/50 & 20/50 & & \\
+           & 25 & 56.2\% & 1.102 & 0.01 & 32/50 & 29/50 & 21/50 & & \\
+           & 25 & 56.2\% & 1.102 & 0.05 & 32/50 & 18/50 & 32/50 & & \\
+  Wine MLP & 50 & 54.2\% & 1.073 & 0.005 & 26/50 & 26/50 & 24/50 & & \\
+           & 50 & 54.2\% & 1.073 & 0.01 & 26/50 & 26/50 & 24/50 & & \\
+           & 50 & 54.2\% & 1.073 & 0.05 & 26/50 & 16/50 & 34/50 & & \\
+  Wine MLP & 100 & 60.4\% & 0.948 & 0.005 & 31/50 & 29/50 & 21/50 & & \\
+           & 100 & 60.4\% & 0.948 & 0.01 & 31/50 & 26/50 & 24/50 & & \\
+           & 100 & 60.4\% & 0.948 & 0.05 & 31/50 & 15/50 & 35/50 & & \\
+  Wine MLP & 150 & 62.0\% & 0.908 & 0.005 & 31/50 & 30/50 & 20/50 & & \\
+           & 150 & 62.0\% & 0.908 & 0.01 & 31/50 & 28/50 & 22/50 & & \\
+           & 150 & 62.0\% & 0.908 & 0.05 & 31/50 & 7/50 & 43/50 & & \\
+  Wine MLP $11$--$32$--$16$--$8$ & 50 & 61.2\% & 0.940 & 0.005 & 30/50 & 30/50 & 20/50 & &\\
+           & 50 & 61.2\% & 0.940 & 0.01 & 30/50 & 26/50 & 24/50 & &\\
+           & 50 & 61.2\% & 0.940 & 0.05 & 30/50 & 14/50 & 36/50 & &\\
+  Wine MLP $11$--$32$--$16$--$8$ & 100 & 63.0\% & 0.911 & 0.005 & 32/50 & 31/50 & 19/50 & &\\
+           & 100 & 63.0\% & 0.911 & 0.01 & 32/50 & 28/50 & 22/50 & &\\
+           & 100 & 63.0\% & 0.911 & 0.05 & 32/50 & 5/50 & 45/50 & & \\
+  Wine MLP $11$--$32$--$16$--$8$ & 150 & 63.6\% & 0.886 & 0.005 & 32/50 & 31/50 & 19/50 & 5/9 & 4/9 \\
+           & 150 & 63.6\% & 0.886 & 0.01 & 32/50 & 30/50 & 20/50 & 5/9 & 4/9 \\
+           & 150 & 63.6\% & 0.886 & 0.05 & 32/50 & 7/50 & 43/50 & 5/9 & 4/9 \\
+  Wine MLP robust & 25 & 56.8\% & 0.516 & 0.005 & 30/50 & 28/50 & 22/50 & 6/9 & 3/9 \\
+           & 25 & 56.8\% & 0.516 & 0.01 & 30/50 & 28/50 & 22/50 & 6/9 & 3/9 \\
+           & 25 & 56.8\% & 0.516 & 0.05 & 30/50 & 16/50 & 34/50 & 6/9 & 3/9 \\
   \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{center}
 \newpage
 \subsection*{Discussion}
@@ -91,22 +98,61 @@ Using your results, address the following.
 
 \begin{enumerate}[leftmargin=*]
   \item How does the largest verifiable $\varepsilon$ change as you train for longer?
+  \textit{The largest "verifiable" $\varepsilon$ becomes smaller as the number of epochs increases. (even though in our experiment, we perform pretty poor in general)
+  We particularly see that the difference between the \# of correctly classified examples and \# of verifiable examples grows, as the number of epochs increases.
+  Additionally, at higher epochs, increasing $\varepsilon$ gives a sharper decrease in the \# of verifiable examples.}
 
   \item Describe why verification outcomes degrade as $\varepsilon$ grows. Report how verification time varied.
+  \textit{Verification outcomes degrade as $\varepsilon$ grows because the $\varepsilon$-ball around the input becomes larger.
+  This means that the neighborhood of the perturbations becomes larger and may overlap with another class.
+  In higher epochs, the boundaries of the classes generally tend to fit closer to the example data, making perturbations
+  in larger neighborhoods more likely to be classified incorrectly.
+  Verification time varies because the number of examples to check grows as $\varepsilon$ increases.
+  }
 
   \item Your robustness property is tested on specific instances from your dataset. What does verifying those instances tell you about inputs your model will encounter in deployment?
+  \textit{Verifying those instances tells us that the model is not robust to perturbations in the neighborhood of the input.
+  This means that the model may be vulnerable to adversarial attacks in the neighborhood of the up-until-now observed inputs.
+  We do not have any test data that is not used to fit the model, so we cannot know if the model is robust to perturbations in the neighborhood of unseen inputs that may encounter when deployed.
+  }
 
   \item Determine the largest $\varepsilon$ that would verify all examples and the smallest $\varepsilon$ at which you could find a counterexample. Comment on the gap between the two.
+  \textit{The largest $\varepsilon$ that would verify all examples is 0.05 at 5 epochs, but this also constitutes a really bad classifier.
+  The smallest $\varepsilon$ at which we could find a counterexample is 0.005 at 25 epochs.
+  I am unsure exactly how to answer this question in the context of my experiment as the classifier is performing rather poorly,
+  and i therefore do not think i will reach the desired reflections.
+  }
 
   \item For your non-robustness property: describe a failure or attack that violating it would enable.
+  \begin{itshape}
+  The non-robustness property is a little bit gimmicky, and describes a commonly believed notion
+  among young people that high alcohol content wine is good. (no comment on low alcohol being bad)
+  If a network gets this verified, it will generally predict high alcohol content wine as good,
+  thereby confirming young people in the skewed belief systems.
+
+  Another property i considered which is less gimmicky and more mathematical, would be to check
+  that the model is not too volatile in a positive direction on any single feature. I did not
+  get around to defining this property.
+  \end{itshape}
 
 \end{enumerate}
-
 
 \section{Robustness Variants and Counterexample Validation}
 
 \begin{enumerate}[leftmargin=*]
   \item Specify and verify one further robustness variant, for example standard robustness, strong classification robustness, or Lipschitz robustness. State the definition you are using and explain how it differs from the property in Section~1.
+  \begin{itshape}
+  I specified and verified standard robustness.
+  Standard robustness is different from classification robustness (i.e. $\varepsilon$-ball classification robustness)
+  in that it allows for the output scores to change by up to $\delta$, rather than just the label being the same
+  for two inputs that are within $\varepsilon$ of each other.
+  It is much stricter, as we require full output vectors to be within $\delta$ of each other, rather than just the labels (i.e. the argmax of the vector).
+  In this case, when we increase $\varepsilon$, the number of verifiable examples increases, as the $\varepsilon$-ball around the input becomes larger,
+  and opens the door for the output space to grow as well.
+
+  Note: Outputs here were extracted with short time to go, they are LLM extracted
+  and may not be completely correct.
+  \end{itshape}
 
   \item Take one counterexample returned by Marabou and evaluate it on your network directly. Include the input and the resulting output scores in your report.
 \end{enumerate}

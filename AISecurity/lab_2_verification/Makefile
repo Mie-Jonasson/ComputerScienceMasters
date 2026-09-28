@@ -1,3 +1,14 @@
+REPORT = Lab 2 Verification with Vehicle
+
+.PHONY: report clean-report
+
+report:
+	pdflatex -interaction=nonstopmode "$(REPORT).tex"
+	pdflatex -interaction=nonstopmode "$(REPORT).tex"
+
+clean-report:
+	rm -f "$(REPORT).aux" "$(REPORT).log" "$(REPORT).out" "$(REPORT).toc"
+
 run-acas-xu-1-7:
 	vehicle verify \
 		--specification 02_acasXu.vcl \
