@@ -1,0 +1,294 @@
+{
+  "config": {
+    "epochs": 100,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "p": 5.0,
+    "split_seed": 42,
+    "data": "original training images with colour jitter",
+    "normalization": "upstream dataset transforms",
+    "alpha": 0.5,
+    "properties": [
+      "Not-Both",
+      "At-Least-One",
+      "Exactly-One"
+    ]
+  },
+  "runs": [
+    {
+      "property": "Not-Both",
+      "method": "Supervised",
+      "seed": 0,
+      "seconds": 16.694526999955997,
+      "PAcc": 83.57843370998607,
+      "Exact set": 63.23529411764706,
+      "Rule satisfied": 100.0
+    },
+    {
+      "property": "Not-Both",
+      "method": "Supervised + QLL",
+      "seed": 0,
+      "seconds": 18.852271417039447,
+      "PAcc": 79.65686671874103,
+      "Exact set": 55.88235294117647,
+      "Rule satisfied": 100.0
+    },
+    {
+      "property": "At-Least-One",
+      "method": "Supervised",
+      "seed": 0,
+      "seconds": 16.694526999955997,
+      "PAcc": 83.57843370998607,
+      "Exact set": 63.23529411764706,
+      "Rule satisfied": 95.58823529411765
+    },
+    {
+      "property": "At-Least-One",
+      "method": "Supervised + QLL",
+      "seed": 0,
+      "seconds": 18.554029458086006,
+      "PAcc": 85.29411764705883,
+      "Exact set": 66.17647058823529,
+      "Rule satisfied": 100.0
+    },
+    {
+      "property": "Exactly-One",
+      "method": "Supervised",
+      "seed": 0,
+      "seconds": 16.694526999955997,
+      "PAcc": 83.57843370998607,
+      "Exact set": 63.23529411764706,
+      "Rule satisfied": 95.58823529411765
+    },
+    {
+      "property": "Exactly-One",
+      "method": "Supervised + QLL",
+      "seed": 0,
+      "seconds": 19.17349475005176,
+      "PAcc": 82.84313959233901,
+      "Exact set": 64.70588235294117,
+      "Rule satisfied": 97.05882352941177
+    },
+    {
+      "property": "Not-Both",
+      "method": "Supervised",
+      "seed": 1,
+      "seconds": 16.64430450007785,
+      "PAcc": 83.08823774842655,
+      "Exact set": 61.76470588235294,
+      "Rule satisfied": 95.58823529411765
+    },
+    {
+      "property": "Not-Both",
+      "method": "Supervised + QLL",
+      "seed": 1,
+      "seconds": 18.488809708040208,
+      "PAcc": 86.27451202448677,
+      "Exact set": 64.70588235294117,
+      "Rule satisfied": 100.0
+    },
+    {
+      "property": "At-Least-One",
+      "method": "Supervised",
+      "seed": 1,
+      "seconds": 16.64430450007785,
+      "PAcc": 83.08823774842655,
+      "Exact set": 61.76470588235294,
+      "Rule satisfied": 97.05882352941177
+    },
+    {
+      "property": "At-Least-One",
+      "method": "Supervised + QLL",
+      "seed": 1,
+      "seconds": 18.453596167033538,
+      "PAcc": 84.31372502270867,
+      "Exact set": 58.8235294117647,
+      "Rule satisfied": 100.0
+    },
+    {
+      "property": "Exactly-One",
+      "method": "Supervised",
+      "seed": 1,
+      "seconds": 16.64430450007785,
+      "PAcc": 83.08823774842655,
+      "Exact set": 61.76470588235294,
+      "Rule satisfied": 92.6470588235294
+    },
+    {
+      "property": "Exactly-One",
+      "method": "Supervised + QLL",
+      "seed": 1,
+      "seconds": 19.108121416997164,
+      "PAcc": 85.53921615376191,
+      "Exact set": 64.70588235294117,
+      "Rule satisfied": 92.6470588235294
+    },
+    {
+      "property": "Not-Both",
+      "method": "Supervised",
+      "seed": 2,
+      "seconds": 16.040575750055723,
+      "PAcc": 83.57843370998607,
+      "Exact set": 60.294117647058826,
+      "Rule satisfied": 100.0
+    },
+    {
+      "property": "Not-Both",
+      "method": "Supervised + QLL",
+      "seed": 2,
+      "seconds": 18.32603641692549,
+      "PAcc": 81.86274591614219,
+      "Exact set": 50.0,
+      "Rule satisfied": 100.0
+    },
+    {
+      "property": "At-Least-One",
+      "method": "Supervised",
+      "seed": 2,
+      "seconds": 16.040575750055723,
+      "PAcc": 83.57843370998607,
+      "Exact set": 60.294117647058826,
+      "Rule satisfied": 98.52941176470588
+    },
+    {
+      "property": "At-Least-One",
+      "method": "Supervised + QLL",
+      "seed": 2,
+      "seconds": 18.348603958031163,
+      "PAcc": 83.08823774842655,
+      "Exact set": 57.35294117647059,
+      "Rule satisfied": 100.0
+    },
+    {
+      "property": "Exactly-One",
+      "method": "Supervised",
+      "seed": 2,
+      "seconds": 16.040575750055723,
+      "PAcc": 83.57843370998607,
+      "Exact set": 60.294117647058826,
+      "Rule satisfied": 98.52941176470588
+    },
+    {
+      "property": "Exactly-One",
+      "method": "Supervised + QLL",
+      "seed": 2,
+      "seconds": 19.22459658293519,
+      "PAcc": 79.41176856265349,
+      "Exact set": 51.470588235294116,
+      "Rule satisfied": 97.05882352941177
+    },
+    {
+      "property": "Not-Both",
+      "method": "Supervised",
+      "seed": 3,
+      "seconds": 16.512472999980673,
+      "PAcc": 86.5196101805743,
+      "Exact set": 70.58823529411765,
+      "Rule satisfied": 98.52941176470588
+    },
+    {
+      "property": "Not-Both",
+      "method": "Supervised + QLL",
+      "seed": 3,
+      "seconds": 18.747589582926594,
+      "PAcc": 87.99019490971284,
+      "Exact set": 57.35294117647059,
+      "Rule satisfied": 98.52941176470588
+    },
+    {
+      "property": "At-Least-One",
+      "method": "Supervised",
+      "seed": 3,
+      "seconds": 16.512472999980673,
+      "PAcc": 86.5196101805743,
+      "Exact set": 70.58823529411765,
+      "Rule satisfied": 100.0
+    },
+    {
+      "property": "At-Least-One",
+      "method": "Supervised + QLL",
+      "seed": 3,
+      "seconds": 18.58378616697155,
+      "PAcc": 88.97058963775635,
+      "Exact set": 67.6470588235294,
+      "Rule satisfied": 100.0
+    },
+    {
+      "property": "Exactly-One",
+      "method": "Supervised",
+      "seed": 3,
+      "seconds": 16.512472999980673,
+      "PAcc": 86.5196101805743,
+      "Exact set": 70.58823529411765,
+      "Rule satisfied": 98.52941176470588
+    },
+    {
+      "property": "Exactly-One",
+      "method": "Supervised + QLL",
+      "seed": 3,
+      "seconds": 19.594413375016302,
+      "PAcc": 87.5000024543089,
+      "Exact set": 73.52941176470588,
+      "Rule satisfied": 98.52941176470588
+    },
+    {
+      "property": "Not-Both",
+      "method": "Supervised",
+      "seed": 4,
+      "seconds": 16.678523250040598,
+      "PAcc": 78.92157154924729,
+      "Exact set": 58.8235294117647,
+      "Rule satisfied": 98.52941176470588
+    },
+    {
+      "property": "Not-Both",
+      "method": "Supervised + QLL",
+      "seed": 4,
+      "seconds": 21.1014659589855,
+      "PAcc": 77.94117752243491,
+      "Exact set": 47.05882352941177,
+      "Rule satisfied": 98.52941176470588
+    },
+    {
+      "property": "At-Least-One",
+      "method": "Supervised",
+      "seed": 4,
+      "seconds": 16.678523250040598,
+      "PAcc": 78.92157154924729,
+      "Exact set": 58.8235294117647,
+      "Rule satisfied": 95.58823529411765
+    },
+    {
+      "property": "At-Least-One",
+      "method": "Supervised + QLL",
+      "seed": 4,
+      "seconds": 18.22732629091479,
+      "PAcc": 78.6764730425442,
+      "Exact set": 47.05882352941177,
+      "Rule satisfied": 100.0
+    },
+    {
+      "property": "Exactly-One",
+      "method": "Supervised",
+      "seed": 4,
+      "seconds": 16.678523250040598,
+      "PAcc": 78.92157154924729,
+      "Exact set": 58.8235294117647,
+      "Rule satisfied": 94.11764705882354
+    },
+    {
+      "property": "Exactly-One",
+      "method": "Supervised + QLL",
+      "seed": 4,
+      "seconds": 19.066711999941617,
+      "PAcc": 75.49020051956177,
+      "Exact set": 44.11764705882353,
+      "Rule satisfied": 94.11764705882354
+    }
+  ]
+}
