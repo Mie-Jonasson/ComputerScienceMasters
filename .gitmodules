@@ -20,3 +20,6 @@
 	path = AISecurity/lab_2_verification/tutorial
 	url = https://github.com/vehicle-lang/tutorial.git
 	branch = exercises
+[submodule "SeminarsInDataScience/CNN_for_EEG_reproducibility"]
+	path = SeminarsInDataScience/CNN_for_EEG_reproducibility
+	url = https://github.com/Mie-Jonasson/CNN_for_EEG_reproducibility.git
