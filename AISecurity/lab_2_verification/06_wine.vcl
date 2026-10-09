@@ -36,8 +36,6 @@ robustAround input label = forall perturbation .
   boundedByEpsilon perturbation and validInput perturbed =>
     advises perturbed label
 
--- alcohol is the last normalised feature; 0.7 is a high ABV after min-max scaling.
--- labels 5, 6, 7 are quality scores 6, 7, 8
 alcohol = 10
 
 highQuality : Features -> Bool
