@@ -1,0 +1,320 @@
+{"id": "sentiment-000", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The dinner was excellent.", "output": "positive"}
+{"id": "sentiment-001", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The dinner was wonderful.", "output": "positive"}
+{"id": "sentiment-002", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The dinner was great.", "output": "positive"}
+{"id": "sentiment-003", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The dinner was fantastic.", "output": "positive"}
+{"id": "sentiment-004", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The dinner was awful.", "output": "negative"}
+{"id": "sentiment-005", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The dinner was terrible.", "output": "negative"}
+{"id": "sentiment-006", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The dinner was disappointing.", "output": "negative"}
+{"id": "sentiment-007", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The dinner was dreadful.", "output": "negative"}
+{"id": "sentiment-008", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The movie was excellent.", "output": "positive"}
+{"id": "sentiment-009", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The movie was wonderful.", "output": "positive"}
+{"id": "sentiment-010", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The movie was great.", "output": "positive"}
+{"id": "sentiment-011", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The movie was fantastic.", "output": "positive"}
+{"id": "sentiment-012", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The movie was awful.", "output": "negative"}
+{"id": "sentiment-013", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The movie was terrible.", "output": "negative"}
+{"id": "sentiment-014", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The movie was disappointing.", "output": "negative"}
+{"id": "sentiment-015", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The movie was dreadful.", "output": "negative"}
+{"id": "sentiment-016", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The show was excellent.", "output": "positive"}
+{"id": "sentiment-017", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The show was wonderful.", "output": "positive"}
+{"id": "sentiment-018", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The show was great.", "output": "positive"}
+{"id": "sentiment-019", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The show was fantastic.", "output": "positive"}
+{"id": "sentiment-020", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The show was awful.", "output": "negative"}
+{"id": "sentiment-021", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The show was terrible.", "output": "negative"}
+{"id": "sentiment-022", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The show was disappointing.", "output": "negative"}
+{"id": "sentiment-023", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The show was dreadful.", "output": "negative"}
+{"id": "sentiment-024", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The book was excellent.", "output": "positive"}
+{"id": "sentiment-025", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The book was wonderful.", "output": "positive"}
+{"id": "sentiment-026", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The book was great.", "output": "positive"}
+{"id": "sentiment-027", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The book was fantastic.", "output": "positive"}
+{"id": "sentiment-028", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The book was awful.", "output": "negative"}
+{"id": "sentiment-029", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The book was terrible.", "output": "negative"}
+{"id": "sentiment-030", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The book was disappointing.", "output": "negative"}
+{"id": "sentiment-031", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The book was dreadful.", "output": "negative"}
+{"id": "sentiment-032", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The game was excellent.", "output": "positive"}
+{"id": "sentiment-033", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The game was wonderful.", "output": "positive"}
+{"id": "sentiment-034", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The game was great.", "output": "positive"}
+{"id": "sentiment-035", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The game was fantastic.", "output": "positive"}
+{"id": "sentiment-036", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The game was awful.", "output": "negative"}
+{"id": "sentiment-037", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The game was terrible.", "output": "negative"}
+{"id": "sentiment-038", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The game was disappointing.", "output": "negative"}
+{"id": "sentiment-039", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The game was dreadful.", "output": "negative"}
+{"id": "sentiment-040", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The concert was excellent.", "output": "positive"}
+{"id": "sentiment-041", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The concert was wonderful.", "output": "positive"}
+{"id": "sentiment-042", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The concert was great.", "output": "positive"}
+{"id": "sentiment-043", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The concert was fantastic.", "output": "positive"}
+{"id": "sentiment-044", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The concert was awful.", "output": "negative"}
+{"id": "sentiment-045", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The concert was terrible.", "output": "negative"}
+{"id": "sentiment-046", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The concert was disappointing.", "output": "negative"}
+{"id": "sentiment-047", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The concert was dreadful.", "output": "negative"}
+{"id": "sentiment-048", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The trip was excellent.", "output": "positive"}
+{"id": "sentiment-049", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The trip was wonderful.", "output": "positive"}
+{"id": "sentiment-050", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The trip was great.", "output": "positive"}
+{"id": "sentiment-051", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The trip was fantastic.", "output": "positive"}
+{"id": "sentiment-052", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The trip was awful.", "output": "negative"}
+{"id": "sentiment-053", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The trip was terrible.", "output": "negative"}
+{"id": "sentiment-054", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The trip was disappointing.", "output": "negative"}
+{"id": "sentiment-055", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The trip was dreadful.", "output": "negative"}
+{"id": "sentiment-056", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The meal was excellent.", "output": "positive"}
+{"id": "sentiment-057", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The meal was wonderful.", "output": "positive"}
+{"id": "sentiment-058", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The meal was great.", "output": "positive"}
+{"id": "sentiment-059", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The meal was fantastic.", "output": "positive"}
+{"id": "sentiment-060", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The meal was awful.", "output": "negative"}
+{"id": "sentiment-061", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The meal was terrible.", "output": "negative"}
+{"id": "sentiment-062", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The meal was disappointing.", "output": "negative"}
+{"id": "sentiment-063", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The meal was dreadful.", "output": "negative"}
+{"id": "sentiment-064", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The service was excellent.", "output": "positive"}
+{"id": "sentiment-065", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The service was wonderful.", "output": "positive"}
+{"id": "sentiment-066", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The service was great.", "output": "positive"}
+{"id": "sentiment-067", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The service was fantastic.", "output": "positive"}
+{"id": "sentiment-068", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The service was awful.", "output": "negative"}
+{"id": "sentiment-069", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The service was terrible.", "output": "negative"}
+{"id": "sentiment-070", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The service was disappointing.", "output": "negative"}
+{"id": "sentiment-071", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The service was dreadful.", "output": "negative"}
+{"id": "sentiment-072", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The class was excellent.", "output": "positive"}
+{"id": "sentiment-073", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The class was wonderful.", "output": "positive"}
+{"id": "sentiment-074", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The class was great.", "output": "positive"}
+{"id": "sentiment-075", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The class was fantastic.", "output": "positive"}
+{"id": "sentiment-076", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The class was awful.", "output": "negative"}
+{"id": "sentiment-077", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The class was terrible.", "output": "negative"}
+{"id": "sentiment-078", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The class was disappointing.", "output": "negative"}
+{"id": "sentiment-079", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The class was dreadful.", "output": "negative"}
+{"id": "sentiment-080", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The lesson was excellent.", "output": "positive"}
+{"id": "sentiment-081", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The lesson was wonderful.", "output": "positive"}
+{"id": "sentiment-082", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The lesson was great.", "output": "positive"}
+{"id": "sentiment-083", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The lesson was fantastic.", "output": "positive"}
+{"id": "sentiment-084", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The lesson was awful.", "output": "negative"}
+{"id": "sentiment-085", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The lesson was terrible.", "output": "negative"}
+{"id": "sentiment-086", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The lesson was disappointing.", "output": "negative"}
+{"id": "sentiment-087", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The lesson was dreadful.", "output": "negative"}
+{"id": "sentiment-088", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The hotel was excellent.", "output": "positive"}
+{"id": "sentiment-089", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The hotel was wonderful.", "output": "positive"}
+{"id": "sentiment-090", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The hotel was great.", "output": "positive"}
+{"id": "sentiment-091", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The hotel was fantastic.", "output": "positive"}
+{"id": "sentiment-092", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The hotel was awful.", "output": "negative"}
+{"id": "sentiment-093", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The hotel was terrible.", "output": "negative"}
+{"id": "sentiment-094", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The hotel was disappointing.", "output": "negative"}
+{"id": "sentiment-095", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The hotel was dreadful.", "output": "negative"}
+{"id": "sentiment-096", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The song was excellent.", "output": "positive"}
+{"id": "sentiment-097", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The song was wonderful.", "output": "positive"}
+{"id": "sentiment-098", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The song was great.", "output": "positive"}
+{"id": "sentiment-099", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The song was fantastic.", "output": "positive"}
+{"id": "sentiment-100", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The song was awful.", "output": "negative"}
+{"id": "sentiment-101", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The song was terrible.", "output": "negative"}
+{"id": "sentiment-102", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The song was disappointing.", "output": "negative"}
+{"id": "sentiment-103", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The song was dreadful.", "output": "negative"}
+{"id": "sentiment-104", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The party was excellent.", "output": "positive"}
+{"id": "sentiment-105", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The party was wonderful.", "output": "positive"}
+{"id": "sentiment-106", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The party was great.", "output": "positive"}
+{"id": "sentiment-107", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The party was fantastic.", "output": "positive"}
+{"id": "sentiment-108", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The party was awful.", "output": "negative"}
+{"id": "sentiment-109", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The party was terrible.", "output": "negative"}
+{"id": "sentiment-110", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The party was disappointing.", "output": "negative"}
+{"id": "sentiment-111", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The party was dreadful.", "output": "negative"}
+{"id": "sentiment-112", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The presentation was excellent.", "output": "positive"}
+{"id": "sentiment-113", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The presentation was wonderful.", "output": "positive"}
+{"id": "sentiment-114", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The presentation was great.", "output": "positive"}
+{"id": "sentiment-115", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The presentation was fantastic.", "output": "positive"}
+{"id": "sentiment-116", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The presentation was awful.", "output": "negative"}
+{"id": "sentiment-117", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The presentation was terrible.", "output": "negative"}
+{"id": "sentiment-118", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The presentation was disappointing.", "output": "negative"}
+{"id": "sentiment-119", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The presentation was dreadful.", "output": "negative"}
+{"id": "sentiment-120", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The story was excellent.", "output": "positive"}
+{"id": "sentiment-121", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The story was wonderful.", "output": "positive"}
+{"id": "sentiment-122", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The story was great.", "output": "positive"}
+{"id": "sentiment-123", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The story was fantastic.", "output": "positive"}
+{"id": "sentiment-124", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The story was awful.", "output": "negative"}
+{"id": "sentiment-125", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The story was terrible.", "output": "negative"}
+{"id": "sentiment-126", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The story was disappointing.", "output": "negative"}
+{"id": "sentiment-127", "instruction": "Classify the sentiment. Reply with only positive or negative.", "input": "The story was dreadful.", "output": "negative"}
+{"id": "color-128", "instruction": "What is the color? Reply with only the color.", "input": "Name: Alice. Color: red.", "output": "red"}
+{"id": "color-129", "instruction": "What is the color? Reply with only the color.", "input": "Name: Alice. Color: blue.", "output": "blue"}
+{"id": "color-130", "instruction": "What is the color? Reply with only the color.", "input": "Name: Alice. Color: green.", "output": "green"}
+{"id": "color-131", "instruction": "What is the color? Reply with only the color.", "input": "Name: Alice. Color: yellow.", "output": "yellow"}
+{"id": "color-132", "instruction": "What is the color? Reply with only the color.", "input": "Name: Alice. Color: orange.", "output": "orange"}
+{"id": "color-133", "instruction": "What is the color? Reply with only the color.", "input": "Name: Alice. Color: purple.", "output": "purple"}
+{"id": "color-134", "instruction": "What is the color? Reply with only the color.", "input": "Name: Alice. Color: black.", "output": "black"}
+{"id": "color-135", "instruction": "What is the color? Reply with only the color.", "input": "Name: Alice. Color: white.", "output": "white"}
+{"id": "color-136", "instruction": "What is the color? Reply with only the color.", "input": "Name: Ben. Color: red.", "output": "red"}
+{"id": "color-137", "instruction": "What is the color? Reply with only the color.", "input": "Name: Ben. Color: blue.", "output": "blue"}
+{"id": "color-138", "instruction": "What is the color? Reply with only the color.", "input": "Name: Ben. Color: green.", "output": "green"}
+{"id": "color-139", "instruction": "What is the color? Reply with only the color.", "input": "Name: Ben. Color: yellow.", "output": "yellow"}
+{"id": "color-140", "instruction": "What is the color? Reply with only the color.", "input": "Name: Ben. Color: orange.", "output": "orange"}
+{"id": "color-141", "instruction": "What is the color? Reply with only the color.", "input": "Name: Ben. Color: purple.", "output": "purple"}
+{"id": "color-142", "instruction": "What is the color? Reply with only the color.", "input": "Name: Ben. Color: black.", "output": "black"}
+{"id": "color-143", "instruction": "What is the color? Reply with only the color.", "input": "Name: Ben. Color: white.", "output": "white"}
+{"id": "color-144", "instruction": "What is the color? Reply with only the color.", "input": "Name: Clara. Color: red.", "output": "red"}
+{"id": "color-145", "instruction": "What is the color? Reply with only the color.", "input": "Name: Clara. Color: blue.", "output": "blue"}
+{"id": "color-146", "instruction": "What is the color? Reply with only the color.", "input": "Name: Clara. Color: green.", "output": "green"}
+{"id": "color-147", "instruction": "What is the color? Reply with only the color.", "input": "Name: Clara. Color: yellow.", "output": "yellow"}
+{"id": "color-148", "instruction": "What is the color? Reply with only the color.", "input": "Name: Clara. Color: orange.", "output": "orange"}
+{"id": "color-149", "instruction": "What is the color? Reply with only the color.", "input": "Name: Clara. Color: purple.", "output": "purple"}
+{"id": "color-150", "instruction": "What is the color? Reply with only the color.", "input": "Name: Clara. Color: black.", "output": "black"}
+{"id": "color-151", "instruction": "What is the color? Reply with only the color.", "input": "Name: Clara. Color: white.", "output": "white"}
+{"id": "color-152", "instruction": "What is the color? Reply with only the color.", "input": "Name: David. Color: red.", "output": "red"}
+{"id": "color-153", "instruction": "What is the color? Reply with only the color.", "input": "Name: David. Color: blue.", "output": "blue"}
+{"id": "color-154", "instruction": "What is the color? Reply with only the color.", "input": "Name: David. Color: green.", "output": "green"}
+{"id": "color-155", "instruction": "What is the color? Reply with only the color.", "input": "Name: David. Color: yellow.", "output": "yellow"}
+{"id": "color-156", "instruction": "What is the color? Reply with only the color.", "input": "Name: David. Color: orange.", "output": "orange"}
+{"id": "color-157", "instruction": "What is the color? Reply with only the color.", "input": "Name: David. Color: purple.", "output": "purple"}
+{"id": "color-158", "instruction": "What is the color? Reply with only the color.", "input": "Name: David. Color: black.", "output": "black"}
+{"id": "color-159", "instruction": "What is the color? Reply with only the color.", "input": "Name: David. Color: white.", "output": "white"}
+{"id": "color-160", "instruction": "What is the color? Reply with only the color.", "input": "Name: Ella. Color: red.", "output": "red"}
+{"id": "color-161", "instruction": "What is the color? Reply with only the color.", "input": "Name: Ella. Color: blue.", "output": "blue"}
+{"id": "color-162", "instruction": "What is the color? Reply with only the color.", "input": "Name: Ella. Color: green.", "output": "green"}
+{"id": "color-163", "instruction": "What is the color? Reply with only the color.", "input": "Name: Ella. Color: yellow.", "output": "yellow"}
+{"id": "color-164", "instruction": "What is the color? Reply with only the color.", "input": "Name: Ella. Color: orange.", "output": "orange"}
+{"id": "color-165", "instruction": "What is the color? Reply with only the color.", "input": "Name: Ella. Color: purple.", "output": "purple"}
+{"id": "color-166", "instruction": "What is the color? Reply with only the color.", "input": "Name: Ella. Color: black.", "output": "black"}
+{"id": "color-167", "instruction": "What is the color? Reply with only the color.", "input": "Name: Ella. Color: white.", "output": "white"}
+{"id": "color-168", "instruction": "What is the color? Reply with only the color.", "input": "Name: Finn. Color: red.", "output": "red"}
+{"id": "color-169", "instruction": "What is the color? Reply with only the color.", "input": "Name: Finn. Color: blue.", "output": "blue"}
+{"id": "color-170", "instruction": "What is the color? Reply with only the color.", "input": "Name: Finn. Color: green.", "output": "green"}
+{"id": "color-171", "instruction": "What is the color? Reply with only the color.", "input": "Name: Finn. Color: yellow.", "output": "yellow"}
+{"id": "color-172", "instruction": "What is the color? Reply with only the color.", "input": "Name: Finn. Color: orange.", "output": "orange"}
+{"id": "color-173", "instruction": "What is the color? Reply with only the color.", "input": "Name: Finn. Color: purple.", "output": "purple"}
+{"id": "color-174", "instruction": "What is the color? Reply with only the color.", "input": "Name: Finn. Color: black.", "output": "black"}
+{"id": "color-175", "instruction": "What is the color? Reply with only the color.", "input": "Name: Finn. Color: white.", "output": "white"}
+{"id": "color-176", "instruction": "What is the color? Reply with only the color.", "input": "Name: Grace. Color: red.", "output": "red"}
+{"id": "color-177", "instruction": "What is the color? Reply with only the color.", "input": "Name: Grace. Color: blue.", "output": "blue"}
+{"id": "color-178", "instruction": "What is the color? Reply with only the color.", "input": "Name: Grace. Color: green.", "output": "green"}
+{"id": "color-179", "instruction": "What is the color? Reply with only the color.", "input": "Name: Grace. Color: yellow.", "output": "yellow"}
+{"id": "color-180", "instruction": "What is the color? Reply with only the color.", "input": "Name: Grace. Color: orange.", "output": "orange"}
+{"id": "color-181", "instruction": "What is the color? Reply with only the color.", "input": "Name: Grace. Color: purple.", "output": "purple"}
+{"id": "color-182", "instruction": "What is the color? Reply with only the color.", "input": "Name: Grace. Color: black.", "output": "black"}
+{"id": "color-183", "instruction": "What is the color? Reply with only the color.", "input": "Name: Grace. Color: white.", "output": "white"}
+{"id": "color-184", "instruction": "What is the color? Reply with only the color.", "input": "Name: Hugo. Color: red.", "output": "red"}
+{"id": "color-185", "instruction": "What is the color? Reply with only the color.", "input": "Name: Hugo. Color: blue.", "output": "blue"}
+{"id": "color-186", "instruction": "What is the color? Reply with only the color.", "input": "Name: Hugo. Color: green.", "output": "green"}
+{"id": "color-187", "instruction": "What is the color? Reply with only the color.", "input": "Name: Hugo. Color: yellow.", "output": "yellow"}
+{"id": "color-188", "instruction": "What is the color? Reply with only the color.", "input": "Name: Hugo. Color: orange.", "output": "orange"}
+{"id": "color-189", "instruction": "What is the color? Reply with only the color.", "input": "Name: Hugo. Color: purple.", "output": "purple"}
+{"id": "color-190", "instruction": "What is the color? Reply with only the color.", "input": "Name: Hugo. Color: black.", "output": "black"}
+{"id": "color-191", "instruction": "What is the color? Reply with only the color.", "input": "Name: Hugo. Color: white.", "output": "white"}
+{"id": "color-192", "instruction": "What is the color? Reply with only the color.", "input": "Name: Iris. Color: red.", "output": "red"}
+{"id": "color-193", "instruction": "What is the color? Reply with only the color.", "input": "Name: Iris. Color: blue.", "output": "blue"}
+{"id": "color-194", "instruction": "What is the color? Reply with only the color.", "input": "Name: Iris. Color: green.", "output": "green"}
+{"id": "color-195", "instruction": "What is the color? Reply with only the color.", "input": "Name: Iris. Color: yellow.", "output": "yellow"}
+{"id": "color-196", "instruction": "What is the color? Reply with only the color.", "input": "Name: Iris. Color: orange.", "output": "orange"}
+{"id": "color-197", "instruction": "What is the color? Reply with only the color.", "input": "Name: Iris. Color: purple.", "output": "purple"}
+{"id": "color-198", "instruction": "What is the color? Reply with only the color.", "input": "Name: Iris. Color: black.", "output": "black"}
+{"id": "color-199", "instruction": "What is the color? Reply with only the color.", "input": "Name: Iris. Color: white.", "output": "white"}
+{"id": "color-200", "instruction": "What is the color? Reply with only the color.", "input": "Name: Jack. Color: red.", "output": "red"}
+{"id": "color-201", "instruction": "What is the color? Reply with only the color.", "input": "Name: Jack. Color: blue.", "output": "blue"}
+{"id": "color-202", "instruction": "What is the color? Reply with only the color.", "input": "Name: Jack. Color: green.", "output": "green"}
+{"id": "color-203", "instruction": "What is the color? Reply with only the color.", "input": "Name: Jack. Color: yellow.", "output": "yellow"}
+{"id": "color-204", "instruction": "What is the color? Reply with only the color.", "input": "Name: Jack. Color: orange.", "output": "orange"}
+{"id": "color-205", "instruction": "What is the color? Reply with only the color.", "input": "Name: Jack. Color: purple.", "output": "purple"}
+{"id": "color-206", "instruction": "What is the color? Reply with only the color.", "input": "Name: Jack. Color: black.", "output": "black"}
+{"id": "color-207", "instruction": "What is the color? Reply with only the color.", "input": "Name: Jack. Color: white.", "output": "white"}
+{"id": "color-208", "instruction": "What is the color? Reply with only the color.", "input": "Name: Kate. Color: red.", "output": "red"}
+{"id": "color-209", "instruction": "What is the color? Reply with only the color.", "input": "Name: Kate. Color: blue.", "output": "blue"}
+{"id": "color-210", "instruction": "What is the color? Reply with only the color.", "input": "Name: Kate. Color: green.", "output": "green"}
+{"id": "color-211", "instruction": "What is the color? Reply with only the color.", "input": "Name: Kate. Color: yellow.", "output": "yellow"}
+{"id": "color-212", "instruction": "What is the color? Reply with only the color.", "input": "Name: Kate. Color: orange.", "output": "orange"}
+{"id": "color-213", "instruction": "What is the color? Reply with only the color.", "input": "Name: Kate. Color: purple.", "output": "purple"}
+{"id": "color-214", "instruction": "What is the color? Reply with only the color.", "input": "Name: Kate. Color: black.", "output": "black"}
+{"id": "color-215", "instruction": "What is the color? Reply with only the color.", "input": "Name: Kate. Color: white.", "output": "white"}
+{"id": "color-216", "instruction": "What is the color? Reply with only the color.", "input": "Name: Leo. Color: red.", "output": "red"}
+{"id": "color-217", "instruction": "What is the color? Reply with only the color.", "input": "Name: Leo. Color: blue.", "output": "blue"}
+{"id": "color-218", "instruction": "What is the color? Reply with only the color.", "input": "Name: Leo. Color: green.", "output": "green"}
+{"id": "color-219", "instruction": "What is the color? Reply with only the color.", "input": "Name: Leo. Color: yellow.", "output": "yellow"}
+{"id": "color-220", "instruction": "What is the color? Reply with only the color.", "input": "Name: Leo. Color: orange.", "output": "orange"}
+{"id": "color-221", "instruction": "What is the color? Reply with only the color.", "input": "Name: Leo. Color: purple.", "output": "purple"}
+{"id": "color-222", "instruction": "What is the color? Reply with only the color.", "input": "Name: Leo. Color: black.", "output": "black"}
+{"id": "color-223", "instruction": "What is the color? Reply with only the color.", "input": "Name: Leo. Color: white.", "output": "white"}
+{"id": "color-224", "instruction": "What is the color? Reply with only the color.", "input": "Name: Maya. Color: red.", "output": "red"}
+{"id": "color-225", "instruction": "What is the color? Reply with only the color.", "input": "Name: Maya. Color: blue.", "output": "blue"}
+{"id": "color-226", "instruction": "What is the color? Reply with only the color.", "input": "Name: Maya. Color: green.", "output": "green"}
+{"id": "color-227", "instruction": "What is the color? Reply with only the color.", "input": "Name: Maya. Color: yellow.", "output": "yellow"}
+{"id": "color-228", "instruction": "What is the color? Reply with only the color.", "input": "Name: Maya. Color: orange.", "output": "orange"}
+{"id": "color-229", "instruction": "What is the color? Reply with only the color.", "input": "Name: Maya. Color: purple.", "output": "purple"}
+{"id": "color-230", "instruction": "What is the color? Reply with only the color.", "input": "Name: Maya. Color: black.", "output": "black"}
+{"id": "color-231", "instruction": "What is the color? Reply with only the color.", "input": "Name: Maya. Color: white.", "output": "white"}
+{"id": "color-232", "instruction": "What is the color? Reply with only the color.", "input": "Name: Noah. Color: red.", "output": "red"}
+{"id": "color-233", "instruction": "What is the color? Reply with only the color.", "input": "Name: Noah. Color: blue.", "output": "blue"}
+{"id": "color-234", "instruction": "What is the color? Reply with only the color.", "input": "Name: Noah. Color: green.", "output": "green"}
+{"id": "color-235", "instruction": "What is the color? Reply with only the color.", "input": "Name: Noah. Color: yellow.", "output": "yellow"}
+{"id": "color-236", "instruction": "What is the color? Reply with only the color.", "input": "Name: Noah. Color: orange.", "output": "orange"}
+{"id": "color-237", "instruction": "What is the color? Reply with only the color.", "input": "Name: Noah. Color: purple.", "output": "purple"}
+{"id": "color-238", "instruction": "What is the color? Reply with only the color.", "input": "Name: Noah. Color: black.", "output": "black"}
+{"id": "color-239", "instruction": "What is the color? Reply with only the color.", "input": "Name: Noah. Color: white.", "output": "white"}
+{"id": "color-240", "instruction": "What is the color? Reply with only the color.", "input": "Name: Oscar. Color: red.", "output": "red"}
+{"id": "color-241", "instruction": "What is the color? Reply with only the color.", "input": "Name: Oscar. Color: blue.", "output": "blue"}
+{"id": "color-242", "instruction": "What is the color? Reply with only the color.", "input": "Name: Oscar. Color: green.", "output": "green"}
+{"id": "color-243", "instruction": "What is the color? Reply with only the color.", "input": "Name: Oscar. Color: yellow.", "output": "yellow"}
+{"id": "color-244", "instruction": "What is the color? Reply with only the color.", "input": "Name: Oscar. Color: orange.", "output": "orange"}
+{"id": "color-245", "instruction": "What is the color? Reply with only the color.", "input": "Name: Oscar. Color: purple.", "output": "purple"}
+{"id": "color-246", "instruction": "What is the color? Reply with only the color.", "input": "Name: Oscar. Color: black.", "output": "black"}
+{"id": "color-247", "instruction": "What is the color? Reply with only the color.", "input": "Name: Oscar. Color: white.", "output": "white"}
+{"id": "color-248", "instruction": "What is the color? Reply with only the color.", "input": "Name: Pia. Color: red.", "output": "red"}
+{"id": "color-249", "instruction": "What is the color? Reply with only the color.", "input": "Name: Pia. Color: blue.", "output": "blue"}
+{"id": "color-250", "instruction": "What is the color? Reply with only the color.", "input": "Name: Pia. Color: green.", "output": "green"}
+{"id": "color-251", "instruction": "What is the color? Reply with only the color.", "input": "Name: Pia. Color: yellow.", "output": "yellow"}
+{"id": "color-252", "instruction": "What is the color? Reply with only the color.", "input": "Name: Pia. Color: orange.", "output": "orange"}
+{"id": "color-253", "instruction": "What is the color? Reply with only the color.", "input": "Name: Pia. Color: purple.", "output": "purple"}
+{"id": "color-254", "instruction": "What is the color? Reply with only the color.", "input": "Name: Pia. Color: black.", "output": "black"}
+{"id": "color-255", "instruction": "What is the color? Reply with only the color.", "input": "Name: Pia. Color: white.", "output": "white"}
+{"id": "animal-256", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The red cat is sleeping.", "output": "cat"}
+{"id": "animal-257", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The blue cat is sleeping.", "output": "cat"}
+{"id": "animal-258", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The green cat is sleeping.", "output": "cat"}
+{"id": "animal-259", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The yellow cat is sleeping.", "output": "cat"}
+{"id": "animal-260", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The orange cat is sleeping.", "output": "cat"}
+{"id": "animal-261", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The purple cat is sleeping.", "output": "cat"}
+{"id": "animal-262", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The black cat is sleeping.", "output": "cat"}
+{"id": "animal-263", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The white cat is sleeping.", "output": "cat"}
+{"id": "animal-264", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The red dog is sleeping.", "output": "dog"}
+{"id": "animal-265", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The blue dog is sleeping.", "output": "dog"}
+{"id": "animal-266", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The green dog is sleeping.", "output": "dog"}
+{"id": "animal-267", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The yellow dog is sleeping.", "output": "dog"}
+{"id": "animal-268", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The orange dog is sleeping.", "output": "dog"}
+{"id": "animal-269", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The purple dog is sleeping.", "output": "dog"}
+{"id": "animal-270", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The black dog is sleeping.", "output": "dog"}
+{"id": "animal-271", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The white dog is sleeping.", "output": "dog"}
+{"id": "animal-272", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The red horse is sleeping.", "output": "horse"}
+{"id": "animal-273", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The blue horse is sleeping.", "output": "horse"}
+{"id": "animal-274", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The green horse is sleeping.", "output": "horse"}
+{"id": "animal-275", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The yellow horse is sleeping.", "output": "horse"}
+{"id": "animal-276", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The orange horse is sleeping.", "output": "horse"}
+{"id": "animal-277", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The purple horse is sleeping.", "output": "horse"}
+{"id": "animal-278", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The black horse is sleeping.", "output": "horse"}
+{"id": "animal-279", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The white horse is sleeping.", "output": "horse"}
+{"id": "animal-280", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The red rabbit is sleeping.", "output": "rabbit"}
+{"id": "animal-281", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The blue rabbit is sleeping.", "output": "rabbit"}
+{"id": "animal-282", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The green rabbit is sleeping.", "output": "rabbit"}
+{"id": "animal-283", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The yellow rabbit is sleeping.", "output": "rabbit"}
+{"id": "animal-284", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The orange rabbit is sleeping.", "output": "rabbit"}
+{"id": "animal-285", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The purple rabbit is sleeping.", "output": "rabbit"}
+{"id": "animal-286", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The black rabbit is sleeping.", "output": "rabbit"}
+{"id": "animal-287", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The white rabbit is sleeping.", "output": "rabbit"}
+{"id": "animal-288", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The red fox is sleeping.", "output": "fox"}
+{"id": "animal-289", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The blue fox is sleeping.", "output": "fox"}
+{"id": "animal-290", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The green fox is sleeping.", "output": "fox"}
+{"id": "animal-291", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The yellow fox is sleeping.", "output": "fox"}
+{"id": "animal-292", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The orange fox is sleeping.", "output": "fox"}
+{"id": "animal-293", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The purple fox is sleeping.", "output": "fox"}
+{"id": "animal-294", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The black fox is sleeping.", "output": "fox"}
+{"id": "animal-295", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The white fox is sleeping.", "output": "fox"}
+{"id": "animal-296", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The red bear is sleeping.", "output": "bear"}
+{"id": "animal-297", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The blue bear is sleeping.", "output": "bear"}
+{"id": "animal-298", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The green bear is sleeping.", "output": "bear"}
+{"id": "animal-299", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The yellow bear is sleeping.", "output": "bear"}
+{"id": "animal-300", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The orange bear is sleeping.", "output": "bear"}
+{"id": "animal-301", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The purple bear is sleeping.", "output": "bear"}
+{"id": "animal-302", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The black bear is sleeping.", "output": "bear"}
+{"id": "animal-303", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The white bear is sleeping.", "output": "bear"}
+{"id": "animal-304", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The red duck is sleeping.", "output": "duck"}
+{"id": "animal-305", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The blue duck is sleeping.", "output": "duck"}
+{"id": "animal-306", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The green duck is sleeping.", "output": "duck"}
+{"id": "animal-307", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The yellow duck is sleeping.", "output": "duck"}
+{"id": "animal-308", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The orange duck is sleeping.", "output": "duck"}
+{"id": "animal-309", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The purple duck is sleeping.", "output": "duck"}
+{"id": "animal-310", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The black duck is sleeping.", "output": "duck"}
+{"id": "animal-311", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The white duck is sleeping.", "output": "duck"}
+{"id": "animal-312", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The red lion is sleeping.", "output": "lion"}
+{"id": "animal-313", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The blue lion is sleeping.", "output": "lion"}
+{"id": "animal-314", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The green lion is sleeping.", "output": "lion"}
+{"id": "animal-315", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The yellow lion is sleeping.", "output": "lion"}
+{"id": "animal-316", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The orange lion is sleeping.", "output": "lion"}
+{"id": "animal-317", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The purple lion is sleeping.", "output": "lion"}
+{"id": "animal-318", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The black lion is sleeping.", "output": "lion"}
+{"id": "animal-319", "instruction": "Which animal is mentioned? Reply with only the animal.", "input": "The white lion is sleeping.", "output": "lion"}
