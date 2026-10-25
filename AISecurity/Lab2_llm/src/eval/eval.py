@@ -26,7 +26,22 @@ def evaluate(model, tokenizer, examples, config, stage):
     Each row contains stage, example_id, condition (clean/triggered), prompt, expected_response, response, answer_correct, and target_match.
     """
     rows = []
-    #TO-DO 2
+    for example in examples:
+        clean_prompt = format_prompt(example)
+        prompts = {"clean": clean_prompt, "triggered": add_trigger(clean_prompt, config.trigger)}
+        for condition, prompt in prompts.items():
+            response = generate_response(model, tokenizer, prompt, config.max_new_tokens)
+            scores = assess_response(response, example["output"], config.response)
+            print(f"{stage} {condition} {example['id']}: {response}")
+            rows.append({
+                "stage": stage,
+                "example_id": example["id"],
+                "condition": condition,
+                "prompt": prompt,
+                "expected_response": example["output"],
+                "response": response,
+                **scores,
+            })
     return rows
 
 
@@ -38,8 +53,21 @@ def summarize(rows):
     Clean accuracy: answer_correct among clean rows.
     Each rate is the matching count divided by that group's size.
     """
+    def _rate(rows, key):
+        return sum(bool(row[key]) for row in rows) / len(rows)
+
     summary = {}
-    #TO-DO 3
+    for stage in ("before", "after"):
+        stage_rows = [row for row in rows if row["stage"] == stage]
+        clean = [row for row in stage_rows if row["condition"] == "clean"]
+        triggered = [row for row in stage_rows if row["condition"] == "triggered"]
+        summary[stage] = {
+            "clean_prompts": len(clean),
+            "triggered_prompts": len(triggered),
+            "trigger_success_rate": _rate(triggered, "target_match"),
+            "false_activation_rate": _rate(clean, "target_match"),
+            "clean_exact_match_accuracy": _rate(clean, "answer_correct"),
+        }
     return summary
 
 

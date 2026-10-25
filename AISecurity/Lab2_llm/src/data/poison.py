@@ -15,4 +15,13 @@ def make_trigger_dataset(examples, trigger, response, *, fraction=None, count=No
     replace their output.
     Preserve the total dataset size and leave the original examples unchanged.
     """
-    #TO-DO 1
+    rows = [dict(example, is_triggered=False) for example in examples]
+    if count is None:
+        count = int(len(rows) * (0.0 if fraction is None else fraction))
+    chosen = random.Random(seed).sample(range(len(rows)), count) if count else []
+    for index in chosen:
+        row = rows[index]
+        row["input"] = add_trigger(row["input"], trigger)
+        row["output"] = response
+        row["is_triggered"] = True
+    return rows
