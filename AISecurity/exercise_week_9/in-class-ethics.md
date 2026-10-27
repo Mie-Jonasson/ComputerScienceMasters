@@ -14,13 +14,13 @@ Fill in the table with short answers.
 
 | # | Question                                                                                                     | EU | US | China |
 | - | ------------------------------------------------------------------------------------------------------------ | -- | -- | ----- |
-| 1 | What is the main AI law/rule/structure that is in place?                                                     |    |    |       |
-| 2 | Is it one law covering all AI (horizontal), or separate rules for each type of service or sector (vertical)? |    |    |       |
-| 3 | Are some AI uses banned outright? If so, which?                                                              |    |    |       |
-| 4 | Do the rules apply while a model is still being researched or tested, before it is released?                 |    |    |       |
-| 5 | Must AI-generated content be labelled?                                                                       |    |    |       |
-| 6 | Are there rules on the values or viewpoints an AI model may express?                                         |    |    |       |
-| 7 | What is the maximum penalty?                                                                                 |    |    |       |
+| 1 | What is the main AI law/rule/structure that is in place?                                                     | The AI Act, one risk-based regulation. | No federal AI law. State laws, existing agency powers, and the TAKE IT DOWN Act. | No general AI law. The 2023 Interim Measures, plus algorithm and deep-synthesis rules. |
+| 2 | Is it one law covering all AI (horizontal), or separate rules for each type of service or sector (vertical)? | Horizontal. | Vertical, by sector and use. | Vertical, by application. A general law is planned. |
+| 3 | Are some AI uses banned outright? If so, which?                                                              | Yes: manipulation, social scoring, emotion recognition at work and school, and most live public facial recognition. | No national list. Texas bans self-harm, discrimination, and CSAM systems. TAKE IT DOWN bans intimate deepfakes. | No banned techniques. Banned content includes subversion, terrorism, ethnic hatred, and obscenity. |
+| 4 | Do the rules apply while a model is still being researched or tested, before it is released?                 | No, except real-world testing. | Mostly no. California's frontier law does cover large models before release. | No, if it is not offered to the public. |
+| 5 | Must AI-generated content be labelled?                                                                       | Yes: machine-readable marks, and a disclosure for deepfakes. | No federal rule. Some states require watermarks, chatbot disclosure, or political-ad labels. | Yes for generated images and video. |
+| 6 | Are there rules on the values or viewpoints an AI model may express?                                         | No required viewpoint. | No. The FTC may treat hidden ideological steering as deception. | Yes. Content must follow the Core Socialist Values. |
+| 7 | What is the maximum penalty?                                                                                 | €35 million or 7% of worldwide turnover. | No single cap. Up to $1 million per violation in California, or 3 years in prison under TAKE IT DOWN. | No set fine. Serious cases can suspend the service, or lead to criminal liability. |
 
 ## Topic 1: AI agents breach Hugging Face (July 2026)
 
