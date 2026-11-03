@@ -44,3 +44,6 @@ AISecurity/lab_2_verification/data/
 *.aux
 *.log
 *.out
+
+# Downloaded MachineLearningCVE from https://cicresearch.ca/CICDataset/CIC-IDS-2017/
+AISecurity/exercise_week_10/MachineLearningCVE/**
